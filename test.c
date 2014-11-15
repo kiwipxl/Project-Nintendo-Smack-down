@@ -4,7 +4,12 @@
 int main (int argc, char *argv[]) {
 	// Test
 	// So does the new comment go below or above this line?
+	// Added a comment here
 	return EXIT_SUCCESS;
+}
+
+int LawrrsFunction (int abs) {
+	return abs;
 }
 
 int test (int a) {
@@ -12,6 +17,7 @@ int test (int a) {
 }
 
 bool isfefcool() {
+	// OOOoooo spooky
 	return true;
 	// There should be a comment above the return
 }
