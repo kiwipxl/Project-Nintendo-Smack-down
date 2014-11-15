@@ -3,6 +3,7 @@
 
 int main (int argc, char *argv[]) {
 	// Test
+	// Added a comment here
 	return EXIT_SUCCESS;
 }
 
@@ -15,5 +16,6 @@ int test (int a) {
 }
 
 bool isfefcool() {
+	// OOOoooo spooky
 	return true;
 }
