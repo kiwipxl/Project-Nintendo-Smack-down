@@ -13,3 +13,7 @@ int LawrrsFunction (int abs) {
 int test (int a) {
 	return a;
 }
+
+bool isfefcool() {
+	return true;
+}
