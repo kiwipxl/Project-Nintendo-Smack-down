@@ -9,3 +9,7 @@ int main (int argc, char *argv[]) {
 int test (int a) {
 	return a;
 }
+
+bool isfefcool() {
+	return true;
+}
