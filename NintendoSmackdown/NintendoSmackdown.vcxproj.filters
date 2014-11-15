@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="src\managers\Assets.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\EntityManager.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\GameLoop.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tools\ImageTools.cpp">
+      <Filter>src\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\Item.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\KeyboardManager.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map\Map.cpp">
+      <Filter>src\map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\input\MouseManager.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\Text.cpp">
+      <Filter>src\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\UIManager.cpp">
+      <Filter>src\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tools\Universal.cpp">
+      <Filter>src\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Universe.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\managers\WindowManager.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\managers\Assets.h">
+      <Filter>src\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\EntityManager.h">
+      <Filter>src\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GameLoop.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\ImageTools.h">
+      <Filter>src\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\Item.h">
+      <Filter>src\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\KeyboardManager.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Main.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\map\Map.h">
+      <Filter>src\map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\MouseManager.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\Point2D.h">
+      <Filter>src\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\Point2DF.h">
+      <Filter>src\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\Text.h">
+      <Filter>src\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\UIManager.h">
+      <Filter>src\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\Universal.h">
+      <Filter>src\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Universe.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\managers\WindowManager.h">
+      <Filter>src\managers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="libfreetype-6.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libjpeg-9.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libpng16-16.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libtiff-5.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libwebp-4.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="SDL2.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="SDL2_image.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="SDL2_ttf.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="zlib1.dll">
+      <Filter>lib</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="src">
+      <UniqueIdentifier>{34c084b6-40cf-4608-be5f-5c0fb57dd275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="lib">
+      <UniqueIdentifier>{51f555d7-130b-4e4e-9a7d-68fa99fc3ca6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\managers">
+      <UniqueIdentifier>{54d0c5b6-1259-4e4e-af26-a1a7ca26bf28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities">
+      <UniqueIdentifier>{152d1602-333d-4d67-87aa-7da319078f73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\input">
+      <UniqueIdentifier>{76b04e6d-5e00-488c-8aee-f657d528cb27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\map">
+      <UniqueIdentifier>{dc3cf021-e652-4ae1-b089-b9e296c548c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tools">
+      <UniqueIdentifier>{ce591d42-42f6-4b60-8820-f543e728703b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\ui">
+      <UniqueIdentifier>{28d30732-54a0-4e89-8965-41584819030b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
