@@ -6,6 +6,10 @@ int main (int argc, char *argv[]) {
 	return EXIT_SUCCESS;
 }
 
+int LawrrsFunction (int abs) {
+	return abs;
+}
+
 int test (int a) {
 	return a;
 }
