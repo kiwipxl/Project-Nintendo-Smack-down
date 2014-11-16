@@ -55,12 +55,10 @@ void GameLoop::start() {
 
 		double ms = std::clock() - starttime;
 		if (ms >= 0 && ms < msperframe) { Sleep(msperframe - ms); }
-		mscounter += msperframe;
 		++framecounter;
 		if (std::clock() - startsecondtime >= 1000) {
 			std::cout << "fps: " << framecounter << "\n";
 			universe->uimanager->updatefpstext(framecounter);
-			mscounter = 0;
 			framecounter = 0;
 			startsecondtime = std::clock();
 		}

@@ -10,10 +10,15 @@
 class Assets : Universal {
 
 	public:
-		std::vector<SDL_Texture*> textures;
+		vector<SDL_Texture*> textures;
+		vector<SDL_Surface*> surfaces;
+
+		//sprite sheets
+		SDL_Texture* captainfalconidle;
 
 		void initiate();
 		SDL_Texture* loadtexture(char* path);
+		SDL_Surface* loadsurface(char* path);
 		void freetextures();
 };
 

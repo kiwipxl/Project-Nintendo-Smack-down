@@ -13,9 +13,6 @@
     <ClCompile Include="src\tools\ImageTools.cpp">
       <Filter>src\tools</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\Item.cpp">
-      <Filter>src\entities</Filter>
-    </ClCompile>
     <ClCompile Include="src\input\KeyboardManager.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
@@ -43,6 +40,12 @@
     <ClCompile Include="src\managers\WindowManager.cpp">
       <Filter>src\managers</Filter>
     </ClCompile>
+    <ClCompile Include="src\entities\Fighter.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\tools\Animator.cpp">
+      <Filter>src\tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -56,9 +59,6 @@
     </ClInclude>
     <ClInclude Include="src\tools\ImageTools.h">
       <Filter>src\tools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\entities\Item.h">
-      <Filter>src\entities</Filter>
     </ClInclude>
     <ClInclude Include="src\input\KeyboardManager.h">
       <Filter>src\input</Filter>
@@ -92,6 +92,12 @@
     </ClInclude>
     <ClInclude Include="src\managers\WindowManager.h">
       <Filter>src\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\Fighter.h">
+      <Filter>src\entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\Animator.h">
+      <Filter>src\tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

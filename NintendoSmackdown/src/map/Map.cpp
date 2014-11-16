@@ -17,7 +17,7 @@ Map::Map() {
 }
 
 void Map::initiate() {
-
+	universe->entitymanager->createfighter(0, 0);
 }
 
 void Map::update() {

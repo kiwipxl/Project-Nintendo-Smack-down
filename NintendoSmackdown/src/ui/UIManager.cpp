@@ -14,8 +14,7 @@ class Universe {
 
 void UIManager::initiate() {
 	TTF_Init();
-	SDL_Color colour;
-	fpstext = new Text(0, 0, 20, { 0, 0, 0 }, "", true);
+	fpstext = new Text(5, 0, 20, { 0, 0, 0 }, "", true);
 	std::cout << "uimanager initiated\n";
 }
 

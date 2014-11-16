@@ -11,7 +11,6 @@ class GameLoop : Universal {
 		GameLoop() {
 			fps = 60;
 			msperframe = 0;
-			mscounter = 0;
 			quit = false;
 		}
 
@@ -25,7 +24,6 @@ class GameLoop : Universal {
 		std::clock_t starttime;
 		std::clock_t startsecondtime;
 		float msperframe;
-		float mscounter;
 		int framecounter;
 };
 

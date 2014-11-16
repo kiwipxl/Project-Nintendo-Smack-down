@@ -90,7 +90,8 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\entities\Item.cpp" />
+    <ClCompile Include="src\tools\Animator.cpp" />
+    <ClCompile Include="src\entities\Fighter.cpp" />
     <ClCompile Include="src\entities\EntityManager.cpp" />
     <ClCompile Include="src\GameLoop.cpp" />
     <ClCompile Include="src\input\KeyboardManager.cpp" />
@@ -106,7 +107,8 @@
     <ClCompile Include="src\Universe.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\entities\Item.h" />
+    <ClInclude Include="src\tools\Animator.h" />
+    <ClInclude Include="src\entities\Fighter.h" />
     <ClInclude Include="src\tools\Point2DF.h" />
     <ClInclude Include="src\entities\EntityManager.h" />
     <ClInclude Include="src\GameLoop.h" />

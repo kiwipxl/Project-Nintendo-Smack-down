@@ -6,26 +6,26 @@ class Universe {
 	public:
 };
 
-//vector<Item*> EntityManager::items;
+vector<Fighter*> EntityManager::fighters;
 
 EntityManager::EntityManager() {
 
 }
 
-//Item* EntityManager::createitem(int x, int y) {
-	//Item* item = new Item(x, y);
-	//items.push_back(item);
-	//return item;
-//}
+Fighter* EntityManager::createfighter(int x, int y) {
+	Fighter* fighter = new Fighter(x, y);
+	fighters.push_back(fighter);
+	return fighter;
+}
 
 void EntityManager::update() {
-	//for (Item* item : items) {
-		//item->update();
-	//}
+	for (Fighter* fighter : fighters) {
+		fighter->update();
+	}
 }
 
 void EntityManager::render() {
-	//for (Item* item : items) {
-		//item->render();
-	//}
+	for (Fighter* fighter : fighters) {
+		fighter->render();
+	}
 }

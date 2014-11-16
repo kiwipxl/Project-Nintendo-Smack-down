@@ -3,6 +3,8 @@
 
 class Universe;
 
+using namespace std;
+
 class Universal {
 
 	public:

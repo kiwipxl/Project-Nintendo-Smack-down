@@ -1,5 +1,6 @@
-﻿  GameLoop.cpp
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\gameloop.cpp(57): warning C4244: 'argument' : conversion from 'double' to 'DWORD', possible loss of data
-Item.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+﻿  Fighter.cpp
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(18): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(27): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+Animator.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
 MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
   NintendoSmackdown.vcxproj -> C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe

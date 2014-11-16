@@ -1,6 +1,6 @@
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\vc120.pdb
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\vc120.idb
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\item.obj
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\fighter.obj
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\entitymanager.obj
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\gameloop.obj
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\keyboardmanager.obj
@@ -14,8 +14,9 @@ c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nint
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\text.obj
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\uimanager.obj
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\universe.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendosmackdown.exe
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendosmackdown.pdb
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\animator.obj
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\debug\nintendosmackdown.exe
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\debug\nintendosmackdown.pdb
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\cl.command.1.tlog
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\cl.read.1.tlog
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\cl.write.1.tlog
