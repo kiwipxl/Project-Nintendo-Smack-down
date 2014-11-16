@@ -10,6 +10,7 @@ Animator::Animator(SDL_Texture* c_texture, SDL_Rect* c_srcrect, int c_width, int
 	fps = c_fps;
 	fpscounter = 0;
 	currentframe = 0;
+	loop = c_loop;
 	updatetexture(c_texture, c_width, c_height);
 }
 
@@ -17,16 +18,19 @@ Animator::Animator(SDL_Texture* c_texture, SDL_Rect* c_srcrect, int c_width, int
 Updates the animator and adds 1 to the fps counter which changes the srcrect position
 **/
 void Animator::update() {
-	++fpscounter;
-	if (fpscounter >= fps) {
-		++currentframe;
-		fpscounter = 0;
-		srcrect->x += width;
-		if (srcrect->x > srcwidth - width) {
-			srcrect->x = 0;
-			srcrect->y += height;
-			if (srcrect->y > srcheight - height) {
-				srcrect->y = 0;
+	if (!paused) {
+		++fpscounter;
+		if (fpscounter >= fps) {
+			++currentframe;
+			fpscounter = 0;
+			srcrect->x += width;
+			if (srcrect->x > srcwidth - width) {
+				srcrect->y += height;
+				if (srcrect->y > srcheight - height) {
+					if (!loop) { srcrect->x -= width; srcrect->y -= height; paused = true; return; }
+					srcrect->y = 0;
+				}
+				srcrect->x = 0;
 			}
 		}
 	}

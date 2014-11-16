@@ -16,6 +16,7 @@ class Animator {
 		int fps;
 		bool loop;
 		int currentframe;
+		bool paused = false;
 
 		/**
 		Updates the animator and adds 1 to the fps counter which changes the srcrect position
