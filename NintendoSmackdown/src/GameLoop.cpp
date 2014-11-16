@@ -53,16 +53,16 @@ void GameLoop::start() {
 		//SDL_FillRect(universe->winmanager->screensurface, NULL, SDL_MapRGB(universe->winmanager->screensurface->format, 255, 255, 255));
 		//SDL_UpdateWindowSurface(universe->winmanager->window);
 
-		double ms = (std::clock() - starttime) / (double)(CLOCKS_PER_SEC / (double)1000);
+		double ms = std::clock() - starttime;
 		if (ms >= 0 && ms < msperframe) { Sleep(msperframe - ms); }
 		mscounter += msperframe;
 		++framecounter;
-		if ((std::clock() - startsecondtime) / (double)(CLOCKS_PER_SEC / (double)1000) >= 1000) {
-			startsecondtime = std::clock();
+		if (std::clock() - startsecondtime >= 1000) {
 			std::cout << "fps: " << framecounter << "\n";
+			universe->uimanager->updatefpstext(framecounter);
 			mscounter = 0;
 			framecounter = 0;
-			universe->uimanager->updatefpstext(framecounter);
+			startsecondtime = std::clock();
 		}
 	}
 

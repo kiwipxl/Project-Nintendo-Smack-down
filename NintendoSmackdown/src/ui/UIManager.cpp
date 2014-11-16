@@ -15,7 +15,7 @@ class Universe {
 void UIManager::initiate() {
 	TTF_Init();
 	SDL_Color colour;
-	fpstext = new Text(0, 0, 2, { 0, 0, 0 }, "", true);
+	fpstext = new Text(0, 0, 20, { 0, 0, 0 }, "", true);
 	std::cout << "uimanager initiated\n";
 }
 
@@ -29,6 +29,6 @@ void UIManager::render() {
 
 void UIManager::updatefpstext(int fps) {
 	std::string fpsstr = "Fps: ";
-	fpsstr += std::to_string((long double)fps);
+	fpsstr += std::to_string(fps);
 	fpstext->rendertext(fpsstr, true);
 }
