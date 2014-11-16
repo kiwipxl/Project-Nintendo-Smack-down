@@ -16,6 +16,7 @@ class Fighter : Universal {
 		SDL_Rect rect;
 		SDL_Rect srcrect;
 		Animator* animator;
+		SDL_Texture* fightersheet;
 
 		void update();
 		void render();
