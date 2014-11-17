@@ -46,6 +46,12 @@
     <ClCompile Include="src\tools\Animator.cpp">
       <Filter>src\tools</Filter>
     </ClCompile>
+    <ClCompile Include="src\managers\StateManager.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\editor\Editor.cpp">
+      <Filter>src\editor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -98,6 +104,12 @@
     </ClInclude>
     <ClInclude Include="src\tools\Animator.h">
       <Filter>src\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\managers\StateManager.h">
+      <Filter>src\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\editor\Editor.h">
+      <Filter>src\editor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -153,6 +165,9 @@
     </Filter>
     <Filter Include="src\ui">
       <UniqueIdentifier>{28d30732-54a0-4e89-8965-41584819030b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\editor">
+      <UniqueIdentifier>{56b6e0be-db06-4efc-bc73-97cc644dee2a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -8,6 +8,8 @@
 #include "ui/UIManager.h"
 #include "input/KeyboardManager.h"
 #include "entities/EntityManager.h"
+#include "editor/Editor.h"
+#include "managers/StateManager.h"
 
 class Universe {
 
@@ -19,6 +21,8 @@ class Universe {
 		static UIManager* uimanager;
 		static KeyboardManager* keyboard;
 		static EntityManager* entitymanager;
+		static Editor* editor;
+		static StateManager* state;
 };
 
 void GameLoop::start() {
@@ -40,14 +44,9 @@ void GameLoop::start() {
 			universe->keyboard->eventupdate(e);
 		}
 
-		universe->map->update();
-		universe->uimanager->update();
-		universe->entitymanager->update();
-
 		SDL_SetRenderDrawColor(universe->winmanager->renderer, 255, 240, 220, 255);
 		SDL_RenderClear(universe->winmanager->renderer);
-		universe->entitymanager->render();
-		universe->uimanager->render();
+		universe->state->update();
 		SDL_RenderPresent(universe->winmanager->renderer);
 
 		//SDL_FillRect(universe->winmanager->screensurface, NULL, SDL_MapRGB(universe->winmanager->screensurface->format, 255, 255, 255));

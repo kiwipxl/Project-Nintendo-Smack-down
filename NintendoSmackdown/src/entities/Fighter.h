@@ -19,7 +19,6 @@ class Fighter : Universal {
 		SDL_Texture* fightersheet;
 
 		void update();
-		void render();
 };
 
 #endif

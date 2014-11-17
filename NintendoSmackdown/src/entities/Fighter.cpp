@@ -27,8 +27,6 @@ Fighter::Fighter(int x, int y) {
 void Fighter::update() {
 	rect.x = pos.x; rect.y = pos.y;
 	animator->update();
-}
 
-void Fighter::render() {
 	SDL_RenderCopy(universe->winmanager->renderer, fightersheet, &srcrect, &rect);
 }

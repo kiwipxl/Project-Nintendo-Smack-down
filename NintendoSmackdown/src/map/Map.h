@@ -12,8 +12,12 @@ class Map : Universal {
 	public:
 		Map();
 
-		void initiate();
+		void create();
 		void update();
+		void remove();
+
+	private:
+		bool created;
 };
 
 #endif

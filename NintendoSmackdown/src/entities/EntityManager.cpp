@@ -23,9 +23,3 @@ void EntityManager::update() {
 		fighter->update();
 	}
 }
-
-void EntityManager::render() {
-	for (Fighter* fighter : fighters) {
-		fighter->render();
-	}
-}

@@ -19,10 +19,6 @@ void UIManager::initiate() {
 }
 
 void UIManager::update() {
-
-}
-
-void UIManager::render() {
 	fpstext->render();
 }
 

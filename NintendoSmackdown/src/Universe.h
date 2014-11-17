@@ -11,6 +11,8 @@
 #include "input/KeyboardManager.h"
 #include "ui/UIManager.h"
 #include "entities/EntityManager.h"
+#include "managers/StateManager.h"
+#include "editor/Editor.h"
 
 class Universe {
 
@@ -18,6 +20,7 @@ class Universe {
 		static WindowManager* winmanager;
 		static GameLoop* gameloop;
 		static Assets* assets;
+		static StateManager* state;
 
 		static Map* map;
 
@@ -29,6 +32,8 @@ class Universe {
 		static ImageTools* imagetools;
 
 		static UIManager* uimanager;
+
+		static Editor* editor;
 
 		void initiate();
 };

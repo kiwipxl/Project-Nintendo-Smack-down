@@ -13,13 +13,18 @@ class Universe {
 };
 
 Map::Map() {
-
+	created = false;
 }
 
-void Map::initiate() {
+void Map::create() {
 	universe->entitymanager->createfighter(0, 0);
+	created = true;
+}
+
+void Map::remove() {
+	created = false;
 }
 
 void Map::update() {
-
+	//updates the map
 }

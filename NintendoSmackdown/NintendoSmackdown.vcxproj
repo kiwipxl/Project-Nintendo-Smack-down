@@ -90,6 +90,7 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\editor\Editor.cpp" />
     <ClCompile Include="src\tools\Animator.cpp" />
     <ClCompile Include="src\entities\Fighter.cpp" />
     <ClCompile Include="src\entities\EntityManager.cpp" />
@@ -105,8 +106,10 @@
     <ClCompile Include="src\ui\Text.cpp" />
     <ClCompile Include="src\ui\UIManager.cpp" />
     <ClCompile Include="src\Universe.cpp" />
+    <ClCompile Include="src\managers\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\editor\Editor.h" />
     <ClInclude Include="src\tools\Animator.h" />
     <ClInclude Include="src\entities\Fighter.h" />
     <ClInclude Include="src\tools\Point2DF.h" />
@@ -124,6 +127,7 @@
     <ClInclude Include="src\ui\Text.h" />
     <ClInclude Include="src\ui\UIManager.h" />
     <ClInclude Include="src\Universe.h" />
+    <ClInclude Include="src\managers\StateManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

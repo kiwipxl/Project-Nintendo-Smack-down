@@ -14,7 +14,6 @@ class EntityManager : Universal {
 		static Fighter* createfighter(int x, int y);
 
 		void update();
-		void render();
 };
 
 #endif
