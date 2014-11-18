@@ -107,8 +107,10 @@
     <ClCompile Include="src\ui\UIManager.cpp" />
     <ClCompile Include="src\Universe.cpp" />
     <ClCompile Include="src\managers\StateManager.cpp" />
+    <ClCompile Include="src\map\Tiles.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\map\Node.h" />
     <ClInclude Include="src\editor\Editor.h" />
     <ClInclude Include="src\tools\Animator.h" />
     <ClInclude Include="src\entities\Fighter.h" />
@@ -128,6 +130,7 @@
     <ClInclude Include="src\ui\UIManager.h" />
     <ClInclude Include="src\Universe.h" />
     <ClInclude Include="src\managers\StateManager.h" />
+    <ClInclude Include="src\map\Tiles.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

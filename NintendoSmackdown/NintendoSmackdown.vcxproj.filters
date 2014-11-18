@@ -52,6 +52,9 @@
     <ClCompile Include="src\editor\Editor.cpp">
       <Filter>src\editor</Filter>
     </ClCompile>
+    <ClCompile Include="src\map\Tiles.cpp">
+      <Filter>src\map</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -110,6 +113,12 @@
     </ClInclude>
     <ClInclude Include="src\editor\Editor.h">
       <Filter>src\editor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\map\Node.h">
+      <Filter>src\map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\map\Tiles.h">
+      <Filter>src\map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -21,25 +21,28 @@ class StateManager : Universal {
 		State state;
 
 		/**
-		Initiates the statemanager and creates the current state
+		initiates the statemanager and creates the current state
 		**/
 		void initiate();
+
 		/**
-		Handles updating of everything depending on the state
+		handles updating of everything depending on the state
 		**/
 		void update();
+
 		/**
-		Removes the current state and creates the new state
+		removes the current state and creates the new state
 		**/
 		void switchstate(State newstate);
 
 	private:
 		/**
-		Handles the creation of the new state
+		handles the creation of the new state
 		**/
 		void createcurrentstate();
+
 		/**
-		Handles the removing of the current state
+		handles the removing of the current state
 		**/
 		void removecurrentstate();
 };

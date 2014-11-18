@@ -11,11 +11,16 @@ class Universe {
 };
 
 void Assets::initiate() {
-	//load sprite sheets
-	captainfalconidle = loadtexture("captainfalconidle.png");
+	//load fighter sprite sheets
+	fightersheets.push_back(loadtexture("captainfalconidle.png"));
+
+	//load tile sprite sheets
+	tilesheets.push_back(loadtexture("groundtiles.png"));
 }
 
-//loads an image in the assets folder and returns a texture from it
+/**
+loads an image in the assets folder and returns a texture from it
+**/
 SDL_Texture* Assets::loadtexture(char* path) {
 	std::string texturepath = "assets/";
 	texturepath += path;
@@ -26,7 +31,9 @@ SDL_Texture* Assets::loadtexture(char* path) {
 	return temp;
 }
 
-//loads an image in the assets folder and returns a surface from it
+/**
+loads an image in the assets folder and returns a surface from it
+**/
 SDL_Surface* Assets::loadsurface(char* path) {
 	std::string texturepath = "assets/";
 	texturepath += path;
@@ -35,7 +42,9 @@ SDL_Surface* Assets::loadsurface(char* path) {
 	return surface;
 }
 
-//free memory from all textures loaded
+/**
+free memory from all textures loaded
+**/
 void Assets::freetextures() {
 	for (SDL_Texture* texture : textures) {
 		SDL_DestroyTexture(texture);

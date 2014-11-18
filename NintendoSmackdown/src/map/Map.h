@@ -6,6 +6,7 @@
 #include <vector>
 #include "../tools/Universal.h"
 #include "../tools/Point2D.h"
+#include "Node.h"
 
 class Map : Universal {
 
@@ -18,6 +19,11 @@ class Map : Universal {
 
 	private:
 		bool created;
+		int gridwidth;
+		int gridheight;
+		vector<vector<Node*>> nodes;
+		SDL_Rect rect;
+		SDL_Rect srcrect;
 };
 
 #endif

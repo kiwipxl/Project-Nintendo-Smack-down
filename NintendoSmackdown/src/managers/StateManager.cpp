@@ -16,14 +16,14 @@ class Universe {
 };
 
 /**
-Initiates the statemanager and creates the current state
+initiates the statemanager and creates the current state
 **/
 void StateManager::initiate() {
 	createcurrentstate();
 }
 
 /**
-Removes the current state and creates the new state
+removes the current state and creates the new state
 **/
 void StateManager::switchstate(State newstate) {
 	removecurrentstate();
@@ -32,7 +32,7 @@ void StateManager::switchstate(State newstate) {
 }
 
 /**
-Handles the creation of the new state
+handles the creation of the new state
 **/
 void StateManager::createcurrentstate() {
 	switch (state) {
@@ -53,7 +53,7 @@ void StateManager::createcurrentstate() {
 }
 
 /**
-Handles the removing of the current state
+handles the removing of the current state
 **/
 void StateManager::removecurrentstate() {
 	switch (state) {
@@ -74,7 +74,7 @@ void StateManager::removecurrentstate() {
 }
 
 /**
-Handles updating of everything depending on the state
+handles updating of everything depending on the state
 **/
 void StateManager::update() {
 	switch (state) {
