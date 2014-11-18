@@ -13,7 +13,6 @@ class Animator {
 				 int c_fps, bool c_loop = true);
 
 		SDL_Rect* srcrect;
-		int fps;
 		bool loop;
 		int currentframe;
 		bool paused = false;
@@ -28,8 +27,14 @@ class Animator {
 		**/
 		void updatetexture(SDL_Texture* c_texture, int c_width, int c_height);
 
+		/**
+		update fps value
+		**/
+		void setfps(int newfps);
+
 	private:
-		int fpscounter;
+		int fps;
+		float fpscounter;
 		int width;
 		int height;
 		int srcwidth;

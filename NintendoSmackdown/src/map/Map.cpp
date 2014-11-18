@@ -33,7 +33,7 @@ void Map::create() {
 		nodes.push_back(row);
 	}
 	srcrect.w = 16; srcrect.h = 16;
-	rect.w = 64; rect.h = 64;
+	rect.w = 32; rect.h = 32;
 }
 
 void Map::remove() {
@@ -47,8 +47,9 @@ void Map::update() {
 			Node* node = nodes[x][y];
 			if (node->type != Tiles::NONE) {
 				srcrect.x = node->type->srcx; srcrect.y = node->type->srcy;
-				rect.x = x * 64; rect.y = y * 64;
-				SDL_RenderCopy(universe->winmanager->renderer, universe->assets->tilesheets[node->type->sheetindex], &srcrect, &rect);
+				rect.x = x * 32; rect.y = y * 32;
+				SDL_RenderCopy(universe->winmanager->renderer, 
+					universe->assets->tilesheets[node->type->sheetindex], &srcrect, &rect);
 			}
 		}
 	}
