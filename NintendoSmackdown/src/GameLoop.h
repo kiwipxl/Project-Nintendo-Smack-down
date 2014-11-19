@@ -3,6 +3,7 @@
 
 #include <SDL.h>
 #include <ctime>
+#include <time.h>
 #include "tools/Universal.h"
 
 class GameLoop : Universal {

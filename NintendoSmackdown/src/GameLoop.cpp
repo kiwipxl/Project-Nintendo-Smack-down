@@ -53,7 +53,8 @@ void GameLoop::start() {
 		//SDL_UpdateWindowSurface(universe->winmanager->window);
 
 		double ms = std::clock() - starttime;
-		if (ms >= 0 && ms < msperframe) { Sleep(msperframe - ms); }
+		if (ms >= 0 && ms < msperframe - 1) { Sleep(floor(msperframe - ms - 1)); }
+
 		++framecounter;
 		if (std::clock() - startsecondtime >= 1000) {
 			std::cout << "fps: " << framecounter << "\n";

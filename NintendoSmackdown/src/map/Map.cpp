@@ -16,24 +16,41 @@ class Universe {
 
 Map::Map() {
 	created = false;
-	gridwidth = 10;
-	gridheight = 10;
+	gridwidth = universe->winmanager->screenwidth / 32;
+	gridheight = universe->winmanager->screenheight / 32;
 }
 
 void Map::create() {
 	universe->entitymanager->createfighter(0, 0);
 	created = true;
-	for (int y = 0; y < gridheight; ++y) {
+	for (int x = 0; x < gridwidth; ++x) {
 		vector<Node*> row;
-		for (int x = 0; x < gridwidth; ++x) {
+		for (int y = 0; y < gridheight; ++y) {
 			Node* node = new Node();
-			node->type = Tiles::BLOCK;
+			node->type = Tiles::NONE;
+			if (y >= 8) { node->type = Tiles::BLOCK; node->solid = true; }
 			row.push_back(node);
 		}
 		nodes.push_back(row);
 	}
 	srcrect.w = 16; srcrect.h = 16;
 	rect.w = 32; rect.h = 32;
+
+	nodes[12][7]->type = Tiles::NONE;
+	nodes[12][7]->solid = false;
+	nodes[12][6]->type = Tiles::BLOCK;
+	nodes[12][6]->solid = true;
+	nodes[12][5]->type = Tiles::NONE;
+	nodes[12][5]->solid = false;
+	nodes[12][4]->type = Tiles::BLOCK;
+	nodes[12][4]->solid = true;
+
+	nodes[8][4]->type = Tiles::BLOCK;
+	nodes[8][4]->solid = true;
+	nodes[9][4]->type = Tiles::BLOCK;
+	nodes[9][4]->solid = true;
+	nodes[10][4]->type = Tiles::BLOCK;
+	nodes[10][4]->solid = true;
 }
 
 void Map::remove() {
@@ -49,7 +66,7 @@ void Map::update() {
 				srcrect.x = node->type->srcx; srcrect.y = node->type->srcy;
 				rect.x = x * 32; rect.y = y * 32;
 				SDL_RenderCopy(universe->winmanager->renderer, 
-					universe->assets->tilesheets[node->type->sheetindex], &srcrect, &rect);
+					universe->assets->tilesheets[node->type->sheetindex].t, &srcrect, &rect);
 			}
 		}
 	}

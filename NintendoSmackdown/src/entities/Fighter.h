@@ -6,6 +6,8 @@
 #include "../tools/Universal.h"
 #include "../tools/Point2DF.h"
 #include "../tools/Animator.h"
+#include "../managers/Texture.h"
+#include "../map/Node.h"
 
 class Fighter : Universal {
 
@@ -13,12 +15,33 @@ class Fighter : Universal {
 		Fighter(int x, int y);
 
 		Point2DF pos;
+		Point2DF coords;
+
+		void update();
+
+	private:
 		SDL_Rect rect;
 		SDL_Rect srcrect;
 		Animator* animator;
-		SDL_Texture* fightersheet;
+		Texture fightersheet;
+		SDL_RendererFlip flip;
+		SDL_Point origin;
 
-		void update();
+		float gravity;
+		float speedx;
+		float speedy;
+
+		float movespeed = 1;
+		float maxspeed = 15;
+		float friction = .9f;
+		float jumpheight = 10;
+		float fallspeed = .4f;
+		float maxfallspeed = 10;
+
+		Node* collideright(float x, float y);
+		Node* collideleft(float x, float y);
+		Node* collideup(float x, float y);
+		Node* collidedown(float x, float y);
 };
 
 #endif

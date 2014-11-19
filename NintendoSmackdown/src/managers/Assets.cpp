@@ -21,14 +21,14 @@ void Assets::initiate() {
 /**
 loads an image in the assets folder and returns a texture from it
 **/
-SDL_Texture* Assets::loadtexture(char* path) {
+Texture Assets::loadtexture(char* path) {
 	std::string texturepath = "assets/";
 	texturepath += path;
 	SDL_Surface* surface = IMG_Load(texturepath.c_str());
-	SDL_Texture* temp = SDL_CreateTextureFromSurface(universe->winmanager->renderer, surface);
+	Texture texture = Texture(SDL_CreateTextureFromSurface(universe->winmanager->renderer, surface));
 	SDL_FreeSurface(surface);
-	textures.push_back(temp);
-	return temp;
+	textures.push_back(texture.t);
+	return texture;
 }
 
 /**
@@ -54,4 +54,6 @@ void Assets::freetextures() {
 		SDL_FreeSurface(surface);
 	}
 	surfaces.clear();
+	tilesheets.clear();
+	fightersheets.clear();
 }

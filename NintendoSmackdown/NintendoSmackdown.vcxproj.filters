@@ -55,6 +55,9 @@
     <ClCompile Include="src\map\Tiles.cpp">
       <Filter>src\map</Filter>
     </ClCompile>
+    <ClCompile Include="src\managers\Texture.cpp">
+      <Filter>src\managers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -119,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="src\map\Tiles.h">
       <Filter>src\map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\managers\Texture.h">
+      <Filter>src\managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@
 
 struct Type {
 
-	Type(int c_sheetindex, int c_srcx, int c_srcy) : sheetindex(c_sheetindex), srcx(c_srcx), srcy(c_srcy) { }
+	Type(int c_sheetindex, int tileindex) : sheetindex(c_sheetindex) { srcx = tileindex * 16; srcy = 0; }
 
 	int sheetindex;
 	int srcx;

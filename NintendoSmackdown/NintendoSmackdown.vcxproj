@@ -108,6 +108,7 @@
     <ClCompile Include="src\Universe.cpp" />
     <ClCompile Include="src\managers\StateManager.cpp" />
     <ClCompile Include="src\map\Tiles.cpp" />
+    <ClCompile Include="src\managers\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\map\Node.h" />
@@ -131,6 +132,7 @@
     <ClInclude Include="src\Universe.h" />
     <ClInclude Include="src\managers\StateManager.h" />
     <ClInclude Include="src\map\Tiles.h" />
+    <ClInclude Include="src\managers\Texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

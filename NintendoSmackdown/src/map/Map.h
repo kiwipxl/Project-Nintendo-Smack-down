@@ -13,15 +13,16 @@ class Map : Universal {
 	public:
 		Map();
 
+		bool created;
+		int gridwidth;
+		int gridheight;
+		vector<vector<Node*>> nodes;
+
 		void create();
 		void update();
 		void remove();
 
 	private:
-		bool created;
-		int gridwidth;
-		int gridheight;
-		vector<vector<Node*>> nodes;
 		SDL_Rect rect;
 		SDL_Rect srcrect;
 };

@@ -8,10 +8,11 @@ class Node {
 
 	public:
 		Node() {
-
+			solid = false;
 		}
 
 		Type* type;
+		bool solid;
 };
 
 #endif
