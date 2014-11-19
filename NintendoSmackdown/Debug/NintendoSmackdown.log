@@ -1,49 +1,29 @@
-﻿  Texture.cpp
-  Tiles.cpp
-  StateManager.cpp
-  Universe.cpp
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\universe.cpp(16): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-  UIManager.cpp
-  Text.cpp
-  Universal.cpp
-  ImageTools.cpp
-  Map.cpp
-  WindowManager.cpp
-  Assets.cpp
-  Main.cpp
-  MouseManager.cpp
-  KeyboardManager.cpp
-  GameLoop.cpp
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\gameloop.cpp(56): warning C4244: 'argument' : conversion from 'double' to 'DWORD', possible loss of data
-  EntityManager.cpp
+﻿cl : Command line warning D9028: minimal rebuild failure, reverting to normal build
   Fighter.cpp
 c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(20): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(40): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(42): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(63): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(70): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(76): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(83): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(84): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(85): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(86): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(92): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(93): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(94): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(95): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(101): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(102): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(103): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(104): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(110): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(111): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(112): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(113): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(114): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(115): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
-  Animator.cpp
-  Editor.cpp
-  Generating Code...
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(45): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(47): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(77): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(102): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(112): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(131): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(132): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(133): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(134): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(140): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(141): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(142): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(143): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(149): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(150): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(151): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(152): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(158): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(159): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(160): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(161): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(162): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighter.cpp(163): warning C4244: 'argument' : conversion from 'float' to 'unsigned int', possible loss of data
 Editor.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
 MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
   NintendoSmackdown.vcxproj -> C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe

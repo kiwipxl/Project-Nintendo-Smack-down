@@ -9,6 +9,18 @@
 #include "../managers/Texture.h"
 #include "../map/Node.h"
 
+enum Move {
+	IDLE,
+	IDLE2,
+	JUMP, 
+	LAND, 
+	KICKA,
+	PUNCHA,
+	ROLL,
+	RUNNING,
+	SHIELD
+};
+
 class Fighter : Universal {
 
 	public:
@@ -26,22 +38,30 @@ class Fighter : Universal {
 		Texture fightersheet;
 		SDL_RendererFlip flip;
 		SDL_Point origin;
+		Move move;
 
 		float gravity;
 		float speedx;
 		float speedy;
 
-		float movespeed = 1;
+		float movespeed = .75f;
 		float maxspeed = 15;
-		float friction = .9f;
+		float friction = .92f;
 		float jumpheight = 10;
-		float fallspeed = .4f;
+		float fallspeed = .55f;
 		float maxfallspeed = 10;
+
+		bool jumped;
+		bool doublejumped;
 
 		Node* collideright(float x, float y);
 		Node* collideleft(float x, float y);
 		Node* collideup(float x, float y);
 		Node* collidedown(float x, float y);
+
+		bool lockmoveupdate;
+
+		void updatemove(Move newmove, int fps, bool loop = true, bool lock = false);
 };
 
 #endif

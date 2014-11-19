@@ -4,14 +4,13 @@
 /**
 create the animation class with defined options
 **/
-Animator::Animator(SDL_Texture* c_texture, SDL_Rect* c_srcrect, int c_width, int c_height, 
-				   int c_fps, bool c_loop) {
+Animator::Animator(Texture* c_t, SDL_Rect* c_srcrect, int c_width, int c_height, int c_fps, bool c_loop) {
 	srcrect = c_srcrect;
 	fpscounter = 0;
 	currentframe = 0;
 	loop = c_loop;
 	setfps(c_fps);
-	updatetexture(c_texture, c_width, c_height);
+	updatetexture(c_t, c_width, c_height);
 }
 
 /**
@@ -24,9 +23,9 @@ void Animator::update() {
 			++currentframe;
 			fpscounter = 0;
 			srcrect->x += width;
-			if (srcrect->x > srcwidth - width) {
+			if (srcrect->x >= srcwidth - width) {
 				srcrect->y += height;
-				if (srcrect->y > srcheight - height) {
+				if (srcrect->y >= srcheight - height) {
 					if (!loop) { srcrect->x -= width; srcrect->y -= height; paused = true; return; }
 					srcrect->y = 0;
 				}
@@ -39,14 +38,18 @@ void Animator::update() {
 /**
 updates the animator with a new texture and width/height
 **/
-void Animator::updatetexture(SDL_Texture* c_texture, int c_width, int c_height) {
-	fpscounter = 0;
-	currentframe = 0;
-	width = c_width;
-	height = c_height;
-	srcrect->w = width;
-	srcrect->h = height;
-	SDL_QueryTexture(c_texture, 0, 0, &srcwidth, &srcheight);
+void Animator::updatetexture(Texture* c_t, int c_width, int c_height) {
+	if (t != c_t) {
+		fpscounter = 0;
+		currentframe = 0;
+		width = c_width;
+		height = c_height;
+		t = c_t;
+		srcwidth = t->width;
+		srcheight = t->height;
+		srcrect->w = width;
+		srcrect->h = height;
+	}
 }
 
 /**

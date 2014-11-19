@@ -13,6 +13,14 @@ class Universe {
 void Assets::initiate() {
 	//load fighter sprite sheets
 	fightersheets.push_back(loadtexture("captainfalconidle.png"));
+	fightersheets.push_back(loadtexture("captainfalconidle2.png"));
+	fightersheets.push_back(loadtexture("captainfalconjump.png"));
+	fightersheets.push_back(loadtexture("captainfalconland.png"));
+	fightersheets.push_back(loadtexture("captainfalconkicka.png"));
+	fightersheets.push_back(loadtexture("captainfalconpuncha.png"));
+	fightersheets.push_back(loadtexture("captainfalconroll.png"));
+	fightersheets.push_back(loadtexture("captainfalconrunning.png"));
+	fightersheets.push_back(loadtexture("captainfalconshield.png"));
 
 	//load tile sprite sheets
 	tilesheets.push_back(loadtexture("groundtiles.png"));
