@@ -28,22 +28,13 @@ void Map::create() {
 		for (int y = 0; y < gridheight; ++y) {
 			Node* node = new Node();
 			node->type = Tiles::NONE;
-			if (y == 18) { node->type = Tiles::BLOCK; node->solid = true; }
+			if (x >= 4 && y == 14 && x <= gridwidth - 4) { node->type = Tiles::BLOCK; node->solid = true; }
 			row.push_back(node);
 		}
 		nodes.push_back(row);
 	}
 	srcrect.w = 16; srcrect.h = 16;
 	rect.w = 32; rect.h = 32;
-
-	nodes[12][15]->type = Tiles::NONE;
-	nodes[12][15]->solid = false;
-	nodes[12][14]->type = Tiles::BLOCK;
-	nodes[12][14]->solid = true;
-	nodes[12][13]->type = Tiles::NONE;
-	nodes[12][13]->solid = false;
-	nodes[12][12]->type = Tiles::BLOCK;
-	nodes[12][12]->solid = true;
 }
 
 void Map::remove() {
@@ -59,7 +50,7 @@ void Map::update() {
 				srcrect.x = node->type->srcx; srcrect.y = node->type->srcy;
 				rect.x = x * 32; rect.y = y * 32;
 				SDL_RenderCopy(universe->winmanager->renderer, 
-					universe->assets->tilesheets[node->type->sheetindex].t, &srcrect, &rect);
+					universe->assets->tilesheets[node->type->sheetindex]->t, &srcrect, &rect);
 			}
 		}
 	}

@@ -1,9 +1,11 @@
 ﻿  Movement.cpp
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(46): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(48): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(83): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(119): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(129): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(47): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(50): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(69): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(79): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(103): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(148): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\movement.cpp(172): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
 Movement.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
 MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
   NintendoSmackdown.vcxproj -> C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe

@@ -23,5 +23,5 @@ Fighter::Fighter(int x, int y) {
 
 void Fighter::update() {
 	updatemovement();
-	SDL_RenderCopyEx(universe->winmanager->renderer, animationsheet.t, &srcrect, &rect, rotation, &origin, flip);
+	SDL_RenderCopyEx(universe->winmanager->renderer, animationsheet->t, &srcrect, &rect, rotation, &origin, flip);
 }

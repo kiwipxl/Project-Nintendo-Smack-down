@@ -21,6 +21,8 @@ void Assets::initiate() {
 	fightersheets.push_back(loadtexture("captainfalconroll.png"));
 	fightersheets.push_back(loadtexture("captainfalconrunning.png"));
 	fightersheets.push_back(loadtexture("captainfalconshield.png"));
+	fightersheets.push_back(loadtexture("captainfalconcrouch.png"));
+	fightersheets.push_back(loadtexture("captainfalconedgegrab.png"));
 
 	//load tile sprite sheets
 	tilesheets.push_back(loadtexture("groundtiles.png"));
@@ -29,13 +31,13 @@ void Assets::initiate() {
 /**
 loads an image in the assets folder and returns a texture from it
 **/
-Texture Assets::loadtexture(char* path) {
+Texture* Assets::loadtexture(char* path) {
 	std::string texturepath = "assets/";
 	texturepath += path;
 	SDL_Surface* surface = IMG_Load(texturepath.c_str());
-	Texture texture = Texture(SDL_CreateTextureFromSurface(universe->winmanager->renderer, surface));
+	Texture* texture = new Texture(SDL_CreateTextureFromSurface(universe->winmanager->renderer, surface));
 	SDL_FreeSurface(surface);
-	textures.push_back(texture.t);
+	textures.push_back(texture->t);
 	return texture;
 }
 

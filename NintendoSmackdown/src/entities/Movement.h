@@ -16,7 +16,9 @@ enum Move {
 	PUNCHA,
 	ROLL,
 	RUNNING,
-	SHIELD
+	SHIELD, 
+	CROUCH, 
+	EDGEGRAB
 };
 
 class Movement : public Universal {
@@ -30,7 +32,7 @@ class Movement : public Universal {
 		SDL_Rect rect;
 		SDL_Rect srcrect;
 		Animator* animator;
-		Texture animationsheet;
+		Texture* animationsheet;
 		SDL_RendererFlip flip;
 		SDL_Point origin;
 		Move move;
@@ -54,6 +56,8 @@ class Movement : public Universal {
 		bool jumped;
 		bool doublejumped;
 		bool holdingjump;
+
+		bool grabbingedge;
 
 		bool lockmoveupdate;
 

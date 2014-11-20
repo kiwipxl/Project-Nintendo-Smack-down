@@ -23,9 +23,9 @@ void Animator::update() {
 			++currentframe;
 			fpscounter = 0;
 			srcrect->x += width;
-			if (srcrect->x >= srcwidth - width) {
+			if (srcrect->x > srcwidth - width) {
 				srcrect->y += height;
-				if (srcrect->y >= srcheight - height) {
+				if (srcrect->y > srcheight - height) {
 					if (!loop) { srcrect->x -= width; srcrect->y -= height; paused = true; return; }
 					srcrect->y = 0;
 				}
@@ -47,6 +47,8 @@ void Animator::updatetexture(Texture* c_t, int c_width, int c_height) {
 		t = c_t;
 		srcwidth = t->width;
 		srcheight = t->height;
+		srcrect->x = 0;
+		srcrect->y = 0;
 		srcrect->w = width;
 		srcrect->h = height;
 	}
