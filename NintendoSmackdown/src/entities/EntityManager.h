@@ -1,6 +1,7 @@
 #ifndef ENTITY_MANAGER_H
 #define ENTITY_MANAGER_H
 
+#include <vector>
 #include "../tools/Universal.h"
 #include "Fighter.h"
 

@@ -4,7 +4,6 @@ WindowManager* Universe::winmanager;
 GameLoop* Universe::gameloop;
 Assets* Universe::assets;
 Map* Universe::map;
-ImageTools* Universe::imagetools;
 MouseManager* Universe::mouse;
 UIManager* Universe::uimanager;
 KeyboardManager* Universe::keyboard;
@@ -19,7 +18,6 @@ void Universe::initiate() {
 	gameloop = new GameLoop();
 	assets = new Assets();
 	map = new Map();
-	imagetools = new ImageTools();
 	mouse = new MouseManager();
 	uimanager = new UIManager();
 	keyboard = new KeyboardManager();

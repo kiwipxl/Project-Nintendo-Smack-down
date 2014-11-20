@@ -6,7 +6,6 @@
 #include "GameLoop.h"
 #include "map/Map.h"
 #include "tools/Point2D.h"
-#include "tools/ImageTools.h"
 #include "input/MouseManager.h"
 #include "input/KeyboardManager.h"
 #include "ui/UIManager.h"
@@ -28,8 +27,6 @@ class Universe {
 		static KeyboardManager* keyboard;
 
 		static EntityManager* entitymanager;
-
-		static ImageTools* imagetools;
 
 		static UIManager* uimanager;
 

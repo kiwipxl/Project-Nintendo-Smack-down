@@ -28,7 +28,7 @@ void Map::create() {
 		for (int y = 0; y < gridheight; ++y) {
 			Node* node = new Node();
 			node->type = Tiles::NONE;
-			if (y >= 8) { node->type = Tiles::BLOCK; node->solid = true; }
+			if (y == 18) { node->type = Tiles::BLOCK; node->solid = true; }
 			row.push_back(node);
 		}
 		nodes.push_back(row);
@@ -36,21 +36,14 @@ void Map::create() {
 	srcrect.w = 16; srcrect.h = 16;
 	rect.w = 32; rect.h = 32;
 
-	nodes[12][7]->type = Tiles::NONE;
-	nodes[12][7]->solid = false;
-	nodes[12][6]->type = Tiles::BLOCK;
-	nodes[12][6]->solid = true;
-	nodes[12][5]->type = Tiles::NONE;
-	nodes[12][5]->solid = false;
-	nodes[12][4]->type = Tiles::BLOCK;
-	nodes[12][4]->solid = true;
-
-	nodes[8][4]->type = Tiles::BLOCK;
-	nodes[8][4]->solid = true;
-	nodes[9][4]->type = Tiles::BLOCK;
-	nodes[9][4]->solid = true;
-	nodes[10][4]->type = Tiles::BLOCK;
-	nodes[10][4]->solid = true;
+	nodes[12][15]->type = Tiles::NONE;
+	nodes[12][15]->solid = false;
+	nodes[12][14]->type = Tiles::BLOCK;
+	nodes[12][14]->solid = true;
+	nodes[12][13]->type = Tiles::NONE;
+	nodes[12][13]->solid = false;
+	nodes[12][12]->type = Tiles::BLOCK;
+	nodes[12][12]->solid = true;
 }
 
 void Map::remove() {

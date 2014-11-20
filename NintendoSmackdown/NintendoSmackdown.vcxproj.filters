@@ -58,6 +58,12 @@
     <ClCompile Include="src\managers\Texture.cpp">
       <Filter>src\managers</Filter>
     </ClCompile>
+    <ClCompile Include="src\map\Collision.cpp">
+      <Filter>src\map</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\Movement.cpp">
+      <Filter>src\entities</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -125,6 +131,12 @@
     </ClInclude>
     <ClInclude Include="src\managers\Texture.h">
       <Filter>src\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\map\Collision.h">
+      <Filter>src\map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\Movement.h">
+      <Filter>src\entities</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

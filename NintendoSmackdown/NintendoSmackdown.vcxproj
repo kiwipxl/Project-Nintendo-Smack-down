@@ -90,6 +90,8 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\entities\Movement.cpp" />
+    <ClCompile Include="src\map\Collision.cpp" />
     <ClCompile Include="src\editor\Editor.cpp" />
     <ClCompile Include="src\tools\Animator.cpp" />
     <ClCompile Include="src\entities\Fighter.cpp" />
@@ -111,6 +113,8 @@
     <ClCompile Include="src\managers\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\Movement.h" />
+    <ClInclude Include="src\map\Collision.h" />
     <ClInclude Include="src\map\Node.h" />
     <ClInclude Include="src\editor\Editor.h" />
     <ClInclude Include="src\tools\Animator.h" />
