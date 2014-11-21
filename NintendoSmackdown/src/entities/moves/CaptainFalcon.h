@@ -22,18 +22,22 @@ class CaptainFalcon : public Moves {
 			SHIELD = 8;
 			CROUCH = 9;
 			EDGEGRAB = 10;
+			RAPIDPUNCH = 11;
+			DASHATTACK = 12;
 
 			moveframes[IDLE] = 4;
 			moveframes[TAUNT] = 4;
 			moveframes[JUMP] = 3;
 			moveframes[LAND] = 3;
 			moveframes[RUN] = 8;
-			moveframes[KICK] = 2;
-			moveframes[PUNCH] = 4;
+			moveframes[KICK] = 4;
+			moveframes[PUNCH] = 2;
 			moveframes[DOUBLEJUMP] = 4;
 			moveframes[SHIELD] = 3;
 			moveframes[CROUCH] = 1;
 			moveframes[EDGEGRAB] = 2;
+			moveframes[RAPIDPUNCH] = 2;
+			moveframes[DASHATTACK] = 3;
 		}
 };
 

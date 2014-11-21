@@ -28,18 +28,17 @@ void Map::create() {
 		for (int y = 0; y < gridheight; ++y) {
 			Node* node = new Node();
 			node->type = Tiles::NONE;
-			if (x >= 4 && y == 14 && x <= gridwidth - 4) { node->type = Tiles::BLOCK; node->solid = true; }
+			if ((x >= 4 && y == 14 && x <= gridwidth - 4) || 
+				(x >= 5 && y == 15 && x <= gridwidth - 5) || 
+				(x >= 6 && y == 16 && x <= gridwidth - 6)) {
+				node->type = Tiles::BLOCK; node->solid = true;
+			}
 			row.push_back(node);
 		}
 		nodes.push_back(row);
 	}
 	srcrect.w = 16; srcrect.h = 16;
 	rect.w = 32; rect.h = 32;
-
-	nodes[3][15]->type = Tiles::BLOCK;
-	nodes[3][15]->solid = true;
-	nodes[gridwidth - 3][15]->type = Tiles::BLOCK;
-	nodes[gridwidth - 3][15]->solid = true;
 }
 
 void Map::remove() {

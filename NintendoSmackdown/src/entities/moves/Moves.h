@@ -15,15 +15,17 @@ class Moves {
 		int RUN;
 		int KICK;
 		int PUNCH;
+		int RAPIDPUNCH;
 		int DOUBLEJUMP;
 		int SHIELD;
 		int CROUCH;
 		int EDGEGRAB;
+		int DASHATTACK;
 
 		vector<int> moveframes;
 
 	protected:
-		int MOVECOUNT = 11;
+		int MOVECOUNT = 13;
 };
 
 #endif

@@ -42,22 +42,40 @@ class Movement : public Universal {
 		float gravity;
 		float speedx;
 		float speedy;
+		bool restrictinputx;
+		bool restrictinputy;
+		bool upkeypressed;
+		bool akeypressed;
 
 		//movement values
-		float movespeed = .75f;
-		float maxspeed = 15;
+		float movespeed = 1.2f;
+		float maxspeed = 12;
 		float friction = .92f;
 		float jumpheight = 10;
 		float fallspeed = .55f;
 		float maxfallspeed = 10;
 
 		//jumping
-		bool jumped;
-		bool doublejumped;
+		bool doubleupkeypressed;
 		bool holdingjump;
 
 		//edge grab
 		bool grabbingedge;
+
+		//punching
+		int punchtimer;
+		int punchcycle;
+		const int PUNCHCYCLETIME = 20;
+
+		//force
+		float forcex;
+		float forcey;
+		const float FORCEFRICTION = .9f;
+
+		//dash attack
+		bool dashing;
+		int dashcooldowntimer;
+		const int DASHCOOLDOWN = 25;
 
 		//animation
 		bool lockmoveupdate;

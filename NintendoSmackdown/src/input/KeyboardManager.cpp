@@ -13,38 +13,66 @@ void KeyboardManager::eventupdate(SDL_Event e) {
 		switch (e.key.keysym.sym) {
 			case SDLK_RIGHT:
 				rightkeydown = true;
-				dkeydown = true;
 				break;
 			case SDLK_LEFT:
 				leftkeydown = true;
-				akeydown = true;
 				break;
 			case SDLK_UP:
 				upkeydown = true;
-				wkeydown = true;
 				break;
 			case SDLK_DOWN:
 				downkeydown = true;
-				skeydown = true;
+				break;
+			case SDLK_d:
+				rightkeydown = true;
+				break;
+			case SDLK_a:
+				leftkeydown = true;
+				break;
+			case SDLK_w:
+				upkeydown = true;
+				break;
+			case SDLK_s:
+				downkeydown = true;
+				break;
+			case SDLK_z:
+				akeydown = true;
+				break;
+			case SDLK_x:
+				bkeydown = true;
 				break;
 		}
 	}else if (e.type == SDL_KEYUP) {
 		switch (e.key.keysym.sym) {
 			case SDLK_RIGHT:
 				rightkeydown = false;
-				dkeydown = false;
 				break;
 			case SDLK_LEFT:
 				leftkeydown = false;
-				akeydown = false;
 				break;
 			case SDLK_UP:
 				upkeydown = false;
-				wkeydown = false;
 				break;
 			case SDLK_DOWN:
 				downkeydown = false;
-				skeydown = false;
+				break;
+			case SDLK_d:
+				rightkeydown = false;
+				break;
+			case SDLK_a:
+				leftkeydown = false;
+				break;
+			case SDLK_w:
+				upkeydown = false;
+				break;
+			case SDLK_s:
+				downkeydown = false;
+				break;
+			case SDLK_z:
+				akeydown = false;
+				break;
+			case SDLK_x:
+				bkeydown = false;
 				break;
 		}
 	}

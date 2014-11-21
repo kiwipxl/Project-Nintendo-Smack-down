@@ -17,10 +17,8 @@ class KeyboardManager : Universal {
 		bool upkeydown = false;
 		bool downkeydown = false;
 
-		bool dkeydown = false;
 		bool akeydown = false;
-		bool wkeydown = false;
-		bool skeydown = false;
+		bool bkeydown = false;
 
 		void eventupdate(SDL_Event e);
 };
