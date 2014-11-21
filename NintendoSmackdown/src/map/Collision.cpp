@@ -21,10 +21,10 @@ Node* Collision::collideright(float x, float y) {
 
 Node* Collision::collideleft(float x, float y) {
 	if (x >= 0 && y >= 0 && x < universe->map->gridwidth - 1 && y < universe->map->gridheight - 1) {
-		if (universe->map->nodes[x][y + 1]->solid) {
-			return universe->map->nodes[x][y + 1];
-		}else if (universe->map->nodes[x][y]->solid) {
-			return universe->map->nodes[x][y];
+		if (universe->map->nodes[x + .4f][y + 1]->solid) {
+			return universe->map->nodes[x + .4f][y + 1];
+		}else if (universe->map->nodes[x + .4f][y]->solid) {
+			return universe->map->nodes[x + .4f][y];
 		}
 	}
 	return NULL;

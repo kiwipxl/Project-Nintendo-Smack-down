@@ -35,6 +35,11 @@ void Map::create() {
 	}
 	srcrect.w = 16; srcrect.h = 16;
 	rect.w = 32; rect.h = 32;
+
+	nodes[3][15]->type = Tiles::BLOCK;
+	nodes[3][15]->solid = true;
+	nodes[gridwidth - 3][15]->type = Tiles::BLOCK;
+	nodes[gridwidth - 3][15]->solid = true;
 }
 
 void Map::remove() {

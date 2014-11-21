@@ -6,46 +6,44 @@
 #include "../tools/Animator.h"
 #include "../managers/Texture.h"
 #include "../map/Node.h"
-
-enum Move {
-	IDLE,
-	IDLE2,
-	JUMP,
-	LAND,
-	KICKA,
-	PUNCHA,
-	ROLL,
-	RUNNING,
-	SHIELD, 
-	CROUCH, 
-	EDGEGRAB
-};
+#include "moves/CaptainFalcon.h"
 
 class Movement : public Universal {
 
 	public:
 		Movement();
 
+		//position
 		Point2DF pos;
 		Point2DF coords;
 
+		//rendering
 		SDL_Rect rect;
 		SDL_Rect srcrect;
+
+		//animation
 		Animator* animator;
 		Texture* animationsheet;
 		SDL_RendererFlip flip;
 		SDL_Point origin;
-		Move move;
-
 		float rotation;
 
+		//moves
+		Moves moves;
+		int currentmove;
+
+		/**
+		updates the movement
+		**/
 		void updatemovement();
 
 	private:
+		//movement
 		float gravity;
 		float speedx;
 		float speedy;
 
+		//movement values
 		float movespeed = .75f;
 		float maxspeed = 15;
 		float friction = .92f;
@@ -53,15 +51,21 @@ class Movement : public Universal {
 		float fallspeed = .55f;
 		float maxfallspeed = 10;
 
+		//jumping
 		bool jumped;
 		bool doublejumped;
 		bool holdingjump;
 
+		//edge grab
 		bool grabbingedge;
 
+		//animation
 		bool lockmoveupdate;
 
-		void updatemove(Move newmove, int fps, bool loop = true, bool lock = false);
+		/**
+		changes the current move to a new move and updates the animation
+		**/
+		void updatemove(int newmove, int fps, bool loop = true, bool lock = false);
 };
 
 #endif

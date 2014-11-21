@@ -113,6 +113,8 @@
     <ClCompile Include="src\managers\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\moves\CaptainFalcon.h" />
+    <ClInclude Include="src\entities\moves\Moves.h" />
     <ClInclude Include="src\entities\Movement.h" />
     <ClInclude Include="src\map\Collision.h" />
     <ClInclude Include="src\map\Node.h" />
