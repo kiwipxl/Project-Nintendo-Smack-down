@@ -31,9 +31,11 @@ void Animator::update() {
 					if (srcrect->y > srcheight - height) {
 						if (!loop) { srcrect->x -= width; srcrect->y -= height; paused = true; return; }
 						srcrect->y = 0;
+						currentframe = 0;
 					}
 				}else if (!loop) { srcrect->x -= width; paused = true; return; }
 				srcrect->x = 0;
+				if (horizontalonly) { currentframe = 0; }
 			}
 		}
 	}

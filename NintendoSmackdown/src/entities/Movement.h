@@ -44,8 +44,6 @@ class Movement : public Universal {
 		float speedy;
 		bool restrictinputx;
 		bool restrictinputy;
-		bool upkeypressed;
-		bool akeypressed;
 
 		//movement values
 		float movespeed = 1.2f;
@@ -56,7 +54,7 @@ class Movement : public Universal {
 		float maxfallspeed = 10;
 
 		//jumping
-		bool doubleupkeypressed;
+		bool doublejump;
 		bool holdingjump;
 
 		//edge grab
@@ -76,6 +74,21 @@ class Movement : public Universal {
 		bool dashing;
 		int dashcooldowntimer;
 		const int DASHCOOLDOWN = 25;
+
+		//slide attack
+		bool sliding;
+		int slidingcooldowntimer;
+		const int SLIDECOOLDOWN = 25;
+
+		//collision
+		bool floorcollided;
+		bool rightcollided;
+		bool leftcollided;
+
+		//input
+		bool upkeypressed;
+		bool downkeypressed;
+		bool akeypressed;
 
 		//animation
 		bool lockmoveupdate;

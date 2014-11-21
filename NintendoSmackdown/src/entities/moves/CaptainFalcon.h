@@ -24,6 +24,7 @@ class CaptainFalcon : public Moves {
 			EDGEGRAB = 10;
 			RAPIDPUNCH = 11;
 			DASHATTACK = 12;
+			SLIDEATTACK = 13;
 
 			moveframes[IDLE] = 4;
 			moveframes[TAUNT] = 4;
@@ -37,7 +38,8 @@ class CaptainFalcon : public Moves {
 			moveframes[CROUCH] = 1;
 			moveframes[EDGEGRAB] = 2;
 			moveframes[RAPIDPUNCH] = 2;
-			moveframes[DASHATTACK] = 3;
+			moveframes[DASHATTACK] = 4;
+			moveframes[SLIDEATTACK] = 6;
 		}
 };
 

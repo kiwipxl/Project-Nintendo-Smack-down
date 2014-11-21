@@ -21,11 +21,12 @@ class Moves {
 		int CROUCH;
 		int EDGEGRAB;
 		int DASHATTACK;
+		int SLIDEATTACK;
 
 		vector<int> moveframes;
 
 	protected:
-		int MOVECOUNT = 13;
+		int MOVECOUNT = 14;
 };
 
 #endif
