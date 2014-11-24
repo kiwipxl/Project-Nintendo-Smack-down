@@ -3,25 +3,20 @@
 #include <Windows.h>
 #include "managers/WindowManager.h"
 #include "managers/Assets.h"
-#include "map/Map.h"
 #include "input/MouseManager.h"
 #include "ui/UIManager.h"
 #include "input/KeyboardManager.h"
-#include "entities/EntityManager.h"
-#include "editor/Editor.h"
 #include "managers/StateManager.h"
+#include "map/Camera.h"
 
 class Universe {
 
 	public:
 		static WindowManager* winmanager;
 		static Assets* assets;
-		static Map* map;
 		static MouseManager* mouse;
 		static UIManager* uimanager;
 		static KeyboardManager* keyboard;
-		static EntityManager* entitymanager;
-		static Editor* editor;
 		static StateManager* state;
 };
 

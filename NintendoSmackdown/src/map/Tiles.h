@@ -19,6 +19,7 @@ class Tiles {
 
 		static Type* NONE;
 		static Type* BLOCK;
+		static Type* DIRT;
 };
 
 #endif

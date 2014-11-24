@@ -12,8 +12,8 @@ EntityManager::EntityManager() {
 
 }
 
-Fighter* EntityManager::createfighter(int x, int y) {
-	Fighter* fighter = new Fighter(x, y);
+Fighter* EntityManager::createfighter(int x, int y, FighterName fname, FighterType ftype) {
+	Fighter* fighter = new Fighter(x, y, fname, ftype);
 	fighters.push_back(fighter);
 	return fighter;
 }

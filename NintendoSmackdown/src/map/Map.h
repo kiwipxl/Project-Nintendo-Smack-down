@@ -13,6 +13,7 @@ class Map : Universal {
 	public:
 		Map();
 
+		//map
 		bool created;
 		int gridwidth;
 		int gridheight;
@@ -23,8 +24,13 @@ class Map : Universal {
 		void remove();
 
 	private:
+		//map renderering
 		SDL_Rect rect;
 		SDL_Rect srcrect;
+
+		//background rendering
+		SDL_Rect bgrect;
+		SDL_Rect bgsrcrect;
 };
 
 #endif

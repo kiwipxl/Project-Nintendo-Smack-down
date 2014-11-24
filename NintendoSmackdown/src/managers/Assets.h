@@ -17,6 +17,8 @@ class Assets : Universal {
 		vector<Texture*> tilesheets;
 		vector<Texture*> fightersheets;
 
+		Texture* backgroundtiles;
+
 		void initiate();
 
 		/**

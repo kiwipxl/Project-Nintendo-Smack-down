@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "../tools/Universal.h"
-#include "Fighter.h"
+#include "fighters/Fighter.h"
 
 class EntityManager : Universal {
 
@@ -12,7 +12,7 @@ class EntityManager : Universal {
 
 		static vector<Fighter*> fighters;
 
-		static Fighter* createfighter(int x, int y);
+		static Fighter* createfighter(int x, int y, FighterName fname, FighterType ftype);
 
 		void update();
 };

@@ -9,10 +9,12 @@ class Node {
 	public:
 		Node() {
 			solid = false;
+			edgeempty = true;
 		}
 
 		Type* type;
 		bool solid;
+		bool edgeempty;
 };
 
 #endif

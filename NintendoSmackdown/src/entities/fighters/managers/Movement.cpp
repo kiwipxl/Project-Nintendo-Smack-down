@@ -1,11 +1,11 @@
 #include "Movement.h"
 #include <iostream>
-#include "../managers/WindowManager.h"
-#include "../map/Map.h"
-#include "../managers/Assets.h"
-#include "../ui/UIManager.h"
-#include "../input/KeyboardManager.h"
-#include "../map/Collision.h"
+#include "../../../managers/WindowManager.h"
+#include "../../../map/Map.h"
+#include "../../../map/Collision.h"
+#include "../../../managers/Assets.h"
+#include "../Fighter.h"
+#include "../../../map/Camera.h"
 
 class Universe {
 
@@ -13,8 +13,7 @@ class Universe {
 		static WindowManager* winmanager;
 		static Map* map;
 		static Assets* assets;
-		static UIManager* uimanager;
-		static KeyboardManager* keyboard;
+		static Camera* camera;
 };
 
 Movement::Movement() {
@@ -22,18 +21,15 @@ Movement::Movement() {
 	moves = CaptainFalcon();
 
 	//setup animation
-	animationsheet = universe->assets->fightersheets[0];
+	animationsheet = muniverse->assets->fightersheets[0];
 	srcrect.x = 0; srcrect.y = 0;
 	rect.x = 0; rect.y = 0;
-	rect.w = 64; rect.h = 64;
 	animator = new Animator(animationsheet, &srcrect, 64, 64, 5, true, true);
 
 	//setup initial movement values
 	speedx = 0;
 	gravity = 0;
 	flip = SDL_RendererFlip::SDL_FLIP_NONE;
-	origin.x = 32;
-	origin.y = 32;
 
 	doublejump = false;
 	lockmoveupdate = false;
@@ -45,10 +41,6 @@ Movement::Movement() {
 	floorcollided = false;
 	sliding = false;
 
-	akeypressed = false;
-	downkeypressed = false;
-	upkeypressed = false;
-
 	punchtimer = 0;
 	punchcycle = moves.IDLE;
 	rotation = 0;
@@ -56,7 +48,6 @@ Movement::Movement() {
 	slidingcooldowntimer = 0;
 
 	forcex = 0;
-	forcey = 0;
 
 	updatemove(moves.JUMP, 10, false);
 }
@@ -70,19 +61,21 @@ void Movement::updatemovement() {
 											GET COORDS
 	------------------------------------------------------------------------------------------
 	**/
+	rect.w = 64; rect.h = 64;
+
 	//update coords based on position and tile size
-	coords.x = pos.x / 32;
-	coords.y = pos.y / 32;
+	coords.x = pos.x / muniverse->camera->gridsize;
+	coords.y = pos.y / muniverse->camera->gridsize;
 	//make sure the coords don't go out of the grid boundaries
-	if (coords.x < 0) { coords.x = 0; }else if (coords.x >= universe->map->gridwidth - 1) {
-		coords.x = universe->map->gridwidth - 1;
+	if (coords.x < 0) { coords.x = 0; }else if (coords.x >= muniverse->map->gridwidth - 1) {
+		coords.x = muniverse->map->gridwidth - 1;
 	}
-	if (coords.y < 0) { coords.y = 0; }else if (coords.y >= universe->map->gridheight - 1) {
-		pos.y = 0; gravity = 0; coords.y = universe->map->gridheight - 1;
+	if (coords.y < 0) { coords.y = 0; }else if (coords.y >= muniverse->map->gridheight - 1) {
+		pos.y = 0; gravity = 0; coords.y = muniverse->map->gridheight - 1;
 	}
 
 	//get the current node based on the coords
-	Node* node = universe->map->nodes[(int)coords.x][(int)coords.y];
+	Node* node = muniverse->map->nodes[(int)coords.x][(int)coords.y];
 
 	/**
 	------------------------------------------------------------------------------------------
@@ -91,10 +84,10 @@ void Movement::updatemovement() {
 	**/
 	//apply movement to speedx if the right key or left key is down
 	if (currentmove != moves.CROUCH && !grabbingedge && !restrictinputx) {
-		if (universe->keyboard->rightkeydown) {
+		if (rightkeydown) {
 			speedx += movespeed;
 			flip = SDL_RendererFlip::SDL_FLIP_NONE;
-		}else if (universe->keyboard->leftkeydown) {
+		}else if (leftkeydown) {
 			speedx -= movespeed;
 			flip = SDL_RendererFlip::SDL_FLIP_HORIZONTAL;
 		}
@@ -106,11 +99,15 @@ void Movement::updatemovement() {
 	//check for left and right tile collision
 	if ((node = Collision::collideright(coords.x, coords.y)) && node->solid) {
 		//snap against right solid tile
-		if (speedx >= 0) { speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * 32; }
+		if (speedx >= 0) {
+			speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * muniverse->camera->gridsize;
+		}
 		rightcollided = true;
 	}else if ((node = Collision::collideleft(coords.x, coords.y)) && node->solid) {
 		//snap against left solid tile
-		if (speedx <= 0) { speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * 32; }
+		if (speedx <= 0) {
+			speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * muniverse->camera->gridsize;
+		}
 		leftcollided = true;
 	}
 
@@ -127,47 +124,55 @@ void Movement::updatemovement() {
 	**/
 	//check to see if you can collide down on the tile for an edge grab as well as a non solid tile below
 	if (rightcollided && !grabbingedge && gravity >= 0 &&
-		(node = Collision::collidedown(coords.x + 1, coords.y - 1)) && node->solid &&
+		(node = Collision::collidedown(coords.x + 1, coords.y - 1)) && node->solid && node->edgeempty && 
 		Collision::collidedown(coords.x, coords.y) == NULL &&
 		Collision::collidedown(coords.x + 1, coords.y - 2) == NULL) {
 		//snap against the tile in x and y and reset variables
 		gravity = 0;
 		rotation = 0;
-		speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * 32;
-		pos.y = ((int)coords.y + 1) * 32;
-		updatemove(moves.EDGEGRAB, 2, true);
+		speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * muniverse->camera->gridsize;
+		pos.y = ((int)coords.y + 1) * muniverse->camera->gridsize;
+		updatemove(moves.EDGEGRAB, 1, false);
 		grabbingedge = true;
 		doublejump = false;
 		flip = SDL_RendererFlip::SDL_FLIP_NONE;
+		edgenode = node;
+		edgenode->edgeempty = false;
 	}else if (leftcollided && !grabbingedge && gravity >= 0 &&
-		(node = Collision::collidedown(coords.x - 1, coords.y - 1)) && node->solid && 
+		(node = Collision::collidedown(coords.x - 1, coords.y - 1)) && node->solid && node->edgeempty && 
 		Collision::collidedown(coords.x, coords.y) == NULL && 
 		Collision::collidedown(coords.x - 1, coords.y - 2) == NULL) {
 		//snap against the tile in x and y and reset variables
 		gravity = 0;
 		rotation = 0;
-		speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * 32;
-		pos.y = ((int)coords.y + 1) * 32;
-		updatemove(moves.EDGEGRAB, 2, true);
+		speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * muniverse->camera->gridsize;
+		pos.y = ((int)coords.y + 1) * muniverse->camera->gridsize;
+		updatemove(moves.EDGEGRAB, 1, false);
 		grabbingedge = true;
 		doublejump = false;
 		flip = SDL_RendererFlip::SDL_FLIP_HORIZONTAL;
+		edgenode = node;
+		edgenode->edgeempty = false;
 	}
 
 	if (grabbingedge) {
+		updatemove(moves.EDGEGRAB, 1, false);
+
 		//if the up key or down key is pressed while holding onto an edge
-		if (!upkeypressed && universe->keyboard->upkeydown && !restrictinputy) {
+		if (!upkeypressed && upkeydown && !restrictinputy) {
 			//if the up key is down then apply a small initial jump and let go of the edge
 			gravity = -jumpheight / 1.5f;
 			upkeypressed = true;
 			holdingjump = true;
 			updatemove(moves.JUMP, 10, false);
 			grabbingedge = false;
-		}else if (universe->keyboard->downkeydown && !restrictinputy) {
+			edgenode->edgeempty = true; edgenode = nullptr;
+		}else if (downkeydown && !restrictinputy) {
 			//if the down key is down then change moves, reset gravity and let go of the edge
 			gravity = 0;
 			updatemove(moves.JUMP, 10, false);
 			grabbingedge = false;
+			edgenode->edgeempty = true; edgenode = nullptr;
 		}
 	}
 
@@ -186,13 +191,13 @@ void Movement::updatemovement() {
 				//snap to bottom tile and reset variables
 				rotation = 0;
 				gravity = 0;
-				pos.y = (int)coords.y * 32;
+				pos.y = (int)coords.y * muniverse->camera->gridsize;
 				doublejump = false;
 				floorcollided = true;
 				//if not doing other actions, idle if speed is low and start running if the speed is fast
 				if (currentmove != moves.JUMP && currentmove != moves.EDGEGRAB) {
 					if (currentmove != moves.CROUCH || 
-						(currentmove == moves.CROUCH && !universe->keyboard->downkeydown)) {
+						(currentmove == moves.CROUCH && !downkeydown)) {
 						if (speedx >= 1 || speedx <= -1) {
 							updatemove(moves.RUN, 15, true);
 						}else if (currentmove != moves.LAND) {
@@ -222,7 +227,7 @@ void Movement::updatemovement() {
 		//if the gravity is less than 0 and colliding up with a solid tile, then snap to the tile
 		if (gravity < 0 && (node = Collision::collideup(coords.x, coords.y)) && node->solid) {
 			gravity = 0;
-			pos.y = ((int)coords.y + 1) * 32;
+			pos.y = ((int)coords.y + 1) * muniverse->camera->gridsize;
 		}
 	}
 
@@ -233,7 +238,7 @@ void Movement::updatemovement() {
 	**/
 	//if the up key is down then apply a small initial jump and change move
 	if (floorcollided) {
-		if (!upkeypressed && universe->keyboard->upkeydown && !restrictinputy) {
+		if (!upkeypressed && upkeydown && !restrictinputy) {
 			gravity = -jumpheight / 8;
 			upkeypressed = true;
 			holdingjump = true;
@@ -242,7 +247,7 @@ void Movement::updatemovement() {
 	}
 
 	//double jumps and hold for higher jumps
-	if (universe->keyboard->upkeydown && !restrictinputy) {
+	if (upkeydown && !restrictinputy) {
 		//if the up key is down after jumping once then apply a double jump
 		if (!upkeypressed && !doublejump) {
 			gravity = -jumpheight / 8;
@@ -273,22 +278,25 @@ void Movement::updatemovement() {
 	//if the a key is pressed while idling or running, cycle between punch, kick and rapid punch
 	if (currentmove != moves.DASHATTACK && currentmove != moves.CROUCH) {
 		if (currentmove == moves.IDLE || (currentmove == moves.RUN && 
-			!universe->keyboard->rightkeydown && !universe->keyboard->leftkeydown)) {
-			if (universe->keyboard->akeydown) {
+			!rightkeydown && !leftkeydown)) {
+			if (akeydown) {
 				if (!akeypressed) {
 					if ((punchcycle == moves.KICK || punchcycle == moves.RAPIDPUNCH) && 
 						punchtimer <= PUNCHCYCLETIME) {
 						//change move to rapid punch
 						updatemove(moves.RAPIDPUNCH, 15, false, true);
 						punchcycle = moves.RAPIDPUNCH;
+						mparent->dealtdamage = false;
 					}else if (punchcycle == moves.PUNCH && punchtimer <= PUNCHCYCLETIME) {
 						//change move to kick
 						updatemove(moves.KICK, 15, false, true);
 						punchcycle = moves.KICK;
+						mparent->dealtdamage = false;
 					}else {
 						//change move to punch
 						updatemove(moves.PUNCH, 10, false, true);
 						punchcycle = moves.PUNCH;
+						mparent->dealtdamage = false;
 					}
 					//restrict movement input and reset punch timer
 					punchtimer = 0;
@@ -320,15 +328,16 @@ void Movement::updatemovement() {
 	//if the dash attack is not on cooldown then perform a dash attack when the a is pressed
 	if (!dashing) { ++dashcooldowntimer; }
 	if (currentmove == moves.RUN && dashcooldowntimer >= DASHCOOLDOWN) {
-		if (universe->keyboard->akeydown) {
+		if (akeydown) {
 			if (!akeypressed) {
 				//apply force depending on flip direction
-				if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { forcex += 15; }else { forcex -= 15; }
+				if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { forcex += 10; }else { forcex -= 10; }
 				//update movement and restrict movement input
 				updatemove(moves.DASHATTACK, 10, false, true);
 				restrictinputx = true;
 				restrictinputy = true;
 				akeypressed = true;
+				mparent->dealtdamage = false;
 				dashing = true;
 				dashcooldowntimer = 0;
 			}
@@ -346,7 +355,7 @@ void Movement::updatemovement() {
 	**/
 	//if the down key is down then change the move to crouch
 	if (floorcollided) {
-		if (universe->keyboard->downkeydown && !downkeypressed) {
+		if (downkeydown && !downkeypressed) {
 			if (!restrictinputy && currentmove != moves.SLIDEATTACK) {
 				updatemove(moves.CROUCH, 5, false);
 			}
@@ -356,10 +365,10 @@ void Movement::updatemovement() {
 	//if the slide attack is not on cooldown then perform a slide attack when the a is pressed
 	if (!sliding) { ++slidingcooldowntimer; }
 	if (currentmove == moves.CROUCH && slidingcooldowntimer >= SLIDECOOLDOWN) {
-		if (universe->keyboard->akeydown && universe->keyboard->downkeydown) {
+		if (akeydown && downkeydown) {
 			if (!akeypressed && !downkeypressed) {
 				//apply force depending on flip direction
-				if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { forcex += 10; }else { forcex -= 10; }
+				if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { forcex += 8; }else { forcex -= 8; }
 				//update movement and restrict movement input
 				updatemove(moves.SLIDEATTACK, 10, false, true);
 				restrictinputx = true;
@@ -367,6 +376,7 @@ void Movement::updatemovement() {
 				akeypressed = true;
 				downkeypressed = true;
 				sliding = true;
+				mparent->dealtdamage = false;
 				slidingcooldowntimer = 0;
 				speedx += forcex;
 			}
@@ -384,28 +394,26 @@ void Movement::updatemovement() {
 	------------------------------------------------------------------------------------------
 	**/
 	//set keyboard keys to false when they aren't being pressed
-	if (!universe->keyboard->akeydown) { akeypressed = false; }
-	if (!universe->keyboard->downkeydown) { downkeypressed = false; }
-	if (!universe->keyboard->upkeydown) { upkeypressed = false; holdingjump = false; }
+	if (!akeydown) { akeypressed = false; }
+	if (!downkeydown) { downkeypressed = false; }
+	if (!upkeydown) { upkeypressed = false; holdingjump = false; }
 
-	//apply force friction to forcex and forcey
+	//apply force friction to forcex
 	forcex = forcex * FORCEFRICTION;
-	forcey = forcey * FORCEFRICTION;
 
 	//apply speedx and gravity to the position
 	pos.x += speedx;
 	pos.y += gravity;
-	//apply forcex and forcey to the position
+	//apply forcex to the position
 	pos.x += forcex;
-	pos.y += forcey;
 
 	//if the animation is locked and has looped once then unlock it
 	if (lockmoveupdate && animator->paused) {
 		lockmoveupdate = false;
+		if (currentmove == moves.HIT && !floorcollided) { updatemove(moves.JUMP, 10, false); }
 	}
 
-	//update the rect and animator
-	rect.x = pos.x; rect.y = pos.y;
+	//update the animator
 	animator->update();
 }
 
@@ -416,7 +424,7 @@ void Movement::updatemove(int newmove, int fps, bool loop, bool lock) {
 	if (currentmove != newmove) {
 		if (!lockmoveupdate || lock) {
 			currentmove = newmove;
-			animationsheet = universe->assets->fightersheets[0];
+			animationsheet = muniverse->assets->fightersheets[0];
 			animator->updatetexture(animationsheet, 64, 64, moves.moveframes[currentmove], 1);
 			animator->setfps(fps);
 			animator->loop = loop;
@@ -425,4 +433,29 @@ void Movement::updatemove(int newmove, int fps, bool loop, bool lock) {
 			lockmoveupdate = lock;
 		}
 	}
+}
+
+/**
+adds force in positive or negative direction depending on flip parameter
+**/
+void Movement::addflipforce(SDL_RendererFlip newflip, float forcemultiplierx, float forcemultipliery) {
+	if (newflip == SDL_RendererFlip::SDL_FLIP_NONE) {
+		addforce(forcemultiplierx, forcemultipliery);
+		flip = SDL_RendererFlip::SDL_FLIP_HORIZONTAL;
+	}else {
+		addforce(-forcemultiplierx, forcemultipliery);
+		flip = SDL_RendererFlip::SDL_FLIP_NONE;
+	}
+}
+
+/**
+adds force depending on health
+**/
+void Movement::addforce(float forcemultiplierx, float forcemultipliery) {
+	forcex += ((mparent->health / 100.f) + 1) * forcemultiplierx;
+	gravity -= ((mparent->health / 100.f) + 1) * forcemultipliery;
+	if (grabbingedge) {
+		grabbingedge = false; edgenode->edgeempty = true; edgenode = nullptr; updatemove(moves.JUMP, 10, false);
+	}
+	updatemove(moves.HIT, 5, false, true);
 }

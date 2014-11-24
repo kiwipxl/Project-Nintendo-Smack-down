@@ -40,9 +40,6 @@
     <ClCompile Include="src\managers\WindowManager.cpp">
       <Filter>src\managers</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\Fighter.cpp">
-      <Filter>src\entities</Filter>
-    </ClCompile>
     <ClCompile Include="src\tools\Animator.cpp">
       <Filter>src\tools</Filter>
     </ClCompile>
@@ -61,8 +58,17 @@
     <ClCompile Include="src\map\Collision.cpp">
       <Filter>src\map</Filter>
     </ClCompile>
-    <ClCompile Include="src\entities\Movement.cpp">
-      <Filter>src\entities</Filter>
+    <ClCompile Include="src\entities\fighters\managers\Movement.cpp">
+      <Filter>src\entities\fighters\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\fighters\managers\Damage.cpp">
+      <Filter>src\entities\fighters\managers</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\fighters\Fighter.cpp">
+      <Filter>src\entities\fighters</Filter>
+    </ClCompile>
+    <ClCompile Include="src\map\Camera.cpp">
+      <Filter>src\map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,9 +117,6 @@
     <ClInclude Include="src\managers\WindowManager.h">
       <Filter>src\managers</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\Fighter.h">
-      <Filter>src\entities</Filter>
-    </ClInclude>
     <ClInclude Include="src\tools\Animator.h">
       <Filter>src\tools</Filter>
     </ClInclude>
@@ -135,14 +138,23 @@
     <ClInclude Include="src\map\Collision.h">
       <Filter>src\map</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\Movement.h">
-      <Filter>src\entities</Filter>
+    <ClInclude Include="src\entities\fighters\moves\CaptainFalcon.h">
+      <Filter>src\entities\fighters\moves</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\moves\CaptainFalcon.h">
-      <Filter>src\entities\moves</Filter>
+    <ClInclude Include="src\entities\fighters\moves\Moves.h">
+      <Filter>src\entities\fighters\moves</Filter>
     </ClInclude>
-    <ClInclude Include="src\entities\moves\Moves.h">
-      <Filter>src\entities\moves</Filter>
+    <ClInclude Include="src\entities\fighters\managers\Movement.h">
+      <Filter>src\entities\fighters\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\fighters\managers\Damage.h">
+      <Filter>src\entities\fighters\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\entities\fighters\Fighter.h">
+      <Filter>src\entities\fighters</Filter>
+    </ClInclude>
+    <ClInclude Include="src\map\Camera.h">
+      <Filter>src\map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -202,8 +214,14 @@
     <Filter Include="src\editor">
       <UniqueIdentifier>{56b6e0be-db06-4efc-bc73-97cc644dee2a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\entities\moves">
+    <Filter Include="src\entities\fighters">
+      <UniqueIdentifier>{79a439da-6973-4cb9-b5c4-4f8dc04ecb31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\fighters\moves">
       <UniqueIdentifier>{de15016d-f221-487e-8e84-6df8b333066c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\entities\fighters\managers">
+      <UniqueIdentifier>{1136aba1-a097-4b0c-841e-5f04059eeb35}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

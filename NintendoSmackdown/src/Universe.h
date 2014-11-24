@@ -12,6 +12,7 @@
 #include "entities/EntityManager.h"
 #include "managers/StateManager.h"
 #include "editor/Editor.h"
+#include "map/Camera.h"
 
 class Universe {
 
@@ -22,6 +23,7 @@ class Universe {
 		static StateManager* state;
 
 		static Map* map;
+		static Camera* camera;
 
 		static MouseManager* mouse;
 		static KeyboardManager* keyboard;

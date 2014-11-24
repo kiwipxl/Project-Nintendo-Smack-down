@@ -10,6 +10,7 @@ KeyboardManager* Universe::keyboard;
 EntityManager* Universe::entitymanager;
 StateManager* Universe::state;
 Editor* Universe::editor;
+Camera* Universe::camera;
 
 void Universe::initiate() {
 	srand(time(NULL));
@@ -24,6 +25,7 @@ void Universe::initiate() {
 	entitymanager = new EntityManager();
 	state = new StateManager();
 	editor = new Editor();
+	camera = new Camera();
 
 	winmanager->initiate();
 	assets->initiate();

@@ -22,11 +22,13 @@ class Moves {
 		int EDGEGRAB;
 		int DASHATTACK;
 		int SLIDEATTACK;
+		int AIRKICK;
+		int HIT;
 
-		vector<int> moveframes;
+		std::vector<int> moveframes;
 
 	protected:
-		int MOVECOUNT = 14;
+		int MOVECOUNT = 16;
 };
 
 #endif

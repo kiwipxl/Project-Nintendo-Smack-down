@@ -5,6 +5,7 @@
 #include "../ui/UIManager.h"
 #include "../map/Map.h"
 #include "../entities/EntityManager.h"
+#include "../map/Camera.h"
 
 class Universe {
 
@@ -13,6 +14,7 @@ class Universe {
 		static Map* map;
 		static EntityManager* entitymanager;
 		static Editor* editor;
+		static Camera* camera;
 };
 
 /**
@@ -43,6 +45,7 @@ void StateManager::createcurrentstate() {
 		case CHARSELECT:
 			break;
 		case GAME:
+			universe->camera->reset();
 			universe->map->create();
 			break;
 		case EDITOR:
@@ -85,6 +88,7 @@ void StateManager::update() {
 		case CHARSELECT:
 			break;
 		case GAME:
+			universe->camera->update();
 			universe->map->update();
 			universe->entitymanager->update();
 			break;
