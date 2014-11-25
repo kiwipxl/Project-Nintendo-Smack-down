@@ -1,6 +1,6 @@
 ﻿  Map.cpp
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(71): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(74): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(73): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(76): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
 Camera.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
 MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
   NintendoSmackdown.vcxproj -> C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe

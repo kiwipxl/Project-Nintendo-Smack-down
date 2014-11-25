@@ -23,8 +23,10 @@ Map::Map() {
 }
 
 void Map::create() {
-	universe->entitymanager->createfighter(250, 500, CAPTAIN_FALCON, PLAYER);
-	universe->entitymanager->createfighter(800, 500, CAPTAIN_FALCON, EASYAI);
+	Tiles::initiate();
+
+	universe->entitymanager->createfighter(250, 250, CAPTAIN_FALCON, PLAYER);
+	universe->entitymanager->createfighter(500, 250, CAPTAIN_FALCON, EASYAI);
 
 	created = true;
 	for (int x = 0; x < gridwidth; ++x) {
@@ -50,6 +52,9 @@ void Map::create() {
 	bgsrcrect.w = 512; bgsrcrect.h = 512;
 	bgrect.x = 0; bgrect.y = 0;
 	bgrect.w = universe->winmanager->screenwidth; bgrect.h = universe->winmanager->screenheight;
+
+	//nodes[12][13]->type = Tiles::BLOCK;
+	//nodes[12][13]->solid = true;
 }
 
 void Map::remove() {
@@ -60,14 +65,11 @@ void Map::update() {
 	SDL_RenderCopy(universe->winmanager->renderer, universe->assets->backgroundtiles->t, &bgsrcrect, &bgrect);
 
 	//updates the map
-	float scaleoffsetx = universe->camera->getscaleoffsetx(universe->winmanager->screenwidth);
-	float scaleoffsety = universe->camera->getscaleoffsety(universe->winmanager->screenheight);
-	scaleoffsetx = 0; scaleoffsety = 0;
-	float posx = universe->camera->x + scaleoffsetx; float posy = universe->camera->y + scaleoffsety;
+	float posx = universe->camera->x + universe->camera->getoffsetx(0);
+	float posy = universe->camera->y + universe->camera->getoffsety(0);
 	for (int y = 0; y < gridheight; ++y) {
 		for (int x = 0; x < gridwidth; ++x) {
 			Node* node = nodes[x][y];
-			posx += universe->camera->gridsize;
 			rect.x = posx; rect.y = posy;
 			if (node->type != Tiles::NONE) {
 				srcrect.x = node->type->srcx; srcrect.y = node->type->srcy;
@@ -75,8 +77,9 @@ void Map::update() {
 				SDL_RenderCopy(universe->winmanager->renderer,
 					universe->assets->tilesheets[node->type->sheetindex]->t, &srcrect, &rect);
 			}
+			posx += universe->camera->gridsize;
 		}
-		posx = 0;
+		posx = universe->camera->x + universe->camera->getoffsetx(0);
 		posy += universe->camera->gridsize;
 	}
 }

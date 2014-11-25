@@ -17,11 +17,13 @@ class Camera : Universal {
 
 		void update();
 		void reset();
-		float getscaleoffsetx(int width);
-		float getscaleoffsety(int height);
+		float getoffsetx(float posx);
+		float getoffsety(float posy);
 
 	private:
-		//camera offset
+		const int ZOOM_SMOOTHING = 20;
+		const int MOVE_SMOOTHING = 10;
+		const float ZOOM = 500.f;
 };
 
 #endif

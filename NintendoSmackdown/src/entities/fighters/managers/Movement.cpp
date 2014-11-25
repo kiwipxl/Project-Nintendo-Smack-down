@@ -64,8 +64,8 @@ void Movement::updatemovement() {
 	rect.w = 64; rect.h = 64;
 
 	//update coords based on position and tile size
-	coords.x = pos.x / muniverse->camera->gridsize;
-	coords.y = pos.y / muniverse->camera->gridsize;
+	coords.x = (pos.x * muniverse->camera->scale) / muniverse->camera->gridsize;
+	coords.y = (pos.y * muniverse->camera->scale) / muniverse->camera->gridsize;
 	//make sure the coords don't go out of the grid boundaries
 	if (coords.x < 0) { coords.x = 0; }else if (coords.x >= muniverse->map->gridwidth - 1) {
 		coords.x = muniverse->map->gridwidth - 1;
@@ -100,13 +100,13 @@ void Movement::updatemovement() {
 	if ((node = Collision::collideright(coords.x, coords.y)) && node->solid) {
 		//snap against right solid tile
 		if (speedx >= 0) {
-			speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * muniverse->camera->gridsize;
+			speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * 32;
 		}
 		rightcollided = true;
 	}else if ((node = Collision::collideleft(coords.x, coords.y)) && node->solid) {
 		//snap against left solid tile
 		if (speedx <= 0) {
-			speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * muniverse->camera->gridsize;
+			speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * 32;
 		}
 		leftcollided = true;
 	}
@@ -130,8 +130,8 @@ void Movement::updatemovement() {
 		//snap against the tile in x and y and reset variables
 		gravity = 0;
 		rotation = 0;
-		speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * muniverse->camera->gridsize;
-		pos.y = ((int)coords.y + 1) * muniverse->camera->gridsize;
+		speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * 32;
+		pos.y = ((int)coords.y + 1) * 32;
 		updatemove(moves.EDGEGRAB, 1, false);
 		grabbingedge = true;
 		doublejump = false;
@@ -145,8 +145,8 @@ void Movement::updatemovement() {
 		//snap against the tile in x and y and reset variables
 		gravity = 0;
 		rotation = 0;
-		speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * muniverse->camera->gridsize;
-		pos.y = ((int)coords.y + 1) * muniverse->camera->gridsize;
+		speedx = 0; forcex = 0; pos.x = ((int)coords.x + .5f) * 32;
+		pos.y = ((int)coords.y + 1) * 32;
 		updatemove(moves.EDGEGRAB, 1, false);
 		grabbingedge = true;
 		doublejump = false;
@@ -191,7 +191,7 @@ void Movement::updatemovement() {
 				//snap to bottom tile and reset variables
 				rotation = 0;
 				gravity = 0;
-				pos.y = (int)coords.y * muniverse->camera->gridsize;
+				pos.y = (int)coords.y * 32;
 				doublejump = false;
 				floorcollided = true;
 				//if not doing other actions, idle if speed is low and start running if the speed is fast
@@ -219,15 +219,18 @@ void Movement::updatemovement() {
 		if (gravity >= maxfallspeed) { gravity = maxfallspeed; }
 
 		//change the move to jump when walked off solid platform
-		if (gravity > 0 && (currentmove == moves.IDLE || currentmove == moves.RUN ||
-			currentmove == moves.CROUCH || currentmove == moves.DASHATTACK)) {
-			updatemove(moves.JUMP, 10, false);
+		if (floorcollided) {
+			if (gravity > 0 && (currentmove == moves.IDLE || currentmove == moves.RUN ||
+				currentmove == moves.CROUCH || currentmove == moves.DASHATTACK || 
+				currentmove == moves.SLIDEATTACK)) {
+				updatemove(moves.JUMP, 10, false);
+			}
 		}
 
 		//if the gravity is less than 0 and colliding up with a solid tile, then snap to the tile
 		if (gravity < 0 && (node = Collision::collideup(coords.x, coords.y)) && node->solid) {
 			gravity = 0;
-			pos.y = ((int)coords.y + 1) * muniverse->camera->gridsize;
+			pos.y = ((int)coords.y + 1) * 32;
 		}
 	}
 
@@ -344,8 +347,9 @@ void Movement::updatemovement() {
 		}
 	}
 	//if dashing and slowed down then end dash and allow movement input
-	if (dashing && speedx <= 2 && speedx >= -2 && animator->paused) {
+	if (dashing && speedx <= 2 && speedx >= -2 && !lockmoveupdate) {
 		restrictinputx = false; restrictinputy = false; dashing = false; animator->paused = false;
+		updatemove(moves.IDLE, 5, true);
 	}
 
 	/**
@@ -429,7 +433,7 @@ void Movement::updatemove(int newmove, int fps, bool loop, bool lock) {
 			animator->setfps(fps);
 			animator->loop = loop;
 			animator->paused = false;
-			srcrect.y = currentmove * rect.h;
+			srcrect.y = currentmove * 64;
 			lockmoveupdate = lock;
 		}
 	}

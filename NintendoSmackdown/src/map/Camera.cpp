@@ -21,10 +21,9 @@ void Camera::update() {
 		if (f->pos.x < min) { min = f->pos.x; }
 		if (f->pos.x > max) { max = f->pos.x; }
 	}
-	//scalex = 1.2f + ((((min + universe->winmanager->centerx) - max) / 2) / 500.f);
-	//scaley = scalex;
-	
-	if (scale <= 2) { scale += .001f; }
+	int difx = (min + ((max - min) / 2)) - universe->winmanager->centerx;
+	x -= (x + difx) / MOVE_SMOOTHING;
+	scale -= (scale - (1 + ((((min + universe->winmanager->centerx) - max)) / ZOOM))) / ZOOM_SMOOTHING;
 
 	gridsize = 32 * scale;
 }
@@ -34,10 +33,10 @@ void Camera::reset() {
 	scale = 1;
 }
 
-float Camera::getscaleoffsetx(int width) {
-	return -((scale - 1) * width) / 2.f;
+float Camera::getoffsetx(float posx) {
+	return -(scale - 1) * (universe->winmanager->centerx - posx);
 }
 
-float Camera::getscaleoffsety(int height) {
-	return -((scale - 1) * height) / 2.f;
+float Camera::getoffsety(float posy) {
+	return -(scale - 1) * (universe->winmanager->centery - posy);
 }

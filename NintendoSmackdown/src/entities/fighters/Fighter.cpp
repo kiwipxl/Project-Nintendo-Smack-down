@@ -7,6 +7,7 @@
 #include "../../input/KeyboardManager.h"
 #include "../../map/Collision.h"
 #include "../../map/Camera.h"
+#include "../../map/Tiles.h"
 
 class Universe {
 
@@ -38,11 +39,9 @@ void Fighter::update() {
 	}
 	updatemovement();
 	updatedamage();
-	rect.x = pos.x + universe->camera->x;
-	rect.y = pos.y + universe->camera->y;
+	rect.x = pos.x + universe->camera->x + universe->camera->getoffsetx(pos.x);
+	rect.y = pos.y + universe->camera->y + universe->camera->getoffsety(pos.y);
 	rect.w = 64 * universe->camera->scale; rect.h = 64 * universe->camera->scale;
 	origin.x = rect.w / 2; origin.y = rect.h / 2;
-	srcrect.x = 0; srcrect.y = 0;
 	SDL_RenderCopyEx(universe->winmanager->renderer, animationsheet->t, &srcrect, &rect, rotation, &origin, flip);
-	rect.x = pos.x; rect.y = pos.y;
 }
