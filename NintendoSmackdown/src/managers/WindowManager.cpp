@@ -24,3 +24,9 @@ void WindowManager::initiate() {
 		}
 	}
 }
+
+void WindowManager::resize(int w, int h) {
+	screenwidth = w;
+	screenheight = h;
+	SDL_SetWindowSize(window, w, h);
+}

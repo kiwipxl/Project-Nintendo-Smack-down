@@ -40,6 +40,10 @@ Movement::Movement() {
 	dashing = false;
 	floorcollided = false;
 	sliding = false;
+	downairkick = false;
+	rightairknee = false;
+	punching = false;
+	airsomersault = false;
 
 	punchtimer = 0;
 	punchcycle = moves.IDLE;
@@ -86,10 +90,10 @@ void Movement::updatemovement() {
 	if (currentmove != moves.CROUCH && !grabbingedge && !restrictinputx) {
 		if (rightkeydown) {
 			speedx += movespeed;
-			flip = SDL_RendererFlip::SDL_FLIP_NONE;
+			if (floorcollided) { flip = SDL_RendererFlip::SDL_FLIP_NONE; }
 		}else if (leftkeydown) {
 			speedx -= movespeed;
-			flip = SDL_RendererFlip::SDL_FLIP_HORIZONTAL;
+			if (floorcollided) { flip = SDL_RendererFlip::SDL_FLIP_HORIZONTAL; }
 		}
 	}
 
@@ -126,7 +130,8 @@ void Movement::updatemovement() {
 	if (rightcollided && !grabbingedge && gravity >= 0 &&
 		(node = Collision::collidedown(coords.x + 1, coords.y - 1)) && node->solid && node->edgeempty && 
 		Collision::collidedown(coords.x, coords.y) == NULL &&
-		Collision::collidedown(coords.x + 1, coords.y - 2) == NULL) {
+		Collision::collidedown(coords.x + 1, coords.y - 2) == NULL && 
+		Collision::collidedown(coords.x, coords.y - 1) == NULL) {
 		//snap against the tile in x and y and reset variables
 		gravity = 0;
 		rotation = 0;
@@ -141,7 +146,8 @@ void Movement::updatemovement() {
 	}else if (leftcollided && !grabbingedge && gravity >= 0 &&
 		(node = Collision::collidedown(coords.x - 1, coords.y - 1)) && node->solid && node->edgeempty && 
 		Collision::collidedown(coords.x, coords.y) == NULL && 
-		Collision::collidedown(coords.x - 1, coords.y - 2) == NULL) {
+		Collision::collidedown(coords.x - 1, coords.y - 2) == NULL && 
+		Collision::collidedown(coords.x, coords.y - 1) == NULL) {
 		//snap against the tile in x and y and reset variables
 		gravity = 0;
 		rotation = 0;
@@ -184,7 +190,6 @@ void Movement::updatemovement() {
 	//apply gravity and collide downwards and upwards with solid tiles
 	floorcollided = false;
 	if (!grabbingedge) {
-		gravity += fallspeed;
 		if (gravity > 0) {
 			//if the gravity is greater than 0, try colliding downwards
 			if ((node = Collision::collidedown(coords.x, coords.y)) && node->solid) {
@@ -213,19 +218,20 @@ void Movement::updatemovement() {
 					updatemove(moves.LAND, 10, false);
 				}
 			}
+
+			//change the move to jump when walked off solid platform
+			if (!floorcollided) {
+				if (currentmove == moves.IDLE || currentmove == moves.RUN ||
+					currentmove == moves.CROUCH || currentmove == moves.DASHATTACK ||
+					currentmove == moves.SLIDEATTACK) {
+					updatemove(moves.JUMP, 10, false);
+				}
+			}
 		}
 
 		//limit gravity to the max fall speed
+		gravity += fallspeed;
 		if (gravity >= maxfallspeed) { gravity = maxfallspeed; }
-
-		//change the move to jump when walked off solid platform
-		if (floorcollided) {
-			if (gravity > 0 && (currentmove == moves.IDLE || currentmove == moves.RUN ||
-				currentmove == moves.CROUCH || currentmove == moves.DASHATTACK || 
-				currentmove == moves.SLIDEATTACK)) {
-				updatemove(moves.JUMP, 10, false);
-			}
-		}
 
 		//if the gravity is less than 0 and colliding up with a solid tile, then snap to the tile
 		if (gravity < 0 && (node = Collision::collideup(coords.x, coords.y)) && node->solid) {
@@ -270,7 +276,9 @@ void Movement::updatemovement() {
 
 	//apply rotation to double jump depending on direction
 	if (currentmove == moves.DOUBLEJUMP) {
-		if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { rotation += 15; }else { rotation -= 15; }
+		if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { rotation -= 40; }else { rotation += 40; }
+	}else if (currentmove == moves.JUMP && gravity > 0) {
+		updatemove(moves.AIRLAND, 4, false);
 	}
 
 	/**
@@ -306,21 +314,20 @@ void Movement::updatemovement() {
 					restrictinputx = true;
 					restrictinputy = true;
 					akeypressed = true;
+					punching = true;
 				}
 			}
 		}
 	}
 
 	//increment punchtimer and allow movement input after a move in the punch cycle has been performed
-	if (currentmove != moves.PUNCH && currentmove != moves.KICK && currentmove != moves.RAPIDPUNCH) {
-		if (punchcycle != moves.IDLE) {
-			restrictinputx = false; restrictinputy = false;
-			++punchtimer;
-			if (punchtimer >= PUNCHCYCLETIME) { punchtimer = 0; punchcycle = moves.IDLE; }
-		}
+	if (punching && !lockmoveupdate) {
+		restrictinputx = false; restrictinputy = false;
+		punching = false;
+		updatemove(moves.IDLE, 5, true);
 	}else {
-		//if a punch, kick or rapid punch is being performed then apply friction to speedx
-		speedx = speedx * .8f;
+		++punchtimer;
+		if (punchtimer >= PUNCHCYCLETIME) { punchtimer = 0; punchcycle = moves.IDLE; }
 	}
 
 	/**
@@ -390,6 +397,85 @@ void Movement::updatemovement() {
 	if (sliding && speedx <= 1 && speedx >= -1 && !lockmoveupdate) {
 		restrictinputx = false; restrictinputy = false; sliding = false; animator->paused = false;
 		updatemove(moves.IDLE, 5, true);
+	}
+
+	/**
+	------------------------------------------------------------------------------------------
+											DOWN AIR KICK
+	------------------------------------------------------------------------------------------
+	**/
+	if (!floorcollided && downkeydown && !downkeypressed && akeydown && !doublejump && !restrictinputy) {
+		updatemove(moves.AIRDOWNKICK, 15, false, true);
+		downkeypressed = true;
+		restrictinputx = true;
+		downairkick = true;
+		mparent->dealtdamage = false;
+	}
+	if (downairkick && !lockmoveupdate) {
+		updatemove(moves.JUMP, 10, false);
+		doublejump = false;
+		restrictinputx = false;
+		downairkick = false;
+	}
+
+	/**
+	------------------------------------------------------------------------------------------
+											RIGHT AIR KNEE
+	------------------------------------------------------------------------------------------
+	**/
+	if (!floorcollided && akeydown && !doublejump && !restrictinputy &&
+		((flip == SDL_RendererFlip::SDL_FLIP_NONE && rightkeydown) || 
+		(flip == SDL_RendererFlip::SDL_FLIP_HORIZONTAL && leftkeydown))) {
+		updatemove(moves.AIRKNEE, 15, false, true);
+		restrictinputx = true;
+		rightairknee = true;
+		mparent->dealtdamage = false;
+	}
+	if (rightairknee && !lockmoveupdate) {
+		updatemove(moves.JUMP, 10, false);
+		doublejump = false;
+		restrictinputx = false;
+		rightairknee = false;
+	}
+
+	/**
+	------------------------------------------------------------------------------------------
+											AIR SOMERSAULT
+	------------------------------------------------------------------------------------------
+	**/
+	if (!floorcollided && upkeydown && akeydown && !akeypressed && !restrictinputy && !airsomersault) {
+		updatemove(moves.AIRSOMERSAULT, 10, false, true);
+		restrictinputx = true;
+		akeypressed = true;
+		airsomersault = true;
+		mparent->dealtdamage = false;
+		rotation = 0;
+	}
+	if (airsomersault && !lockmoveupdate) {
+		updatemove(moves.JUMP, 10, false);
+		restrictinputx = false;
+		airsomersault = false;
+	}
+
+	/**
+	------------------------------------------------------------------------------------------
+											RIGHT AIR KICK
+	------------------------------------------------------------------------------------------
+	**/
+	if (!floorcollided && akeydown && !doublejump && !restrictinputy && !rightkeydown && !leftkeydown && !upkeydown) {
+		updatemove(moves.AIRKICK, 12, false);
+		restrictinputx = true;
+		akeypressed = true;
+		rightairkick = true;
+		mparent->dealtdamage = false;
+	}
+	if (rightairkick) {
+		if (animator->paused || currentmove != moves.AIRKICK) {
+			updatemove(moves.JUMP, 10, false);
+			doublejump = false;
+			restrictinputx = false;
+			rightairkick = false;
+		}
 	}
 
 	/**

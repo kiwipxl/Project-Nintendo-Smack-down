@@ -70,8 +70,8 @@ class Movement {
 		float movespeed = 1.2f;
 		float maxspeed = 12;
 		float friction = .92f;
-		float jumpheight = 10;
-		float fallspeed = .55f;
+		float jumpheight = 8;
+		float fallspeed = .4f;
 		float maxfallspeed = 10;
 
 		//jumping
@@ -86,6 +86,7 @@ class Movement {
 		int punchtimer;
 		int punchcycle;
 		const int PUNCHCYCLETIME = 20;
+		bool punching;
 
 		//dash attack
 		bool dashing;
@@ -96,6 +97,12 @@ class Movement {
 		bool sliding;
 		int slidingcooldowntimer;
 		const int SLIDECOOLDOWN = 25;
+
+		//air kicks
+		bool downairkick;
+		bool rightairknee;
+		bool airsomersault;
+		bool rightairkick;
 
 		//collision
 		bool floorcollided;

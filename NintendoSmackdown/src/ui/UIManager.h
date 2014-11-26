@@ -10,6 +10,7 @@ class UIManager : Universal {
 	public:
 		void initiate();
 		void update();
+		void remove();
 
 		void updatefpstext(int fps);
 

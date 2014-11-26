@@ -27,7 +27,7 @@ void Damage::updatedamage() {
 						if (!f->dealtdamage) {
 							forcex = 0; forcey = 0;
 							if (f->currentmove == f->moves.PUNCH) {
-								forcex = .2f; forcey = 2;
+								forcex = .2f; forcey = 1;
 								f->dealtdamage = true;
 								otherf->health += 5;
 							}else if (f->currentmove == f->moves.KICK) {
@@ -39,13 +39,29 @@ void Damage::updatedamage() {
 								f->dealtdamage = true;
 								otherf->health += 2;
 							}else if (f->currentmove == f->moves.DASHATTACK) {
-								forcex = 5; forcey = 5;
+								forcex = 5; forcey = 2;
 								f->dealtdamage = true;
 								otherf->health += 7;
 							}else if (f->currentmove == f->moves.SLIDEATTACK) {
-								forcex = 5.5f; forcey = 5;
+								forcex = 5.5f; forcey = 2;
 								f->dealtdamage = true;
 								otherf->health += 8;
+							}else if (f->currentmove == f->moves.AIRDOWNKICK) {
+								forcey = -5;
+								f->dealtdamage = true;
+								otherf->health += 11;
+							}else if (f->currentmove == f->moves.AIRKNEE) {
+								forcex = 1; forcey = 1;
+								f->dealtdamage = true;
+								otherf->health += 12;
+							}else if (f->currentmove == f->moves.AIRSOMERSAULT) {
+								forcey = 4;
+								f->dealtdamage = true;
+								otherf->health += 11;
+							}else if (f->currentmove == f->moves.AIRKICK) {
+								forcex = .5f; forcey = 1;
+								f->dealtdamage = true;
+								otherf->health += 10;
 							}
 							if (forcex != 0 || forcey != 0) {
 								if (f->pos.y < otherf->pos.y - 32) { forcey = -forcey; }

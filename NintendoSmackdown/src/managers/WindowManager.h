@@ -9,6 +9,7 @@ class WindowManager {
 		WindowManager() {
 			screenwidth = 1080;
 			screenheight = 768;
+
 			centerx = screenwidth / 2;
 			centery = screenheight / 2;
 		}
@@ -23,6 +24,7 @@ class WindowManager {
 		int centery;
 
 		void initiate();
+		void resize(int w, int h);
 
 	private:
 		const char* WINDOW_TITLE = "Project Nintendo Smack-down";

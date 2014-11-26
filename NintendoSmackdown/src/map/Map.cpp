@@ -5,6 +5,7 @@
 #include "../ui/UIManager.h"
 #include "../managers/Assets.h"
 #include "Camera.h"
+#include "../tools/MapParser.h"
 
 class Universe {
 
@@ -14,6 +15,7 @@ class Universe {
 		static Assets* assets;
 		static UIManager* uimanager;
 		static Camera* camera;
+		static MapParser* mapparser;
 };
 
 Map::Map() {
@@ -48,13 +50,18 @@ void Map::create() {
 	srcrect.w = 16; srcrect.h = 16;
 	rect.w = 32; rect.h = 32;
 
-	bgsrcrect.x = 0; bgsrcrect.y = 0;
-	bgsrcrect.w = 512; bgsrcrect.h = 512;
+	bgsrcrect.x = 512; bgsrcrect.y = 0;
+	bgsrcrect.w = 512; bgsrcrect.h = 432;
 	bgrect.x = 0; bgrect.y = 0;
 	bgrect.w = universe->winmanager->screenwidth; bgrect.h = universe->winmanager->screenheight;
 
 	//nodes[12][13]->type = Tiles::BLOCK;
 	//nodes[12][13]->solid = true;
+
+	universe->mapparser->load("map1.txt");
+
+	mapwidth = gridwidth * (32 * universe->camera->scale);
+	mapheight = gridheight * (32 * universe->camera->scale);
 }
 
 void Map::remove() {
@@ -62,11 +69,19 @@ void Map::remove() {
 }
 
 void Map::update() {
+	mapwidth = gridwidth * (32 * universe->camera->scale);
+	mapheight = gridheight * (32 * universe->camera->scale);
+
+	float posx = universe->camera->x + universe->camera->getoffsetx(0);
+	float posy = universe->camera->y + universe->camera->getoffsety(0);
+	bgrect.x = -abs(universe->camera->x + posx) / 10; bgrect.y = -abs(universe->camera->y + posy) / 10;
+	bgrect.w = universe->winmanager->screenwidth - bgrect.x;
+	bgrect.h = bgrect.w;
 	SDL_RenderCopy(universe->winmanager->renderer, universe->assets->backgroundtiles->t, &bgsrcrect, &bgrect);
 
 	//updates the map
-	float posx = universe->camera->x + universe->camera->getoffsetx(0);
-	float posy = universe->camera->y + universe->camera->getoffsety(0);
+	posx = universe->camera->x + universe->camera->getoffsetx(0);
+	posy = universe->camera->y + universe->camera->getoffsety(0);
 	for (int y = 0; y < gridheight; ++y) {
 		for (int x = 0; x < gridwidth; ++x) {
 			Node* node = nodes[x][y];

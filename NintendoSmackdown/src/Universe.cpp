@@ -11,6 +11,7 @@ EntityManager* Universe::entitymanager;
 StateManager* Universe::state;
 Editor* Universe::editor;
 Camera* Universe::camera;
+MapParser* Universe::mapparser;
 
 void Universe::initiate() {
 	srand(time(NULL));
@@ -26,6 +27,7 @@ void Universe::initiate() {
 	state = new StateManager();
 	editor = new Editor();
 	camera = new Camera();
+	mapparser = new MapParser();
 
 	winmanager->initiate();
 	assets->initiate();

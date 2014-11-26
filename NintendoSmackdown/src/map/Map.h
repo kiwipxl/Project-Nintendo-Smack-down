@@ -17,6 +17,8 @@ class Map : Universal {
 		bool created;
 		int gridwidth;
 		int gridheight;
+		int mapwidth;
+		int mapheight;
 		vector<vector<Node*>> nodes;
 
 		void create();

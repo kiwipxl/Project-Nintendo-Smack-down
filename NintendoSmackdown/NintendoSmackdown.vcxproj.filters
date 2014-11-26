@@ -70,6 +70,9 @@
     <ClCompile Include="src\map\Camera.cpp">
       <Filter>src\map</Filter>
     </ClCompile>
+    <ClCompile Include="src\tools\MapParser.cpp">
+      <Filter>src\tools</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -155,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="src\map\Camera.h">
       <Filter>src\map</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\MapParser.h">
+      <Filter>src\tools</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

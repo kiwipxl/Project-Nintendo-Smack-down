@@ -27,3 +27,7 @@ void UIManager::updatefpstext(int fps) {
 	fpsstr += std::to_string(fps);
 	fpstext->rendertext(fpsstr, true);
 }
+
+void UIManager::remove() {
+	delete fpstext;
+}

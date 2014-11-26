@@ -47,9 +47,11 @@ void StateManager::createcurrentstate() {
 		case GAME:
 			universe->camera->reset();
 			universe->map->create();
+			universe->uimanager->initiate();
 			break;
 		case EDITOR:
 			universe->editor->create();
+			universe->uimanager->initiate();
 			break;
 	}
 	std::cout << "created state " << state << "\n";
@@ -68,9 +70,11 @@ void StateManager::removecurrentstate() {
 			break;
 		case GAME:
 			universe->map->remove();
+			universe->uimanager->remove();
 			break;
 		case EDITOR:
 			universe->editor->remove();
+			universe->uimanager->remove();
 			break;
 	}
 	std::cout << "removed state " << state << "\n";
@@ -91,10 +95,12 @@ void StateManager::update() {
 			universe->camera->update();
 			universe->map->update();
 			universe->entitymanager->update();
+			universe->uimanager->update();
 			break;
 		case EDITOR:
 			universe->uimanager->update();
 			universe->editor->update();
+			universe->uimanager->update();
 			break;
 	}
 }

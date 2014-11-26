@@ -25,8 +25,12 @@ class CaptainFalcon : public Moves {
 			RAPIDPUNCH = 11;
 			DASHATTACK = 12;
 			SLIDEATTACK = 13;
-			AIRKICK = 14;
+			AIRKNEE = 14;
 			HIT = 15;
+			AIRDOWNKICK = 16;
+			AIRLAND = 17;
+			AIRSOMERSAULT = 18;
+			AIRKICK = 19;
 
 			moveframes[IDLE] = 4;
 			moveframes[TAUNT] = 4;
@@ -42,8 +46,12 @@ class CaptainFalcon : public Moves {
 			moveframes[RAPIDPUNCH] = 2;
 			moveframes[DASHATTACK] = 4;
 			moveframes[SLIDEATTACK] = 6;
-			moveframes[AIRKICK] = 3;
+			moveframes[AIRKNEE] = 5;
 			moveframes[HIT] = 1;
+			moveframes[AIRDOWNKICK] = 4;
+			moveframes[AIRLAND] = 1;
+			moveframes[AIRSOMERSAULT] = 4;
+			moveframes[AIRKICK] = 3;
 		}
 };
 

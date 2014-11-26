@@ -13,6 +13,7 @@
 #include "managers/StateManager.h"
 #include "editor/Editor.h"
 #include "map/Camera.h"
+#include "tools/MapParser.h"
 
 class Universe {
 
@@ -29,6 +30,8 @@ class Universe {
 		static KeyboardManager* keyboard;
 
 		static EntityManager* entitymanager;
+
+		static MapParser* mapparser;
 
 		static UIManager* uimanager;
 
