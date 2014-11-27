@@ -11,6 +11,7 @@ class Joystick {
 		SDL_Joystick* j;
 		int buttons;
 		int axes;
+		int hats;
 };
 
 #endif

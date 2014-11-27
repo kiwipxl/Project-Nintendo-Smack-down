@@ -9,6 +9,7 @@ class Universe {
 };
 
 void InputManager::initiate() {
+	//default p1 keyboard buttons
 	right_key[0].set_key(SDLK_RIGHT, KEYBOARD);
 	left_key[0].set_key(SDLK_LEFT, KEYBOARD);
 	up_key[0].set_key(SDLK_UP, KEYBOARD);
@@ -16,6 +17,7 @@ void InputManager::initiate() {
 	a_key[0].set_key(SDLK_z, KEYBOARD);
 	b_key[0].set_key(SDLK_x, KEYBOARD);
 
+	//default p2 joystick buttons
 	right_key[1].set_key(13, JOY_BUTTON);
 	left_key[1].set_key(15, JOY_BUTTON);
 	up_key[1].set_key(12, JOY_BUTTON);
@@ -23,10 +25,19 @@ void InputManager::initiate() {
 	a_key[1].set_key(2, JOY_BUTTON);
 	b_key[1].set_key(1, JOY_BUTTON);
 
+	//default p2 joystick axis
 	right_key[1].set_key(JOY_AXIS_RIGHT, JOY_AXIS);
 	left_key[1].set_key(JOY_AXIS_LEFT, JOY_AXIS);
 	up_key[1].set_key(JOY_AXIS_UP, JOY_AXIS);
 	down_key[1].set_key(JOY_AXIS_DOWN, JOY_AXIS);
+
+	/**
+	//default p2 joystick hat
+	right_key[1].set_key(JOY_HAT_RIGHT, JOY_HAT);
+	left_key[1].set_key(JOY_HAT_LEFT, JOY_HAT);
+	up_key[1].set_key(JOY_HAT_UP, JOY_HAT);
+	down_key[1].set_key(JOY_HAT_DOWN, JOY_HAT);
+	**/
 
 	refreshjoysticks();
 }
@@ -40,10 +51,12 @@ void InputManager::refreshjoysticks() {
 		joystick.j = SDL_JoystickOpen(n);
 		joystick.buttons = SDL_JoystickNumButtons(joystick.j);
 		joystick.axes = SDL_JoystickNumAxes(joystick.j);
+		joystick.hats = SDL_JoystickNumHats(joystick.j);
 		joysticks.push_back(joystick);
 		cout << (n + 1) << ". ";
 		cout << joystick.buttons << " buttons, ";
-		cout << joystick.axes << " axes\n";
+		cout << joystick.axes << " axes";
+		cout << joystick.hats << " hats\n";
 	}
 }
 
@@ -80,22 +93,48 @@ void InputManager::event_update(SDL_Event e) {
 				set_keys_down(JOY_AXIS_UP, JOY_AXIS, false);
 			}
 		}
+	}else if (e.type == SDL_JOYHATMOTION) {
+		int value = e.jhat.value;
+		if (value == 0) {
+			set_keys_down(JOY_HAT_UP, JOY_HAT, false);
+			set_keys_down(JOY_HAT_RIGHT, JOY_HAT, false);
+			set_keys_down(JOY_HAT_DOWN, JOY_HAT, false);
+			set_keys_down(JOY_HAT_LEFT, JOY_HAT, false);
+		}else if (value == SDL_HAT_UP) {
+			set_keys_down(JOY_HAT_UP, JOY_HAT, true);
+			set_keys_down(JOY_HAT_LEFT, JOY_HAT, false);
+			set_keys_down(JOY_HAT_RIGHT, JOY_HAT, false);
+		}else if (value == SDL_HAT_RIGHT) {
+			set_keys_down(JOY_HAT_RIGHT, JOY_HAT, true);
+		}else if (value == SDL_HAT_DOWN) {
+			set_keys_down(JOY_HAT_DOWN, JOY_HAT, true);
+			set_keys_down(JOY_HAT_LEFT, JOY_HAT, false);
+			set_keys_down(JOY_HAT_RIGHT, JOY_HAT, false);
+		}else if (value == SDL_HAT_LEFT) {
+			set_keys_down(JOY_HAT_LEFT, JOY_HAT, true);
+		}else if (value == SDL_HAT_LEFTUP) {
+			set_keys_down(JOY_HAT_UP, JOY_HAT, true);
+			set_keys_down(JOY_HAT_LEFT, JOY_HAT, true);
+		}else if (value == SDL_HAT_RIGHTUP) {
+			set_keys_down(JOY_HAT_UP, JOY_HAT, true);
+			set_keys_down(JOY_HAT_RIGHT, JOY_HAT, true);
+		}
 	}
 }
 
-void InputManager::set_keys_down(int key, KeyType type, bool down) {
+void InputManager::set_keys_down(int key, KeyType type, bool down, bool checkifdown) {
 	for (int n = 0; n < KEYS; ++n) {
-		if (right_key[n].type == type && key == right_key[n].key) {
+		if ((right_key[n].type == type && key == right_key[n].key) && (!checkifdown || right_key[n].down)) {
 			right_key[n].down = down;
-		}else if (left_key[n].type == type && key == left_key[n].key) {
+		}else if ((left_key[n].type == type && key == left_key[n].key) && (!checkifdown || left_key[n].down)) {
 			left_key[n].down = down;
-		}else if (up_key[n].type == type && key == up_key[n].key) {
+		}else if ((up_key[n].type == type && key == up_key[n].key) && (!checkifdown || up_key[n].down)) {
 			up_key[n].down = down;
-		}else if (down_key[n].type == type && key == down_key[n].key) {
+		}else if ((down_key[n].type == type && key == down_key[n].key) && (!checkifdown || down_key[n].down)) {
 			down_key[n].down = down;
-		}else if (a_key[n].type == type && key == a_key[n].key) {
+		}else if ((a_key[n].type == type && key == a_key[n].key) && (!checkifdown || a_key[n].down)) {
 			a_key[n].down = down;
-		}else if (b_key[n].type == type && key == b_key[n].key) {
+		}else if ((b_key[n].type == type && key == b_key[n].key) && (!checkifdown || b_key[n].down)) {
 			b_key[n].down = down;
 		}
 	}

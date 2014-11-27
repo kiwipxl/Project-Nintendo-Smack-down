@@ -4,7 +4,8 @@
 enum KeyType {
 	KEYBOARD, 
 	JOY_BUTTON, 
-	JOY_AXIS
+	JOY_AXIS, 
+	JOY_HAT
 };
 
 class Key {

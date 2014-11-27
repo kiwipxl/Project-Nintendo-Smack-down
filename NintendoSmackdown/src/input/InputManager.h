@@ -12,7 +12,11 @@ enum ExtraKeyConstants {
 	JOY_AXIS_RIGHT = -1, 
 	JOY_AXIS_LEFT = -2, 
 	JOY_AXIS_UP = -3, 
-	JOY_AXIS_DOWN = -4
+	JOY_AXIS_DOWN = -4, 
+	JOY_HAT_RIGHT = -5, 
+	JOY_HAT_LEFT = -6, 
+	JOY_HAT_UP = -7, 
+	JOY_HAT_DOWN = -8
 };
 
 class InputManager : Universal {
@@ -35,7 +39,7 @@ class InputManager : Universal {
 		void initiate();
 		void event_update(SDL_Event e);
 		void refreshjoysticks();
-		void set_keys_down(int key, KeyType type, bool down);
+		void set_keys_down(int key, KeyType type, bool down, bool checkifdown = false);
 };
 
 #endif
