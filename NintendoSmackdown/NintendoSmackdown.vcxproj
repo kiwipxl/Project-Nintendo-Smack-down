@@ -100,7 +100,7 @@
     <ClCompile Include="src\entities\fighters\Fighter.cpp" />
     <ClCompile Include="src\entities\EntityManager.cpp" />
     <ClCompile Include="src\GameLoop.cpp" />
-    <ClCompile Include="src\input\KeyboardManager.cpp" />
+    <ClCompile Include="src\input\InputManager.cpp" />
     <ClCompile Include="src\input\MouseManager.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\managers\Assets.cpp" />
@@ -117,6 +117,8 @@
     <ClCompile Include="src\managers\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\input\Key.h" />
+    <ClInclude Include="src\input\Joystick.h" />
     <ClInclude Include="src\entities\fighters\managers\FighterBase.h" />
     <ClInclude Include="src\ui\GameUI.h" />
     <ClInclude Include="src\map\Camera.h" />
@@ -133,7 +135,7 @@
     <ClInclude Include="src\tools\Point2DF.h" />
     <ClInclude Include="src\entities\EntityManager.h" />
     <ClInclude Include="src\GameLoop.h" />
-    <ClInclude Include="src\input\KeyboardManager.h" />
+    <ClInclude Include="src\input\InputManager.h" />
     <ClInclude Include="src\input\MouseManager.h" />
     <ClInclude Include="src\Main.h" />
     <ClInclude Include="src\managers\Assets.h" />

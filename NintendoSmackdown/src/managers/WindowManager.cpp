@@ -3,7 +3,7 @@
 #include <iostream>
 
 void WindowManager::initiate() {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
+	if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
 		std::cout << "could not initialise SDL: " << SDL_GetError() << "\n";
 	}else {
 		window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 

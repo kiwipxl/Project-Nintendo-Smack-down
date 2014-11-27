@@ -506,7 +506,11 @@ void Movement::update_movement() {
 	//if the animation is locked and has looped once then unlock it
 	if (lock_move_update && animator->paused) {
 		lock_move_update = false;
-		if (current_move == moves.HIT && !floor_collided) { update_move(moves.JUMP, 10, false); }
+		if (current_move == moves.HIT) {
+			if (!floor_collided) { update_move(moves.JUMP, 10, false); }
+			restrict_input_x = false;
+			restrict_input_y = false;
+		}
 	}
 
 	//update the animator
@@ -554,4 +558,6 @@ void Movement::add_force(float forcemultiplierx, float forcemultipliery) {
 		grabbing_edge = false; edge_node->edgeempty = true; edge_node = nullptr; update_move(moves.JUMP, 10, false);
 	}
 	update_move(moves.HIT, 5, false, true);
+	restrict_input_x = true;
+	restrict_input_y = true;
 }

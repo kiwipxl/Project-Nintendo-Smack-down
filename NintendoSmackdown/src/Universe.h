@@ -7,7 +7,7 @@
 #include "map/Map.h"
 #include "tools/Point2D.h"
 #include "input/MouseManager.h"
-#include "input/KeyboardManager.h"
+#include "input/InputManager.h"
 #include "ui/DebugUI.h"
 #include "entities/EntityManager.h"
 #include "managers/StateManager.h"
@@ -28,7 +28,7 @@ class Universe {
 		static Camera* camera;
 
 		static MouseManager* mouse;
-		static KeyboardManager* keyboard;
+		static InputManager* input;
 
 		static EntityManager* entity_manager;
 

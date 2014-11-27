@@ -17,7 +17,7 @@ Camera::Camera() {
 }
 
 void Camera::update() {
-	min_bounds_x = -200;
+	min_bounds_x = 0;
 	max_bounds_x = universe->map->map_width;
 	min_bounds_y = 0;
 	max_bounds_y = universe->map->map_height;

@@ -13,9 +13,6 @@
     <ClCompile Include="src\tools\ImageTools.cpp">
       <Filter>src\tools</Filter>
     </ClCompile>
-    <ClCompile Include="src\input\KeyboardManager.cpp">
-      <Filter>src\input</Filter>
-    </ClCompile>
     <ClCompile Include="src\Main.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -76,6 +73,9 @@
     <ClCompile Include="src\ui\DebugUI.cpp">
       <Filter>src\ui</Filter>
     </ClCompile>
+    <ClCompile Include="src\input\InputManager.cpp">
+      <Filter>src\input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -89,9 +89,6 @@
     </ClInclude>
     <ClInclude Include="src\tools\ImageTools.h">
       <Filter>src\tools</Filter>
-    </ClInclude>
-    <ClInclude Include="src\input\KeyboardManager.h">
-      <Filter>src\input</Filter>
     </ClInclude>
     <ClInclude Include="src\Main.h">
       <Filter>src</Filter>
@@ -170,6 +167,15 @@
     </ClInclude>
     <ClInclude Include="src\entities\fighters\managers\FighterBase.h">
       <Filter>src\entities\fighters\managers</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\InputManager.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\Joystick.h">
+      <Filter>src\input</Filter>
+    </ClInclude>
+    <ClInclude Include="src\input\Key.h">
+      <Filter>src\input</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

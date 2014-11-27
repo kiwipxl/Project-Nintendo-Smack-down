@@ -18,7 +18,7 @@ void Assets::initiate() {
 	tile_sheets.push_back(load_texture("groundtiles.png"));
 
 	//load background tile sheets
-	background_tiles = load_texture("background_tiles.png");
+	background_tiles = load_texture("backgroundtiles.png");
 }
 
 /**

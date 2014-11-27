@@ -5,7 +5,7 @@
 #include "managers/Assets.h"
 #include "input/MouseManager.h"
 #include "ui/DebugUI.h"
-#include "input/KeyboardManager.h"
+#include "input/InputManager.h"
 #include "managers/StateManager.h"
 #include "map/Camera.h"
 
@@ -16,7 +16,7 @@ class Universe {
 		static Assets* assets;
 		static MouseManager* mouse;
 		static DebugUI* debug_ui;
-		static KeyboardManager* keyboard;
+		static InputManager* input;
 		static StateManager* state;
 };
 
@@ -24,6 +24,7 @@ void GameLoop::start() {
 	ms_per_frame = 1000 / fps;
 	start_second_time = std::clock();
 
+	SDL_JoystickEventState(SDL_ENABLE);
 	while (!quit) {
 		start_time = std::clock();
 
@@ -36,7 +37,7 @@ void GameLoop::start() {
 				break;
 			}
 			universe->mouse->event_update(e);
-			universe->keyboard->event_update(e);
+			universe->input->event_update(e);
 		}
 
 		SDL_SetRenderDrawColor(universe->win_manager->renderer, 255, 240, 220, 255);

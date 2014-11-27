@@ -3,7 +3,7 @@
 #include "../../managers/WindowManager.h"
 #include "../../map/Map.h"
 #include "../../managers/Assets.h"
-#include "../../input/KeyboardManager.h"
+#include "../../input/InputManager.h"
 #include "../../map/Collision.h"
 #include "../../map/Camera.h"
 #include "../../map/Tiles.h"
@@ -15,7 +15,7 @@ class Universe {
 		static WindowManager* win_manager;
 		static Map* map;
 		static Assets* assets;
-		static KeyboardManager* keyboard;
+		static InputManager* input;
 		static Camera* camera;
 		static EntityManager* entity_manager;
 };
@@ -23,17 +23,16 @@ class Universe {
 Fighter::Fighter(int x, int y, FighterName fname, FighterType ftype) : Movement(this), Damage(this) {
 	pos.x = x; pos.y = y;
 	name = fname; type = ftype;
-	id = universe->entity_manager->fighters.size();
 }
 
 void Fighter::update() {
 	if (type == PLAYER) {
-		left_key_down = universe->keyboard->left_key_down;
-		right_key_down = universe->keyboard->right_key_down;
-		up_key_down = universe->keyboard->up_key_down;
-		down_key_down = universe->keyboard->down_key_down;
-		a_key_down = universe->keyboard->a_key_down;
-		b_key_down = universe->keyboard->b_key_down;
+		left_key_down = universe->input->left_key[playerid].down;
+		right_key_down = universe->input->right_key[playerid].down;
+		up_key_down = universe->input->up_key[playerid].down;
+		down_key_down = universe->input->down_key[playerid].down;
+		a_key_down = universe->input->a_key[playerid].down;
+		b_key_down = universe->input->b_key[playerid].down;
 	}else {
 
 	}

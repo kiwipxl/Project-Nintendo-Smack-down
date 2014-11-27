@@ -66,8 +66,8 @@ class Movement : FighterBase {
 		bool restrict_input_y;
 
 		//movement values
-		float move_speed = 1.2f;
-		float max_speed = 12;
+		float move_speed = 1;
+		float max_speed = 10;
 		float friction = .92f;
 		float jump_height = 8;
 		float fall_speed = .4f;

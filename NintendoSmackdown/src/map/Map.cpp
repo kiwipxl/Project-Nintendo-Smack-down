@@ -28,9 +28,9 @@ void Map::create() {
 	Tiles::initiate();
 
 	universe->entity_manager->create_fighter(250, 250, CAPTAIN_FALCON, PLAYER);
-	universe->entity_manager->create_fighter(500, 250, CAPTAIN_FALCON, EASYAI);
+	universe->entity_manager->create_fighter(500, 250, CAPTAIN_FALCON, PLAYER);
 
-	universe->game_ui->create_damage_texts(2);
+	universe->game_ui->create_damage_texts(universe->entity_manager->fighters.size());
 
 	created = true;
 	for (int x = 0; x < grid_width; ++x) {

@@ -9,10 +9,11 @@ class EntityManager : Universal {
 
 	public:
 		EntityManager();
-
-		static vector<Fighter*> fighters;
-
-		static Fighter* create_fighter(int x, int y, FighterName fname, FighterType ftype);
+		
+		vector<Fighter*> fighters;
+		int playerscreated;
+		
+		Fighter* create_fighter(int x, int y, FighterName fname, FighterType ftype);
 
 		void update();
 };

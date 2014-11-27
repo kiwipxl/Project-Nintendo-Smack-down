@@ -6,7 +6,7 @@ Assets* Universe::assets;
 Map* Universe::map;
 MouseManager* Universe::mouse;
 DebugUI* Universe::debug_ui;
-KeyboardManager* Universe::keyboard;
+InputManager* Universe::input;
 EntityManager* Universe::entity_manager;
 StateManager* Universe::state;
 Editor* Universe::editor;
@@ -25,7 +25,7 @@ void Universe::initiate() {
 	map = new Map();
 	mouse = new MouseManager();
 	debug_ui = new DebugUI();
-	keyboard = new KeyboardManager();
+	input = new InputManager();
 	entity_manager = new EntityManager();
 	state = new StateManager();
 	editor = new Editor();
@@ -36,5 +36,6 @@ void Universe::initiate() {
 	win_manager->initiate();
 	assets->initiate();
 	state->initiate();
+	input->initiate();
 	game_loop->start();
 }
