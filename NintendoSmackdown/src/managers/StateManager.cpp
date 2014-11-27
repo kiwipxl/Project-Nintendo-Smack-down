@@ -2,56 +2,59 @@
 #include <iostream>
 
 #include "../editor/Editor.h"
-#include "../ui/UIManager.h"
+#include "../ui/DebugUI.h"
 #include "../map/Map.h"
 #include "../entities/EntityManager.h"
 #include "../map/Camera.h"
+#include "../ui/GameUI.h"
 
 class Universe {
 
 	public:
-		static UIManager* uimanager;
+		static DebugUI* debug_ui;
 		static Map* map;
-		static EntityManager* entitymanager;
+		static EntityManager* entity_manager;
 		static Editor* editor;
 		static Camera* camera;
+		static GameUI* game_ui;
 };
 
 /**
 initiates the statemanager and creates the current state
 **/
 void StateManager::initiate() {
-	createcurrentstate();
+	create_current_state();
 }
 
 /**
 removes the current state and creates the new state
 **/
-void StateManager::switchstate(State newstate) {
-	removecurrentstate();
-	state = newstate;
-	createcurrentstate();
+void StateManager::switch_state(State new_state) {
+	remove_current_state();
+	state = new_state;
+	create_current_state();
 }
 
 /**
 handles the creation of the new state
 **/
-void StateManager::createcurrentstate() {
+void StateManager::create_current_state() {
 	switch (state) {
-		case TITLESCREEN:
+		case TITLE_SCREEN:
 			break;
-		case MAINMENU:
+		case MAIN_MENU:
 			break;
-		case CHARSELECT:
+		case CHAR_SELECT:
 			break;
 		case GAME:
 			universe->camera->reset();
 			universe->map->create();
-			universe->uimanager->initiate();
+			universe->debug_ui->create();
+			universe->game_ui->create();
 			break;
 		case EDITOR:
 			universe->editor->create();
-			universe->uimanager->initiate();
+			universe->debug_ui->create();
 			break;
 	}
 	std::cout << "created state " << state << "\n";
@@ -60,21 +63,22 @@ void StateManager::createcurrentstate() {
 /**
 handles the removing of the current state
 **/
-void StateManager::removecurrentstate() {
+void StateManager::remove_current_state() {
 	switch (state) {
-		case TITLESCREEN:
+		case TITLE_SCREEN:
 			break;
-		case MAINMENU:
+		case MAIN_MENU:
 			break;
-		case CHARSELECT:
+		case CHAR_SELECT:
 			break;
 		case GAME:
 			universe->map->remove();
-			universe->uimanager->remove();
+			universe->debug_ui->remove();
+			universe->game_ui->remove();
 			break;
 		case EDITOR:
 			universe->editor->remove();
-			universe->uimanager->remove();
+			universe->debug_ui->remove();
 			break;
 	}
 	std::cout << "removed state " << state << "\n";
@@ -85,22 +89,23 @@ handles updating of everything depending on the state
 **/
 void StateManager::update() {
 	switch (state) {
-		case TITLESCREEN:
+		case TITLE_SCREEN:
 			break;
-		case MAINMENU:
+		case MAIN_MENU:
 			break;
-		case CHARSELECT:
+		case CHAR_SELECT:
 			break;
 		case GAME:
 			universe->camera->update();
 			universe->map->update();
-			universe->entitymanager->update();
-			universe->uimanager->update();
+			universe->entity_manager->update();
+			universe->debug_ui->update();
+			universe->game_ui->update();
 			break;
 		case EDITOR:
-			universe->uimanager->update();
+			universe->debug_ui->update();
 			universe->editor->update();
-			universe->uimanager->update();
+			universe->debug_ui->update();
 			break;
 	}
 }

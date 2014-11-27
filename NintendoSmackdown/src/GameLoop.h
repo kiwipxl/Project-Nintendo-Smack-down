@@ -11,7 +11,7 @@ class GameLoop : Universal {
 	public:
 		GameLoop() {
 			fps = 60;
-			msperframe = 0;
+			ms_per_frame = 0;
 			quit = false;
 		}
 
@@ -22,10 +22,10 @@ class GameLoop : Universal {
 	private:
 		SDL_Event e;
 		bool quit;
-		std::clock_t starttime;
-		std::clock_t startsecondtime;
-		float msperframe;
-		int framecounter;
+		std::clock_t start_time;
+		std::clock_t start_second_time;
+		float ms_per_frame;
+		int frame_counter;
 };
 
 #endif

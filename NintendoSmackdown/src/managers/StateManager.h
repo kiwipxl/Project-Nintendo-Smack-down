@@ -4,9 +4,9 @@
 #include "../tools/Universal.h"
 
 enum State {
-	TITLESCREEN,	//0
-	MAINMENU,		//1
-	CHARSELECT,		//2
+	TITLE_SCREEN,	//0
+	MAIN_MENU,		//1
+	CHAR_SELECT,		//2
 	GAME,			//3
 	EDITOR			//4
 };
@@ -33,18 +33,18 @@ class StateManager : Universal {
 		/**
 		removes the current state and creates the new state
 		**/
-		void switchstate(State newstate);
+		void switch_state(State new_state);
 
 	private:
 		/**
 		handles the creation of the new state
 		**/
-		void createcurrentstate();
+		void create_current_state();
 
 		/**
 		handles the removing of the current state
 		**/
-		void removecurrentstate();
+		void remove_current_state();
 };
 
 #endif

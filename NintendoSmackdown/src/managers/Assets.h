@@ -14,27 +14,27 @@ class Assets : Universal {
 	public:
 		vector<SDL_Texture*> textures;
 		vector<SDL_Surface*> surfaces;
-		vector<Texture*> tilesheets;
-		vector<Texture*> fightersheets;
+		vector<Texture*> tile_sheets;
+		vector<Texture*> fighter_sheets;
 
-		Texture* backgroundtiles;
+		Texture* background_tiles;
 
 		void initiate();
 
 		/**
 		loads an image in the assets folder and returns a texture from it
 		**/
-		Texture* loadtexture(char* path);
+		Texture* load_texture(char* path);
 
 		/**
 		loads an image in the assets folder and returns a surface from it
 		**/
-		SDL_Surface* loadsurface(char* path);
+		SDL_Surface* load_surface(char* path);
 
 		/**
 		free memory from all textures loaded
 		**/
-		void freetextures();
+		void free_textures();
 };
 
 #endif

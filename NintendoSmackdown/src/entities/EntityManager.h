@@ -12,7 +12,7 @@ class EntityManager : Universal {
 
 		static vector<Fighter*> fighters;
 
-		static Fighter* createfighter(int x, int y, FighterName fname, FighterType ftype);
+		static Fighter* create_fighter(int x, int y, FighterName fname, FighterType ftype);
 
 		void update();
 };

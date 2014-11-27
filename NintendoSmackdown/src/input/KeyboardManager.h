@@ -12,15 +12,15 @@ class KeyboardManager : Universal {
 
 		}
 
-		bool rightkeydown = false;
-		bool leftkeydown = false;
-		bool upkeydown = false;
-		bool downkeydown = false;
+		bool right_key_down = false;
+		bool left_key_down = false;
+		bool up_key_down = false;
+		bool down_key_down = false;
 
-		bool akeydown = false;
-		bool bkeydown = false;
+		bool a_key_down = false;
+		bool b_key_down = false;
 
-		void eventupdate(SDL_Event e);
+		void event_update(SDL_Event e);
 };
 
 #endif

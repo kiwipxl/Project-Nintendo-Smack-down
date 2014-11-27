@@ -22,6 +22,7 @@ class Fighter : Universal, public Movement, public Damage {
 	public:
 		Fighter(int x, int y, FighterName fname, FighterType ftype);
 
+		int id;
 		FighterName name;
 		FighterType type;
 

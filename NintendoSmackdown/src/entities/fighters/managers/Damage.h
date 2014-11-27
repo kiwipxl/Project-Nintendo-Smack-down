@@ -3,32 +3,28 @@
 
 #include "../../../map/Node.h"
 #include "../moves/CaptainFalcon.h"
+#include "FighterBase.h"
 
-class Universe;
-
-class Damage {
+class Damage : FighterBase {
 
 	public:
-		Damage();
+		Damage(Fighter* parent);
 
 		//health
 		float health;
 
 		//damage
-		bool dealtdamage;
+		bool dealt_damage;
 
 		/**
 		updates the damage
 		**/
-		void updatedamage();
+		void update_damage();
 
 	private:
-		//universe
-		Universe* duniverse;
-
 		//temp force
-		float forcex;
-		float forcey;
+		float force_x;
+		float force_y;
 };
 
 #endif

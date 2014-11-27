@@ -4,15 +4,15 @@
 /**
 create the animation class with defined options
 **/
-Animator::Animator(Texture* c_t, SDL_Rect* c_srcrect, int c_width, int c_height, int c_fps, 
-				   bool c_loop, bool c_horizontalonly) {
-	srcrect = c_srcrect;
-	fpscounter = 0;
-	currentframe = 0;
+Animator::Animator(Texture* c_t, SDL_Rect* c_src_rect, int c_width, int c_height, int c_fps, 
+				   bool c_loop, bool c_horizontal_only) {
+	src_rect = c_src_rect;
+	fps_counter = 0;
+	current_frame = 0;
 	loop = c_loop;
-	horizontalonly = c_horizontalonly;
-	setfps(c_fps);
-	updatetexture(c_t, c_width, c_height);
+	horizontal_only = c_horizontal_only;
+	set_fps(c_fps);
+	update_texture(c_t, c_width, c_height);
 }
 
 /**
@@ -20,22 +20,22 @@ updates the animator and adds 1 to the fps counter which changes the srcrect pos
 **/
 void Animator::update() {
 	if (!paused) {
-		++fpscounter;
-		if (fpscounter >= fps) {
-			++currentframe;
-			fpscounter = 0;
-			srcrect->x += width;
-			if (srcrect->x > srcwidth - width) {
-				if (!horizontalonly) {
-					srcrect->y += height;
-					if (srcrect->y > srcheight - height) {
-						if (!loop) { srcrect->x -= width; srcrect->y -= height; paused = true; return; }
-						srcrect->y = 0;
-						currentframe = 0;
+		++fps_counter;
+		if (fps_counter >= fps) {
+			++current_frame;
+			fps_counter = 0;
+			src_rect->x += width;
+			if (src_rect->x > src_width - width) {
+				if (!horizontal_only) {
+					src_rect->y += height;
+					if (src_rect->y > src_height - height) {
+						if (!loop) { src_rect->x -= width; src_rect->y -= height; paused = true; return; }
+						src_rect->y = 0;
+						current_frame = 0;
 					}
-				}else if (!loop) { srcrect->x -= width; paused = true; return; }
-				srcrect->x = 0;
-				if (horizontalonly) { currentframe = 0; }
+				}else if (!loop) { src_rect->x -= width; paused = true; return; }
+				src_rect->x = 0;
+				if (horizontal_only) { current_frame = 0; }
 			}
 		}
 	}
@@ -44,24 +44,24 @@ void Animator::update() {
 /**
 updates the animator with a new texture and width/height
 **/
-void Animator::updatetexture(Texture* c_t, int c_width, int c_height, int framesx, int framesy) {
-	fpscounter = 0;
-	currentframe = 0;
+void Animator::update_texture(Texture* c_t, int c_width, int c_height, int frames_x, int frames_y) {
+	fps_counter = 0;
+	current_frame = 0;
 	width = c_width;
 	height = c_height;
 	t = c_t;
-	srcwidth = t->width;
-	srcheight = t->height;
-	srcrect->x = 0;
-	srcrect->y = 0;
-	srcrect->w = width;
-	srcrect->h = height;
-	if (framesx != -1) { srcwidth = framesx * width; } if (framesy != -1) { srcheight = framesy * height; }
+	src_width = t->width;
+	src_height = t->height;
+	src_rect->x = 0;
+	src_rect->y = 0;
+	src_rect->w = width;
+	src_rect->h = height;
+	if (frames_x != -1) { src_width = frames_x * width; } if (frames_y != -1) { src_height = frames_y * height; }
 }
 
 /**
 update fps value
 **/
-void Animator::setfps(int newfps) {
-	fps = 60 / newfps;
+void Animator::set_fps(int new_fps) {
+	fps = 60 / new_fps;
 }

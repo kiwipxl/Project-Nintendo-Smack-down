@@ -8,18 +8,19 @@
 #include "tools/Point2D.h"
 #include "input/MouseManager.h"
 #include "input/KeyboardManager.h"
-#include "ui/UIManager.h"
+#include "ui/DebugUI.h"
 #include "entities/EntityManager.h"
 #include "managers/StateManager.h"
 #include "editor/Editor.h"
 #include "map/Camera.h"
 #include "tools/MapParser.h"
+#include "ui/GameUI.h"
 
 class Universe {
 
 	public:
-		static WindowManager* winmanager;
-		static GameLoop* gameloop;
+		static WindowManager* win_manager;
+		static GameLoop* game_loop;
 		static Assets* assets;
 		static StateManager* state;
 
@@ -29,11 +30,12 @@ class Universe {
 		static MouseManager* mouse;
 		static KeyboardManager* keyboard;
 
-		static EntityManager* entitymanager;
+		static EntityManager* entity_manager;
 
-		static MapParser* mapparser;
+		static MapParser* map_parser;
 
-		static UIManager* uimanager;
+		static DebugUI* debug_ui;
+		static GameUI* game_ui;
 
 		static Editor* editor;
 

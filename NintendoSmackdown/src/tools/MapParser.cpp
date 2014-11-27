@@ -2,20 +2,12 @@
 #include <iostream>
 #include <fstream>
 #include "../managers/WindowManager.h"
-#include "../entities/EntityManager.h"
-#include "../ui/UIManager.h"
-#include "../managers/Assets.h"
 #include "../map/Map.h"
-#include "../map/Tiles.h"
 
 class Universe {
 
 	public:
-		static WindowManager* winmanager;
-		static EntityManager* entitymanager;
-		static Assets* assets;
-		static UIManager* uimanager;
-		static MapParser* mapParser;
+		static WindowManager* win_manager;
 		static Map* map;
 };
 
@@ -29,18 +21,18 @@ loads data from a file, loads and parses it
 **/
 void MapParser::load(std::string path) {
 	streampos size;
-	char* memblock;
+	char* mem_block;
 
 	ifstream file("assets/" + path, ios::in | ios::binary | ios::ate);
 	if (file.is_open()) {
 		size = file.tellg();
-		memblock = new char[size];
+		mem_block = new char[size];
 		file.seekg(0, ios::beg);
-		file.read(memblock, size);
-		string strblock = memblock;
+		file.read(mem_block, size);
+		string str_block = mem_block;
 		file.close();
 
-		parse(strblock);
+		parse(str_block);
 	}else {
 		cout << "unable to open file " << path.c_str() << "\n";
 	}

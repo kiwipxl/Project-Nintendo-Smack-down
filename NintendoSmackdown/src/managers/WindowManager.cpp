@@ -6,11 +6,12 @@ void WindowManager::initiate() {
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		std::cout << "could not initialise SDL: " << SDL_GetError() << "\n";
 	}else {
-		window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, screenwidth, screenheight, SDL_WINDOW_SHOWN);
+		window = SDL_CreateWindow(WINDOW_TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 
+								  screen_width, screen_height, SDL_WINDOW_SHOWN);
 		if (window == NULL) {
 			std::cout << "window could not be created: " << SDL_GetError() << "\n";
 		}else {
-			screensurface = SDL_GetWindowSurface(window);
+			screen_surface = SDL_GetWindowSurface(window);
 			renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 			if (renderer == NULL) {
 				std::cout << "renderer could not be created: " << SDL_GetError() << "\n";
@@ -26,7 +27,7 @@ void WindowManager::initiate() {
 }
 
 void WindowManager::resize(int w, int h) {
-	screenwidth = w;
-	screenheight = h;
+	screen_width = w;
+	screen_height = h;
 	SDL_SetWindowSize(window, w, h);
 }

@@ -2,66 +2,68 @@
 #include <iostream>
 #include "../managers/WindowManager.h"
 #include "../entities/EntityManager.h"
-#include "../ui/UIManager.h"
 #include "../managers/Assets.h"
 #include "Camera.h"
 #include "../tools/MapParser.h"
+#include "../ui/GameUI.h"
 
 class Universe {
 
 	public:
-		static WindowManager* winmanager;
-		static EntityManager* entitymanager;
+		static WindowManager* win_manager;
+		static EntityManager* entity_manager;
 		static Assets* assets;
-		static UIManager* uimanager;
 		static Camera* camera;
-		static MapParser* mapparser;
+		static MapParser* map_parser;
+		static GameUI* game_ui;
 };
 
 Map::Map() {
 	created = false;
-	gridwidth = universe->winmanager->screenwidth / 32;
-	gridheight = universe->winmanager->screenheight / 32;
+	grid_width = universe->win_manager->screen_width / 32;
+	grid_height = universe->win_manager->screen_height / 32;
 }
 
 void Map::create() {
 	Tiles::initiate();
 
-	universe->entitymanager->createfighter(250, 250, CAPTAIN_FALCON, PLAYER);
-	universe->entitymanager->createfighter(500, 250, CAPTAIN_FALCON, EASYAI);
+	universe->entity_manager->create_fighter(250, 250, CAPTAIN_FALCON, PLAYER);
+	universe->entity_manager->create_fighter(500, 250, CAPTAIN_FALCON, EASYAI);
+
+	universe->game_ui->create_damage_texts(2);
 
 	created = true;
-	for (int x = 0; x < gridwidth; ++x) {
+	for (int x = 0; x < grid_width; ++x) {
 		vector<Node*> row;
-		for (int y = 0; y < gridheight; ++y) {
+		for (int y = 0; y < grid_height; ++y) {
 			Node* node = new Node();
 			node->type = Tiles::NONE;
-			if (x >= 4 && y == 14 && x <= gridwidth - 4) {
+			if (x >= 4 && y == 14 && x <= grid_width - 4) {
 				node->type = Tiles::BLOCK; node->solid = true;
 			}
-			if ((x >= 5 && y == 15 && x <= gridwidth - 5) ||
-				(x >= 6 && y == 16 && x <= gridwidth - 6)) {
+			if ((x >= 5 && y == 15 && x <= grid_width - 5) ||
+				(x >= 6 && y == 16 && x <= grid_width - 6)) {
 				node->type = Tiles::DIRT; node->solid = true;
 			}
 			row.push_back(node);
 		}
 		nodes.push_back(row);
 	}
-	srcrect.w = 16; srcrect.h = 16;
+	src_rect.w = 16; src_rect.h = 16;
 	rect.w = 32; rect.h = 32;
 
-	bgsrcrect.x = 512; bgsrcrect.y = 0;
-	bgsrcrect.w = 512; bgsrcrect.h = 432;
+	bgsrc_rect.x = 512; bgsrc_rect.y = 0;
+	bgsrc_rect.w = 512; bgsrc_rect.h = 432;
 	bgrect.x = 0; bgrect.y = 0;
-	bgrect.w = universe->winmanager->screenwidth; bgrect.h = universe->winmanager->screenheight;
+	bgrect.w = universe->win_manager->screen_width; bgrect.h = universe->win_manager->screen_height;
 
 	//nodes[12][13]->type = Tiles::BLOCK;
 	//nodes[12][13]->solid = true;
 
-	universe->mapparser->load("map1.txt");
+	universe->map_parser->load("map1.txt");
 
-	mapwidth = gridwidth * (32 * universe->camera->scale);
-	mapheight = gridheight * (32 * universe->camera->scale);
+	map_width = grid_width * (32 * universe->camera->scale);
+	map_height = grid_height * (32 * universe->camera->scale);
 }
 
 void Map::remove() {
@@ -69,32 +71,32 @@ void Map::remove() {
 }
 
 void Map::update() {
-	mapwidth = gridwidth * (32 * universe->camera->scale);
-	mapheight = gridheight * (32 * universe->camera->scale);
+	map_width = grid_width * (32 * universe->camera->scale);
+	map_height = grid_height * (32 * universe->camera->scale);
 
-	float posx = universe->camera->x + universe->camera->getoffsetx(0);
-	float posy = universe->camera->y + universe->camera->getoffsety(0);
-	bgrect.x = -abs(universe->camera->x + posx) / 10; bgrect.y = -abs(universe->camera->y + posy) / 10;
-	bgrect.w = universe->winmanager->screenwidth - bgrect.x;
+	float pos_x = universe->camera->x + universe->camera->get_offset_x(0);
+	float pos_y = universe->camera->y + universe->camera->get_offset_y(0);
+	bgrect.x = -abs(universe->camera->x + pos_x) / 10; bgrect.y = -abs(universe->camera->y + pos_y) / 10;
+	bgrect.w = universe->win_manager->screen_width - bgrect.x;
 	bgrect.h = bgrect.w;
-	SDL_RenderCopy(universe->winmanager->renderer, universe->assets->backgroundtiles->t, &bgsrcrect, &bgrect);
+	SDL_RenderCopy(universe->win_manager->renderer, universe->assets->background_tiles->t, &bgsrc_rect, &bgrect);
 
 	//updates the map
-	posx = universe->camera->x + universe->camera->getoffsetx(0);
-	posy = universe->camera->y + universe->camera->getoffsety(0);
-	for (int y = 0; y < gridheight; ++y) {
-		for (int x = 0; x < gridwidth; ++x) {
+	pos_x = universe->camera->x + universe->camera->get_offset_x(0);
+	pos_y = universe->camera->y + universe->camera->get_offset_y(0);
+	for (int y = 0; y < grid_height; ++y) {
+		for (int x = 0; x < grid_width; ++x) {
 			Node* node = nodes[x][y];
-			rect.x = posx; rect.y = posy;
+			rect.x = pos_x; rect.y = pos_y;
 			if (node->type != Tiles::NONE) {
-				srcrect.x = node->type->srcx; srcrect.y = node->type->srcy;
-				rect.w = ceil(universe->camera->gridsize); rect.h = ceil(universe->camera->gridsize);
-				SDL_RenderCopy(universe->winmanager->renderer,
-					universe->assets->tilesheets[node->type->sheetindex]->t, &srcrect, &rect);
+				src_rect.x = node->type->src_x; src_rect.y = node->type->src_y;
+				rect.w = ceil(universe->camera->grid_size); rect.h = ceil(universe->camera->grid_size);
+				SDL_RenderCopy(universe->win_manager->renderer,
+					universe->assets->tile_sheets[node->type->sheet_index]->t, &src_rect, &rect);
 			}
-			posx += universe->camera->gridsize;
+			pos_x += universe->camera->grid_size;
 		}
-		posx = universe->camera->x + universe->camera->getoffsetx(0);
-		posy += universe->camera->gridsize;
+		pos_x = universe->camera->x + universe->camera->get_offset_x(0);
+		pos_y += universe->camera->grid_size;
 	}
 }

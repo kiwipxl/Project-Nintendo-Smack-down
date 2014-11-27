@@ -7,8 +7,8 @@
 class Universe {
 
 	public:
-		static WindowManager* winmanager;
-		static EntityManager* entitymanager;
+		static WindowManager* win_manager;
+		static EntityManager* entity_manager;
 		static Map* map;
 };
 
@@ -17,46 +17,46 @@ Camera::Camera() {
 }
 
 void Camera::update() {
-	minboundsx = -200;
-	maxboundsx = universe->map->mapwidth;
-	minboundsy = 0;
-	maxboundsy = universe->map->mapheight;
+	min_bounds_x = -200;
+	max_bounds_x = universe->map->map_width;
+	min_bounds_y = 0;
+	max_bounds_y = universe->map->map_height;
 
-	int minx = INT_MAX;
-	int maxx = -INT_MAX;
-	int miny = INT_MAX;
-	int maxy = -INT_MAX;
-	for (Fighter* f : universe->entitymanager->fighters) {
-		if (f->pos.x < minx) { minx = f->pos.x; }
-		if (f->pos.x > maxx) { maxx = f->pos.x; }
-		if (f->pos.y < miny) { miny = f->pos.y; }
-		if (f->pos.y > maxy) { maxy = f->pos.y; }
+	int min_x = INT_MAX;
+	int max_x = -INT_MAX;
+	int min_y = INT_MAX;
+	int max_y = -INT_MAX;
+	for (Fighter* f : universe->entity_manager->fighters) {
+		if (f->pos.x < min_x) { min_x = f->pos.x; }
+		if (f->pos.x > max_x) { max_x = f->pos.x; }
+		if (f->pos.y < min_y) { min_y = f->pos.y; }
+		if (f->pos.y > max_y) { max_y = f->pos.y; }
 	}
-	if (minx < minboundsx) { minx = minboundsx; } if (maxx > maxboundsx) { maxx = maxboundsx; }
-	if (miny < minboundsy) { miny = minboundsy; } if (maxy > maxboundsy) { maxy = maxboundsy; }
+	if (min_x < min_bounds_x) { min_x = min_bounds_x; } if (max_x > max_bounds_x) { max_x = max_bounds_x; }
+	if (min_y < min_bounds_y) { min_y = min_bounds_y; } if (max_y > max_bounds_y) { max_y = max_bounds_y; }
 
-	int difx = (minx + ((maxx - minx) / 2) - (universe->winmanager->centerx - 64)) * scale;
-	int dify = (miny + ((maxy - miny) / 2) - (universe->winmanager->centery - 64)) * (scale / 2);
-	x -= (x + difx) / MOVE_SMOOTHING;
-	y -= (y + dify) / MOVE_SMOOTHING;
-	scale -= (scale - (1 + ((((minx + universe->winmanager->centerx) - maxx)) / ZOOM))) / ZOOM_SMOOTHING;
+	int dif_x = (min_x + ((max_x - min_x) / 2) - (universe->win_manager->center_x - 64)) * scale;
+	int dif_y = (min_y + ((max_y - min_y) / 2) - (universe->win_manager->center_y - 64)) * (scale / 2);
+	x -= (x + dif_x) / MOVE_SMOOTHING;
+	y -= (y + dif_y) / MOVE_SMOOTHING;
+	scale -= (scale - (1 + ((((min_x + universe->win_manager->center_x) - max_x)) / ZOOM))) / ZOOM_SMOOTHING;
 	if (scale > MAX_ZOOM) { scale = MAX_ZOOM;
 	}else if (scale < MIN_ZOOM) { scale = MIN_ZOOM; }
 
-	gridsize = 32 * scale;
+	grid_size = 32 * scale;
 }
 
 void Camera::reset() {
 	x = 0; y = 0;
 	scale = 1;
-	minboundsx = 0; maxboundsx = 0;
-	minboundsy = 0; maxboundsy = 0;
+	min_bounds_x = 0; max_bounds_x = 0;
+	min_bounds_y = 0; max_bounds_y = 0;
 }
 
-float Camera::getoffsetx(float posx) {
-	return -(scale - 1) * (universe->winmanager->centerx - posx);
+float Camera::get_offset_x(float pos_x) {
+	return -(scale - 1) * (universe->win_manager->center_x - pos_x);
 }
 
-float Camera::getoffsety(float posy) {
-	return -(scale - 1) * (universe->winmanager->centery - posy);
+float Camera::get_offset_y(float pos_y) {
+	return -(scale - 1) * (universe->win_manager->center_y - pos_y);
 }

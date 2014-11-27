@@ -6,14 +6,12 @@
 #include "../../../tools/Animator.h"
 #include "../../../managers/Texture.h"
 #include "../../../map/Node.h"
+#include "FighterBase.h"
 
-class Universe;
-class Fighter;
-
-class Movement {
+class Movement : FighterBase {
 
 	public:
-		Movement();
+		Movement(Fighter* parent);
 
 		//position
 		Point2DF pos;
@@ -24,111 +22,108 @@ class Movement {
 
 		//movement
 		float gravity;
-		float speedx;
+		float speed_x;
 
 		//moves
 		Moves moves;
-		int currentmove;
+		int current_move;
 
 		//input
-		bool upkeypressed = false;
-		bool downkeypressed = false;
-		bool akeypressed = false;
+		bool up_key_pressed = false;
+		bool down_key_pressed = false;
+		bool a_key_pressed = false;
 
-		bool leftkeydown = false;
-		bool rightkeydown = false;
-		bool upkeydown = false;
-		bool downkeydown = false;
-		bool akeydown = false;
-		bool bkeydown = false;
+		bool left_key_down = false;
+		bool right_key_down = false;
+		bool up_key_down = false;
+		bool down_key_down = false;
+		bool a_key_down = false;
+		bool b_key_down = false;
 
 		//force
-		float forcex;
-		const float FORCEFRICTION = .95f;
+		float force_x;
+		const float FORCE_FRICTION = .95f;
 
 		/**
 		updates the movement
 		**/
-		void updatemovement();
+		void update_movement();
 
 		/**
 		adds force in positive or negative direction depending on flip parameter
 		**/
-		void addflipforce(SDL_RendererFlip newflip, float forcemultiplierx, float forcemultipliery);
+		void add_flip_force(SDL_RendererFlip new_flip, 
+			float force_multiplier_x, float force_multiplier_y);
 
 		/**
 		adds force depending on health
 		**/
-		void addforce(float forcemultiplierx, float forcemultipliery);
+		void add_force(float force_multiplier_x, float force_multiplier_y);
 
 	private:
 		//movement restrictions
-		bool restrictinputx;
-		bool restrictinputy;
+		bool restrict_input_x;
+		bool restrict_input_y;
 
 		//movement values
-		float movespeed = 1.2f;
-		float maxspeed = 12;
+		float move_speed = 1.2f;
+		float max_speed = 12;
 		float friction = .92f;
-		float jumpheight = 8;
-		float fallspeed = .4f;
-		float maxfallspeed = 10;
+		float jump_height = 8;
+		float fall_speed = .4f;
+		float max_fall_speed = 10;
 
 		//jumping
-		bool doublejump;
-		bool holdingjump;
+		bool double_jump;
+		bool holding_jump;
 
 		//edge grab
-		bool grabbingedge;
-		Node* edgenode;
+		bool grabbing_edge;
+		Node* edge_node;
 
 		//punching
-		int punchtimer;
-		int punchcycle;
-		const int PUNCHCYCLETIME = 20;
+		int punch_timer;
+		int punch_cycle;
+		const int PUNCH_CYCLE_TIME = 20;
 		bool punching;
 
 		//dash attack
 		bool dashing;
-		int dashcooldowntimer;
-		const int DASHCOOLDOWN = 25;
+		int dash_cooldown_timer;
+		const int DASH_COOLDOWN = 25;
 
 		//slide attack
 		bool sliding;
-		int slidingcooldowntimer;
-		const int SLIDECOOLDOWN = 25;
+		int sliding_cooldown_timer;
+		const int SLIDE_COOLDOWN = 25;
 
 		//air kicks
-		bool downairkick;
-		bool rightairknee;
-		bool airsomersault;
-		bool rightairkick;
+		bool down_air_kick;
+		bool right_air_knee;
+		bool air_somersault;
+		bool right_air_kick;
 
 		//collision
-		bool floorcollided;
-		bool rightcollided;
-		bool leftcollided;
+		bool floor_collided;
+		bool right_collided;
+		bool left_collided;
 
 		//animation
-		bool lockmoveupdate;
+		bool lock_move_update;
 
 		/**
 		changes the current move to a new move and updates the animation
 		**/
-		void updatemove(int newmove, int fps, bool loop = true, bool lock = false);
+		void update_move(int new_move, int fps, bool loop = true, bool lock = false);
 
 	protected:
-		//universe
-		Universe* muniverse;
-		Fighter* mparent;
-
 		//rendering
 		SDL_Rect rect;
-		SDL_Rect srcrect;
+		SDL_Rect src_rect;
 
 		//animation
 		Animator* animator;
-		Texture* animationsheet;
+		Texture* animation_sheet;
 		SDL_Point origin;
 		float rotation;
 };

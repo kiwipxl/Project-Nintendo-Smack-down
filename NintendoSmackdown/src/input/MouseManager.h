@@ -9,16 +9,16 @@ class MouseManager : Universal {
 
 	public:
 		MouseManager() {
-			mousedown = false;
-			mousereleased = false;
+			mouse_down = false;
+			mouse_released = false;
 		}
 
-		Point2D mousepos;
-		Point2D startmousepos;
-		bool mousedown;
-		bool mousereleased;
+		Point2D mouse_pos;
+		Point2D start_mouse_pos;
+		bool mouse_down;
+		bool mouse_released;
 
-		void eventupdate(SDL_Event e);
+		void event_update(SDL_Event e);
 };
 
 #endif

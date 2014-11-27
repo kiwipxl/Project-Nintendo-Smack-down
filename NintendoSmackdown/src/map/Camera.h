@@ -13,12 +13,12 @@ class Camera : Universal {
 		float x;
 		float y;
 		float scale;
-		float gridsize;
+		float grid_size;
 
 		void update();
 		void reset();
-		float getoffsetx(float posx);
-		float getoffsety(float posy);
+		float get_offset_x(float pos_x);
+		float get_offset_y(float pos_y);
 
 	private:
 		const int ZOOM_SMOOTHING = 20;
@@ -26,10 +26,10 @@ class Camera : Universal {
 		const float ZOOM = 500.f;
 		const float MAX_ZOOM = 2;
 		const float MIN_ZOOM = .8f;
-		int minboundsx;
-		int maxboundsx;
-		int minboundsy;
-		int maxboundsy;
+		int min_bounds_x;
+		int max_bounds_x;
+		int min_bounds_y;
+		int max_bounds_y;
 };
 
 #endif

@@ -6,12 +6,12 @@ class Universe {
 	public:
 };
 
-void MouseManager::eventupdate(SDL_Event e) {
+void MouseManager::event_update(SDL_Event e) {
 	if (e.type == SDL_MOUSEBUTTONDOWN) {
-		mousedown = true;
-		startmousepos = mousepos;
+		mouse_down = true;
+		start_mouse_pos = mouse_pos;
 	}else if (e.type == SDL_MOUSEBUTTONUP) {
-		mousedown = false;
-		mousereleased = true;
+		mouse_down = false;
+		mouse_released = true;
 	}
 }

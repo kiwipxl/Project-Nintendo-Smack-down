@@ -1,37 +1,40 @@
 #include "Universe.h"
 
-WindowManager* Universe::winmanager;
-GameLoop* Universe::gameloop;
+WindowManager* Universe::win_manager;
+GameLoop* Universe::game_loop;
 Assets* Universe::assets;
 Map* Universe::map;
 MouseManager* Universe::mouse;
-UIManager* Universe::uimanager;
+DebugUI* Universe::debug_ui;
 KeyboardManager* Universe::keyboard;
-EntityManager* Universe::entitymanager;
+EntityManager* Universe::entity_manager;
 StateManager* Universe::state;
 Editor* Universe::editor;
 Camera* Universe::camera;
-MapParser* Universe::mapparser;
+MapParser* Universe::map_parser;
+GameUI* Universe::game_ui;
 
 void Universe::initiate() {
 	srand(time(NULL));
 
-	winmanager = new WindowManager();
-	gameloop = new GameLoop();
+	TTF_Init();
+
+	win_manager = new WindowManager();
+	game_loop = new GameLoop();
 	assets = new Assets();
 	map = new Map();
 	mouse = new MouseManager();
-	uimanager = new UIManager();
+	debug_ui = new DebugUI();
 	keyboard = new KeyboardManager();
-	entitymanager = new EntityManager();
+	entity_manager = new EntityManager();
 	state = new StateManager();
 	editor = new Editor();
 	camera = new Camera();
-	mapparser = new MapParser();
+	map_parser = new MapParser();
+	game_ui = new GameUI();
 
-	winmanager->initiate();
+	win_manager->initiate();
 	assets->initiate();
-	uimanager->initiate();
 	state->initiate();
-	gameloop->start();
+	game_loop->start();
 }

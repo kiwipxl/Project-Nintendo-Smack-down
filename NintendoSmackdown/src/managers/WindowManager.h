@@ -7,21 +7,21 @@ class WindowManager {
 
 	public:
 		WindowManager() {
-			screenwidth = 1080;
-			screenheight = 768;
+			screen_width = 1080;
+			screen_height = 768;
 
-			centerx = screenwidth / 2;
-			centery = screenheight / 2;
+			center_x = screen_width / 2;
+			center_y = screen_height / 2;
 		}
 
 		SDL_Window* window;
-		SDL_Surface* screensurface;
+		SDL_Surface* screen_surface;
 		SDL_Renderer* renderer;
 
-		int screenwidth;
-		int screenheight;
-		int centerx;
-		int centery;
+		int screen_width;
+		int screen_height;
+		int center_x;
+		int center_y;
 
 		void initiate();
 		void resize(int w, int h);

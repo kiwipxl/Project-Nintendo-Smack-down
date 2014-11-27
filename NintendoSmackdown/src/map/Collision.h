@@ -11,10 +11,10 @@ class Collision {
 
 		static Universe* universe;
 
-		static Node* collideright(float x, float y);
-		static Node* collideleft(float x, float y);
-		static Node* collideup(float x, float y);
-		static Node* collidedown(float x, float y);
+		static Node* collide_right(float x, float y);
+		static Node* collide_left(float x, float y);
+		static Node* collide_up(float x, float y);
+		static Node* collide_down(float x, float y);
 };
 
 #endif

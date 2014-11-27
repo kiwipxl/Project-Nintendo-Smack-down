@@ -5,11 +5,11 @@
 
 struct Type {
 
-	Type(int c_sheetindex, int tileindex) : sheetindex(c_sheetindex) { srcx = tileindex * 16; srcy = 0; }
+	Type(int c_sheet_index, int tileindex) : sheet_index(c_sheet_index) { src_x = tileindex * 16; src_y = 0; }
 
-	int sheetindex;
-	int srcx;
-	int srcy;
+	int sheet_index;
+	int src_x;
+	int src_y;
 };
 
 class Tiles {

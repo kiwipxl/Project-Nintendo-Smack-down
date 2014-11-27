@@ -7,8 +7,8 @@ class CaptainFalcon : public Moves {
 
 	public:
 		CaptainFalcon() {
-			for (int i = 0; i < MOVECOUNT; ++i) {
-				moveframes.push_back(0);
+			for (int i = 0; i < MOVE_COUNT; ++i) {
+				move_frames.push_back(0);
 			}
 
 			IDLE = 0;
@@ -18,40 +18,40 @@ class CaptainFalcon : public Moves {
 			RUN = 4;
 			KICK = 5;
 			PUNCH = 6;
-			DOUBLEJUMP = 7;
+			DOUBLE_JUMP = 7;
 			SHIELD = 8;
 			CROUCH = 9;
-			EDGEGRAB = 10;
-			RAPIDPUNCH = 11;
-			DASHATTACK = 12;
-			SLIDEATTACK = 13;
-			AIRKNEE = 14;
+			EDGE_GRAB = 10;
+			RAPID_PUNCH = 11;
+			DASH_ATTACK = 12;
+			SLIDE_ATTACK = 13;
+			AIR_KNEE = 14;
 			HIT = 15;
-			AIRDOWNKICK = 16;
-			AIRLAND = 17;
-			AIRSOMERSAULT = 18;
-			AIRKICK = 19;
+			AIR_DOWN_KICK = 16;
+			AIR_LAND = 17;
+			AIR_SOMERSAULT = 18;
+			AIR_KICK = 19;
 
-			moveframes[IDLE] = 4;
-			moveframes[TAUNT] = 4;
-			moveframes[JUMP] = 3;
-			moveframes[LAND] = 3;
-			moveframes[RUN] = 8;
-			moveframes[KICK] = 4;
-			moveframes[PUNCH] = 2;
-			moveframes[DOUBLEJUMP] = 4;
-			moveframes[SHIELD] = 3;
-			moveframes[CROUCH] = 1;
-			moveframes[EDGEGRAB] = 2;
-			moveframes[RAPIDPUNCH] = 2;
-			moveframes[DASHATTACK] = 4;
-			moveframes[SLIDEATTACK] = 6;
-			moveframes[AIRKNEE] = 5;
-			moveframes[HIT] = 1;
-			moveframes[AIRDOWNKICK] = 4;
-			moveframes[AIRLAND] = 1;
-			moveframes[AIRSOMERSAULT] = 4;
-			moveframes[AIRKICK] = 3;
+			move_frames[IDLE] = 4;
+			move_frames[TAUNT] = 4;
+			move_frames[JUMP] = 3;
+			move_frames[LAND] = 3;
+			move_frames[RUN] = 8;
+			move_frames[KICK] = 4;
+			move_frames[PUNCH] = 2;
+			move_frames[DOUBLE_JUMP] = 4;
+			move_frames[SHIELD] = 3;
+			move_frames[CROUCH] = 1;
+			move_frames[EDGE_GRAB] = 2;
+			move_frames[RAPID_PUNCH] = 2;
+			move_frames[DASH_ATTACK] = 4;
+			move_frames[SLIDE_ATTACK] = 6;
+			move_frames[AIR_KNEE] = 5;
+			move_frames[HIT] = 1;
+			move_frames[AIR_DOWN_KICK] = 4;
+			move_frames[AIR_LAND] = 1;
+			move_frames[AIR_SOMERSAULT] = 4;
+			move_frames[AIR_KICK] = 3;
 		}
 };
 

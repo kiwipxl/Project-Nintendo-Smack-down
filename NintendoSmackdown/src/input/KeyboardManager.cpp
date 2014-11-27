@@ -5,74 +5,74 @@
 class Universe {
 
 	public:
-		static GameLoop* gameloop;
+		static GameLoop* game_loop;
 };
 
-void KeyboardManager::eventupdate(SDL_Event e) {
+void KeyboardManager::event_update(SDL_Event e) {
 	if (e.type == SDL_KEYDOWN) {
 		switch (e.key.keysym.sym) {
 			case SDLK_RIGHT:
-				rightkeydown = true;
+				right_key_down = true;
 				break;
 			case SDLK_LEFT:
-				leftkeydown = true;
+				left_key_down = true;
 				break;
 			case SDLK_UP:
-				upkeydown = true;
+				up_key_down = true;
 				break;
 			case SDLK_DOWN:
-				downkeydown = true;
+				down_key_down = true;
 				break;
 			case SDLK_d:
-				rightkeydown = true;
+				right_key_down = true;
 				break;
 			case SDLK_a:
-				leftkeydown = true;
+				left_key_down = true;
 				break;
 			case SDLK_w:
-				upkeydown = true;
+				up_key_down = true;
 				break;
 			case SDLK_s:
-				downkeydown = true;
+				down_key_down = true;
 				break;
 			case SDLK_z:
-				akeydown = true;
+				a_key_down = true;
 				break;
 			case SDLK_x:
-				bkeydown = true;
+				b_key_down = true;
 				break;
 		}
 	}else if (e.type == SDL_KEYUP) {
 		switch (e.key.keysym.sym) {
 			case SDLK_RIGHT:
-				rightkeydown = false;
+				right_key_down = false;
 				break;
 			case SDLK_LEFT:
-				leftkeydown = false;
+				left_key_down = false;
 				break;
 			case SDLK_UP:
-				upkeydown = false;
+				up_key_down = false;
 				break;
 			case SDLK_DOWN:
-				downkeydown = false;
+				down_key_down = false;
 				break;
 			case SDLK_d:
-				rightkeydown = false;
+				right_key_down = false;
 				break;
 			case SDLK_a:
-				leftkeydown = false;
+				left_key_down = false;
 				break;
 			case SDLK_w:
-				upkeydown = false;
+				up_key_down = false;
 				break;
 			case SDLK_s:
-				downkeydown = false;
+				down_key_down = false;
 				break;
 			case SDLK_z:
-				akeydown = false;
+				a_key_down = false;
 				break;
 			case SDLK_x:
-				bkeydown = false;
+				b_key_down = false;
 				break;
 		}
 	}

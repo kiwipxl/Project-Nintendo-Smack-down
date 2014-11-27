@@ -15,10 +15,10 @@ class Map : Universal {
 
 		//map
 		bool created;
-		int gridwidth;
-		int gridheight;
-		int mapwidth;
-		int mapheight;
+		int grid_width;
+		int grid_height;
+		int map_width;
+		int map_height;
 		vector<vector<Node*>> nodes;
 
 		void create();
@@ -28,11 +28,11 @@ class Map : Universal {
 	private:
 		//map renderering
 		SDL_Rect rect;
-		SDL_Rect srcrect;
+		SDL_Rect src_rect;
 
 		//background rendering
 		SDL_Rect bgrect;
-		SDL_Rect bgsrcrect;
+		SDL_Rect bgsrc_rect;
 };
 
 #endif
