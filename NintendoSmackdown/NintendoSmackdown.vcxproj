@@ -83,6 +83,7 @@
     <None Include="libjpeg-9.dll" />
     <None Include="libpng16-16.dll" />
     <None Include="libtiff-5.dll" />
+    <None Include="msvcp120.dll" />
     <None Include="libwebp-4.dll" />
     <None Include="SDL2.dll" />
     <None Include="SDL2_image.dll" />
@@ -90,6 +91,7 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ui\MenuUI.cpp" />
     <ClCompile Include="src\ui\GameUI.cpp" />
     <ClCompile Include="src\map\Camera.cpp" />
     <ClCompile Include="src\entities\fighters\managers\Damage.cpp" />
@@ -117,6 +119,7 @@
     <ClCompile Include="src\managers\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ui\MenuUI.h" />
     <ClInclude Include="src\input\Key.h" />
     <ClInclude Include="src\input\Joystick.h" />
     <ClInclude Include="src\entities\fighters\managers\FighterBase.h" />

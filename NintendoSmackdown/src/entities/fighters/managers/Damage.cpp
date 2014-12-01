@@ -42,11 +42,11 @@ void Damage::update_damage() {
 								f->dealt_damage = true;
 								otherf->health += 2;
 							}else if (f->current_move == f->moves.DASH_ATTACK) {
-								force_x = 5; force_y = 2;
+								force_x = 3; force_y = 2;
 								f->dealt_damage = true;
 								otherf->health += 7;
 							}else if (f->current_move == f->moves.SLIDE_ATTACK) {
-								force_x = 5.5f; force_y = 2;
+								force_x = 3.5f; force_y = 2;
 								f->dealt_damage = true;
 								otherf->health += 8;
 							}else if (f->current_move == f->moves.AIR_DOWN_KICK) {
@@ -62,7 +62,7 @@ void Damage::update_damage() {
 								f->dealt_damage = true;
 								otherf->health += 11;
 							}else if (f->current_move == f->moves.AIR_KICK) {
-								force_x = .5f; force_y = 1;
+								force_x = 1.5f; force_y = 1.5f;
 								f->dealt_damage = true;
 								otherf->health += 10;
 							}

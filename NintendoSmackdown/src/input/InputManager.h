@@ -8,36 +8,37 @@
 #include "Joystick.h"
 #include "Key.h"
 
-enum ExtraKeyConstants {
-	JOY_AXIS_RIGHT = -1, 
-	JOY_AXIS_LEFT = -2, 
-	JOY_AXIS_UP = -3, 
-	JOY_AXIS_DOWN = -4, 
-	JOY_HAT_RIGHT = -5, 
-	JOY_HAT_LEFT = -6, 
-	JOY_HAT_UP = -7, 
-	JOY_HAT_DOWN = -8
-};
+#define JOY_AXIS_RIGHT -1
+#define JOY_AXIS_LEFT -2
+#define JOY_AXIS_UP -3
+#define JOY_AXIS_DOWN -4
+#define JOY_HAT_RIGHT -5
+#define JOY_HAT_LEFT -6
+#define JOY_HAT_UP -7
+#define JOY_HAT_DOWN -8
 
 class InputManager : Universal {
 
 	public:
 		InputManager() { }
 
-		static const int KEYS = 4;
+		static const int INPUTS = 4;
+		static const int KEYS = 6;
 
-		Key right_key[KEYS] = { };
-		Key left_key[KEYS] = { };
-		Key up_key[KEYS] = { };
-		Key down_key[KEYS] = { };
-		
-		Key a_key[KEYS] = { };
-		Key b_key[KEYS] = { };
+		Key* right_key[INPUTS];
+		Key* left_key[INPUTS];
+		Key* up_key[INPUTS];
+		Key* down_key[INPUTS];
+
+		Key* a_key[INPUTS];
+		Key* b_key[INPUTS];
 
 		vector<Joystick> joysticks;
+		Key*** allkeys = new Key**[KEYS];
 
 		void initiate();
 		void event_update(SDL_Event e);
+		void update();
 		void refreshjoysticks();
 		void set_keys_down(int key, KeyType type, bool down, bool checkifdown = false);
 };

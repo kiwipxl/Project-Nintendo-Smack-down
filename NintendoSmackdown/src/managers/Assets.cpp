@@ -19,6 +19,10 @@ void Assets::initiate() {
 
 	//load background tile sheets
 	background_tiles = load_texture("backgroundtiles.png");
+
+	//load main menu textures and sheets
+	menu_boxes_sheet = load_texture("menuboxes.png");
+	menu_background = load_texture("menubackground.png");
 }
 
 /**

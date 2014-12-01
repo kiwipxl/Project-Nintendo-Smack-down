@@ -13,6 +13,7 @@ Editor* Universe::editor;
 Camera* Universe::camera;
 MapParser* Universe::map_parser;
 GameUI* Universe::game_ui;
+MenuUI* Universe::menu_ui;
 
 void Universe::initiate() {
 	srand(time(NULL));
@@ -32,6 +33,7 @@ void Universe::initiate() {
 	camera = new Camera();
 	map_parser = new MapParser();
 	game_ui = new GameUI();
+	menu_ui = new MenuUI();
 
 	win_manager->initiate();
 	assets->initiate();

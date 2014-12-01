@@ -9,34 +9,47 @@ class Universe {
 };
 
 void InputManager::initiate() {
+	allkeys[0] = right_key;
+	allkeys[1] = left_key;
+	allkeys[2] = up_key;
+	allkeys[3] = down_key;
+	allkeys[4] = a_key;
+	allkeys[5] = b_key;
+
+	for (int n = 0; n < KEYS; ++n) {
+		for (int i = 0; i < INPUTS; ++i) {
+			allkeys[n][i] = new Key();
+		}
+	}
+
 	//default p1 keyboard buttons
-	right_key[0].set_key(SDLK_RIGHT, KEYBOARD);
-	left_key[0].set_key(SDLK_LEFT, KEYBOARD);
-	up_key[0].set_key(SDLK_UP, KEYBOARD);
-	down_key[0].set_key(SDLK_DOWN, KEYBOARD);
-	a_key[0].set_key(SDLK_z, KEYBOARD);
-	b_key[0].set_key(SDLK_x, KEYBOARD);
+	right_key[0]->set_key(SDLK_RIGHT, KEYBOARD);
+	left_key[0]->set_key(SDLK_LEFT, KEYBOARD);
+	up_key[0]->set_key(SDLK_UP, KEYBOARD);
+	down_key[0]->set_key(SDLK_DOWN, KEYBOARD);
+	a_key[0]->set_key(SDLK_z, KEYBOARD);
+	b_key[0]->set_key(SDLK_x, KEYBOARD);
 
 	//default p2 joystick buttons
-	right_key[1].set_key(13, JOY_BUTTON);
-	left_key[1].set_key(15, JOY_BUTTON);
-	up_key[1].set_key(12, JOY_BUTTON);
-	down_key[1].set_key(14, JOY_BUTTON);
-	a_key[1].set_key(2, JOY_BUTTON);
-	b_key[1].set_key(1, JOY_BUTTON);
+	right_key[1]->set_key(13, JOY_BUTTON);
+	left_key[1]->set_key(15, JOY_BUTTON);
+	up_key[1]->set_key(12, JOY_BUTTON);
+	down_key[1]->set_key(14, JOY_BUTTON);
+	a_key[1]->set_key(2, JOY_BUTTON);
+	b_key[1]->set_key(1, JOY_BUTTON);
 
 	//default p2 joystick axis
-	right_key[1].set_key(JOY_AXIS_RIGHT, JOY_AXIS);
-	left_key[1].set_key(JOY_AXIS_LEFT, JOY_AXIS);
-	up_key[1].set_key(JOY_AXIS_UP, JOY_AXIS);
-	down_key[1].set_key(JOY_AXIS_DOWN, JOY_AXIS);
+	right_key[1]->set_key(JOY_AXIS_RIGHT, JOY_AXIS);
+	left_key[1]->set_key(JOY_AXIS_LEFT, JOY_AXIS);
+	up_key[1]->set_key(JOY_AXIS_UP, JOY_AXIS);
+	down_key[1]->set_key(JOY_AXIS_DOWN, JOY_AXIS);
 
 	/**
 	//default p2 joystick hat
-	right_key[1].set_key(JOY_HAT_RIGHT, JOY_HAT);
-	left_key[1].set_key(JOY_HAT_LEFT, JOY_HAT);
-	up_key[1].set_key(JOY_HAT_UP, JOY_HAT);
-	down_key[1].set_key(JOY_HAT_DOWN, JOY_HAT);
+	right_key[1]->set_key(JOY_HAT_RIGHT, JOY_HAT);
+	left_key[1]->set_key(JOY_HAT_LEFT, JOY_HAT);
+	up_key[1]->set_key(JOY_HAT_UP, JOY_HAT);
+	down_key[1]->set_key(JOY_HAT_DOWN, JOY_HAT);
 	**/
 
 	refreshjoysticks();
@@ -55,8 +68,16 @@ void InputManager::refreshjoysticks() {
 		joysticks.push_back(joystick);
 		cout << (n + 1) << ". ";
 		cout << joystick.buttons << " buttons, ";
-		cout << joystick.axes << " axes";
+		cout << joystick.axes << " axes, ";
 		cout << joystick.hats << " hats\n";
+	}
+}
+
+void InputManager::update() {
+	for (int n = 0; n < KEYS; ++n) {
+		for (int i = 0; i < INPUTS; ++i) {
+			allkeys[n][i]->pressed = false;
+		}
 	}
 }
 
@@ -124,18 +145,12 @@ void InputManager::event_update(SDL_Event e) {
 
 void InputManager::set_keys_down(int key, KeyType type, bool down, bool checkifdown) {
 	for (int n = 0; n < KEYS; ++n) {
-		if ((right_key[n].type == type && key == right_key[n].key) && (!checkifdown || right_key[n].down)) {
-			right_key[n].down = down;
-		}else if ((left_key[n].type == type && key == left_key[n].key) && (!checkifdown || left_key[n].down)) {
-			left_key[n].down = down;
-		}else if ((up_key[n].type == type && key == up_key[n].key) && (!checkifdown || up_key[n].down)) {
-			up_key[n].down = down;
-		}else if ((down_key[n].type == type && key == down_key[n].key) && (!checkifdown || down_key[n].down)) {
-			down_key[n].down = down;
-		}else if ((a_key[n].type == type && key == a_key[n].key) && (!checkifdown || a_key[n].down)) {
-			a_key[n].down = down;
-		}else if ((b_key[n].type == type && key == b_key[n].key) && (!checkifdown || b_key[n].down)) {
-			b_key[n].down = down;
+		for (int i = 0; i < INPUTS; ++i) {
+			Key* inputkey = allkeys[n][i];
+			if ((inputkey->type == type && key == inputkey->key) && (!checkifdown || inputkey->down)) {
+				inputkey->down = down;
+				inputkey->pressed = down;
+			}
 		}
 	}
 }

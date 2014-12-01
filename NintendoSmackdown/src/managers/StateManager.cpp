@@ -7,6 +7,8 @@
 #include "../entities/EntityManager.h"
 #include "../map/Camera.h"
 #include "../ui/GameUI.h"
+#include "../ui/MenuUI.h"
+#include "../input/InputManager.h"
 
 class Universe {
 
@@ -17,6 +19,8 @@ class Universe {
 		static Editor* editor;
 		static Camera* camera;
 		static GameUI* game_ui;
+		static MenuUI* menu_ui;
+		static InputManager* input;
 };
 
 /**
@@ -39,22 +43,22 @@ void StateManager::switch_state(State new_state) {
 handles the creation of the new state
 **/
 void StateManager::create_current_state() {
+	universe->debug_ui->create();
 	switch (state) {
 		case TITLE_SCREEN:
 			break;
 		case MAIN_MENU:
+			universe->menu_ui->create();
 			break;
 		case CHAR_SELECT:
 			break;
 		case GAME:
 			universe->camera->reset();
 			universe->map->create();
-			universe->debug_ui->create();
 			universe->game_ui->create();
 			break;
 		case EDITOR:
 			universe->editor->create();
-			universe->debug_ui->create();
 			break;
 	}
 	std::cout << "created state " << state << "\n";
@@ -64,21 +68,21 @@ void StateManager::create_current_state() {
 handles the removing of the current state
 **/
 void StateManager::remove_current_state() {
+	universe->debug_ui->remove();
 	switch (state) {
 		case TITLE_SCREEN:
 			break;
 		case MAIN_MENU:
+			universe->menu_ui->remove();
 			break;
 		case CHAR_SELECT:
 			break;
 		case GAME:
 			universe->map->remove();
-			universe->debug_ui->remove();
 			universe->game_ui->remove();
 			break;
 		case EDITOR:
 			universe->editor->remove();
-			universe->debug_ui->remove();
 			break;
 	}
 	std::cout << "removed state " << state << "\n";
@@ -92,6 +96,7 @@ void StateManager::update() {
 		case TITLE_SCREEN:
 			break;
 		case MAIN_MENU:
+			universe->menu_ui->update();
 			break;
 		case CHAR_SELECT:
 			break;
@@ -99,13 +104,12 @@ void StateManager::update() {
 			universe->camera->update();
 			universe->map->update();
 			universe->entity_manager->update();
-			universe->debug_ui->update();
 			universe->game_ui->update();
 			break;
 		case EDITOR:
-			universe->debug_ui->update();
 			universe->editor->update();
-			universe->debug_ui->update();
 			break;
 	}
+	universe->debug_ui->update();
+	universe->input->update();
 }

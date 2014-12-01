@@ -21,18 +21,21 @@ class Universe {
 };
 
 Fighter::Fighter(int x, int y, FighterName fname, FighterType ftype) : Movement(this), Damage(this) {
+	//setup the moves from the inputted fither
+	moves = CaptainFalcon();
+
 	pos.x = x; pos.y = y;
 	name = fname; type = ftype;
 }
 
 void Fighter::update() {
 	if (type == PLAYER) {
-		left_key_down = universe->input->left_key[playerid].down;
-		right_key_down = universe->input->right_key[playerid].down;
-		up_key_down = universe->input->up_key[playerid].down;
-		down_key_down = universe->input->down_key[playerid].down;
-		a_key_down = universe->input->a_key[playerid].down;
-		b_key_down = universe->input->b_key[playerid].down;
+		left_key_down = universe->input->left_key[playerid]->down;
+		right_key_down = universe->input->right_key[playerid]->down;
+		up_key_down = universe->input->up_key[playerid]->down;
+		down_key_down = universe->input->down_key[playerid]->down;
+		a_key_down = universe->input->a_key[playerid]->down;
+		b_key_down = universe->input->b_key[playerid]->down;
 	}else {
 
 	}

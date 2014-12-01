@@ -15,7 +15,7 @@ class StateManager : Universal {
 
 	public:
 		StateManager() {
-			state = GAME;
+			state = MAIN_MENU;
 		}
 
 		State state;

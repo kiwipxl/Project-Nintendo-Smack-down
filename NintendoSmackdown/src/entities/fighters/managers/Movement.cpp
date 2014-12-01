@@ -17,9 +17,6 @@ class Universe {
 };
 
 Movement::Movement(Fighter* parent) {
-	//setup the moves from the inputted fither
-	moves = CaptainFalcon();
-
 	base_parent = parent;
 
 	//setup animation
@@ -412,6 +409,7 @@ void Movement::update_movement() {
 		down_key_pressed = true;
 		a_key_pressed = true;
 		restrict_input_x = true;
+		restrict_input_y = true;
 		down_air_kick = true;
 		base_parent->dealt_damage = false;
 	}
@@ -419,6 +417,7 @@ void Movement::update_movement() {
 		update_move(moves.JUMP, 10, false);
 		double_jump = false;
 		restrict_input_x = false;
+		restrict_input_y = false;
 		down_air_kick = false;
 	}
 
@@ -432,6 +431,7 @@ void Movement::update_movement() {
 		(flip == SDL_RendererFlip::SDL_FLIP_HORIZONTAL && left_key_down))) {
 		update_move(moves.AIR_KNEE, 15, false, true);
 		restrict_input_x = true;
+		restrict_input_y = true;
 		right_air_knee = true;
 		a_key_pressed = true;
 		base_parent->dealt_damage = false;
@@ -440,6 +440,7 @@ void Movement::update_movement() {
 		update_move(moves.JUMP, 10, false);
 		double_jump = false;
 		restrict_input_x = false;
+		restrict_input_y = false;
 		right_air_knee = false;
 	}
 
@@ -448,10 +449,13 @@ void Movement::update_movement() {
 											AIR SOMERSAULT
 	------------------------------------------------------------------------------------------
 	**/
-	if (!floor_collided && up_key_down && a_key_down && !a_key_pressed && !restrict_input_y && !air_somersault) {
+	if (!floor_collided && up_key_down && !down_key_pressed && a_key_down && !a_key_pressed && 
+		!restrict_input_y && !air_somersault) {
 		update_move(moves.AIR_SOMERSAULT, 10, false, true);
 		restrict_input_x = true;
+		restrict_input_y = true;
 		a_key_pressed = true;
+		up_key_down = true;
 		air_somersault = true;
 		base_parent->dealt_damage = false;
 		rotation = 0;
@@ -459,6 +463,7 @@ void Movement::update_movement() {
 	if (air_somersault && !lock_move_update) {
 		update_move(moves.JUMP, 10, false);
 		restrict_input_x = false;
+		restrict_input_y = false;
 		air_somersault = false;
 	}
 
@@ -471,6 +476,7 @@ void Movement::update_movement() {
 		!right_key_down && !left_key_down && !up_key_down) {
 		update_move(moves.AIR_KICK, 12, false);
 		restrict_input_x = true;
+		restrict_input_y = true;
 		a_key_pressed = true;
 		right_air_kick = true;
 		base_parent->dealt_damage = false;
@@ -480,6 +486,7 @@ void Movement::update_movement() {
 			update_move(moves.JUMP, 10, false);
 			double_jump = false;
 			restrict_input_x = false;
+			restrict_input_y = false;
 			right_air_kick = false;
 		}
 	}

@@ -76,6 +76,9 @@
     <ClCompile Include="src\input\InputManager.cpp">
       <Filter>src\input</Filter>
     </ClCompile>
+    <ClCompile Include="src\ui\MenuUI.cpp">
+      <Filter>src\ui</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -177,6 +180,9 @@
     <ClInclude Include="src\input\Key.h">
       <Filter>src\input</Filter>
     </ClInclude>
+    <ClInclude Include="src\ui\MenuUI.h">
+      <Filter>src\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">
@@ -191,9 +197,6 @@
     <None Include="libtiff-5.dll">
       <Filter>lib</Filter>
     </None>
-    <None Include="libwebp-4.dll">
-      <Filter>lib</Filter>
-    </None>
     <None Include="SDL2.dll">
       <Filter>lib</Filter>
     </None>
@@ -204,6 +207,12 @@
       <Filter>lib</Filter>
     </None>
     <None Include="zlib1.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libwebp-4.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="msvcp120.dll">
       <Filter>lib</Filter>
     </None>
   </ItemGroup>

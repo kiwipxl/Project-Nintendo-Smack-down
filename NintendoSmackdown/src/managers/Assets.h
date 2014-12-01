@@ -18,6 +18,8 @@ class Assets : Universal {
 		vector<Texture*> fighter_sheets;
 
 		Texture* background_tiles;
+		Texture* menu_boxes_sheet;
+		Texture* menu_background;
 
 		void initiate();
 

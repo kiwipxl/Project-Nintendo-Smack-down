@@ -25,6 +25,7 @@ void GameLoop::start() {
 	start_second_time = std::clock();
 
 	SDL_JoystickEventState(SDL_ENABLE);
+
 	while (!quit) {
 		start_time = std::clock();
 

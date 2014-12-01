@@ -15,6 +15,7 @@
 #include "map/Camera.h"
 #include "tools/MapParser.h"
 #include "ui/GameUI.h"
+#include "ui/MenuUI.h"
 
 class Universe {
 
@@ -36,6 +37,7 @@ class Universe {
 
 		static DebugUI* debug_ui;
 		static GameUI* game_ui;
+		static MenuUI* menu_ui;
 
 		static Editor* editor;
 
