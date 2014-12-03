@@ -20,10 +20,8 @@ Movement::Movement(Fighter* parent) {
 	base_parent = parent;
 
 	//setup animation
-	animation_sheet = base_universe->assets->fighter_sheets[0];
 	src_rect.x = 0; src_rect.y = 0;
 	rect.x = 0; rect.y = 0;
-	animator = new Animator(animation_sheet, &src_rect, 64, 64, 5, true, true);
 
 	//setup initial movement values
 	speed_x = 0;
@@ -51,8 +49,6 @@ Movement::Movement(Fighter* parent) {
 	sliding_cooldown_timer = 0;
 
 	force_x = 0;
-
-	update_move(moves.JUMP, 10, false);
 }
 
 /**
@@ -74,7 +70,7 @@ void Movement::update_movement() {
 		coords.x = base_universe->map->grid_width - 1;
 	}
 	if (coords.y < 0) { coords.y = 0; }else if (coords.y >= base_universe->map->grid_height - 1) {
-		pos.y = 0; gravity = 0; coords.y = base_universe->map->grid_height - 1;
+		coords.y = base_universe->map->grid_height - 1;
 	}
 
 	//get the current node based on the coords
@@ -87,10 +83,10 @@ void Movement::update_movement() {
 	**/
 	//apply movement to speedx if the right key or left key is down
 	if (current_move != moves.CROUCH && !grabbing_edge && !restrict_input_x) {
-		if (right_key_down) {
+		if (right_key->down) {
 			speed_x += move_speed;
 			if (floor_collided) { flip = SDL_RendererFlip::SDL_FLIP_NONE; }
-		}else if (left_key_down) {
+		}else if (left_key->down) {
 			speed_x -= move_speed;
 			if (floor_collided) { flip = SDL_RendererFlip::SDL_FLIP_HORIZONTAL; }
 		}
@@ -164,15 +160,15 @@ void Movement::update_movement() {
 		update_move(moves.EDGE_GRAB, 1, false);
 
 		//if the up key or down key is pressed while holding onto an edge
-		if (!up_key_pressed && up_key_down && !restrict_input_y) {
+		if (up_key->pressed && !restrict_input_y) {
 			//if the up key is down then apply a small initial jump and let go of the edge
 			gravity = -jump_height / 1.5f;
-			up_key_pressed = true;
 			holding_jump = true;
 			update_move(moves.JUMP, 10, false);
 			grabbing_edge = false;
+			up_key->pressed = false;
 			edge_node->edgeempty = true; edge_node = nullptr;
-		}else if (down_key_down && !restrict_input_y) {
+		}else if (down_key->pressed && !restrict_input_y) {
 			//if the down key is down then change moves, reset gravity and let go of the edge
 			gravity = 0;
 			update_move(moves.JUMP, 10, false);
@@ -201,7 +197,7 @@ void Movement::update_movement() {
 				//if not doing other actions, idle if speed is low and start running if the speed is fast
 				if (current_move != moves.JUMP && current_move != moves.EDGE_GRAB) {
 					if (current_move != moves.CROUCH || 
-						(current_move == moves.CROUCH && !down_key_down)) {
+						(current_move == moves.CROUCH && !down_key->down)) {
 						if (speed_x >= 1 || speed_x <= -1) {
 							update_move(moves.RUN, 15, true);
 						}else if (current_move != moves.LAND) {
@@ -246,22 +242,21 @@ void Movement::update_movement() {
 	**/
 	//if the up key is down then apply a small initial jump and change move
 	if (floor_collided) {
-		if (!up_key_pressed && up_key_down && !restrict_input_y) {
+		if (up_key->pressed && !restrict_input_y) {
 			gravity = -jump_height / 8;
-			up_key_pressed = true;
 			holding_jump = true;
+			up_key->pressed = false;
 			update_move(moves.JUMP, 10, false);
 		}
 	}
 
 	//double jumps and hold for higher jumps
-	if (up_key_down && !restrict_input_y) {
+	if (up_key->down && !restrict_input_y) {
 		//if the up key is down after jumping once then apply a double jump
-		if (!up_key_pressed && !double_jump) {
+		if (up_key->pressed && !double_jump) {
 			gravity = -jump_height / 8;
 			holding_jump = true;
 			double_jump = true;
-			up_key_pressed = true;
 			update_move(moves.DOUBLE_JUMP, 15, false);
 		}
 		//makes jump longer as long as up key is down or until the jump height limit is reached
@@ -271,6 +266,8 @@ void Movement::update_movement() {
 				holding_jump = false;
 			}
 		}
+	}else {
+		holding_jump = false;
 	}
 
 	//apply rotation to double jump depending on direction
@@ -288,33 +285,30 @@ void Movement::update_movement() {
 	//if the a key is pressed while idling or running, cycle between punch, kick and rapid punch
 	if (current_move != moves.DASH_ATTACK && current_move != moves.CROUCH) {
 		if (current_move == moves.IDLE || (current_move == moves.RUN && 
-			!right_key_down && !left_key_down)) {
-			if (a_key_down) {
-				if (!a_key_pressed) {
-					if ((punch_cycle == moves.KICK || punch_cycle == moves.RAPID_PUNCH) && 
-						punch_timer <= PUNCH_CYCLE_TIME) {
-						//change move to rapid punch
-						update_move(moves.RAPID_PUNCH, 15, false, true);
-						punch_cycle = moves.RAPID_PUNCH;
-						base_parent->dealt_damage = false;
-					}else if (punch_cycle == moves.PUNCH && punch_timer <= PUNCH_CYCLE_TIME) {
-						//change move to kick
-						update_move(moves.KICK, 15, false, true);
-						punch_cycle = moves.KICK;
-						base_parent->dealt_damage = false;
-					}else {
-						//change move to punch
-						update_move(moves.PUNCH, 10, false, true);
-						punch_cycle = moves.PUNCH;
-						base_parent->dealt_damage = false;
-					}
-					//restrict movement input and reset punch timer
-					punch_timer = 0;
-					restrict_input_x = true;
-					restrict_input_y = true;
-					a_key_pressed = true;
-					punching = true;
+			!right_key->down && !left_key->down)) {
+			if (a_key->pressed) {
+				if ((punch_cycle == moves.KICK || punch_cycle == moves.RAPID_PUNCH) && 
+					punch_timer <= PUNCH_CYCLE_TIME) {
+					//change move to rapid punch
+					update_move(moves.RAPID_PUNCH, 15, false, true);
+					punch_cycle = moves.RAPID_PUNCH;
+					base_parent->dealt_damage = false;
+				}else if (punch_cycle == moves.PUNCH && punch_timer <= PUNCH_CYCLE_TIME) {
+					//change move to kick
+					update_move(moves.KICK, 15, false, true);
+					punch_cycle = moves.KICK;
+					base_parent->dealt_damage = false;
+				}else {
+					//change move to punch
+					update_move(moves.PUNCH, 10, false, true);
+					punch_cycle = moves.PUNCH;
+					base_parent->dealt_damage = false;
 				}
+				//restrict movement input and reset punch timer
+				punch_timer = 0;
+				restrict_input_x = true;
+				restrict_input_y = true;
+				punching = true;
 			}
 		}
 	}
@@ -337,19 +331,16 @@ void Movement::update_movement() {
 	//if the dash attack is not on cooldown then perform a dash attack when the a is pressed
 	if (!dashing) { ++dash_cooldown_timer; }
 	if (current_move == moves.RUN && dash_cooldown_timer >= DASH_COOLDOWN) {
-		if (a_key_down) {
-			if (!a_key_pressed) {
-				//apply force depending on flip direction
-				if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { force_x += 10; }else { force_x -= 10; }
-				//update movement and restrict movement input
-				update_move(moves.DASH_ATTACK, 10, false, true);
-				restrict_input_x = true;
-				restrict_input_y = true;
-				a_key_pressed = true;
-				base_parent->dealt_damage = false;
-				dashing = true;
-				dash_cooldown_timer = 0;
-			}
+		if (a_key->pressed) {
+			//apply force depending on flip direction
+			if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { force_x += 10; }else { force_x -= 10; }
+			//update movement and restrict movement input
+			update_move(moves.DASH_ATTACK, 10, false, true);
+			restrict_input_x = true;
+			restrict_input_y = true;
+			base_parent->dealt_damage = false;
+			dashing = true;
+			dash_cooldown_timer = 0;
 		}
 	}
 	//if dashing and slowed down then end dash and allow movement input
@@ -365,7 +356,7 @@ void Movement::update_movement() {
 	**/
 	//if the down key is down then change the move to crouch
 	if (floor_collided) {
-		if (down_key_down && !down_key_pressed) {
+		if (down_key->down) {
 			if (!restrict_input_y && current_move != moves.SLIDE_ATTACK) {
 				update_move(moves.CROUCH, 5, false);
 			}
@@ -375,21 +366,17 @@ void Movement::update_movement() {
 	//if the slide attack is not on cooldown then perform a slide attack when the a is pressed
 	if (!sliding) { ++sliding_cooldown_timer; }
 	if (current_move == moves.CROUCH && sliding_cooldown_timer >= SLIDE_COOLDOWN) {
-		if (a_key_down && down_key_down) {
-			if (!a_key_pressed && !down_key_pressed) {
-				//apply force depending on flip direction
-				if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { force_x += 8; }else { force_x -= 8; }
-				//update movement and restrict movement input
-				update_move(moves.SLIDE_ATTACK, 10, false, true);
-				restrict_input_x = true;
-				restrict_input_y = true;
-				a_key_pressed = true;
-				down_key_pressed = true;
-				sliding = true;
-				base_parent->dealt_damage = false;
-				sliding_cooldown_timer = 0;
-				speed_x += force_x;
-			}
+		if (a_key->pressed && down_key->down) {
+			//apply force depending on flip direction
+			if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { force_x += 8; }else { force_x -= 8; }
+			//update movement and restrict movement input
+			update_move(moves.SLIDE_ATTACK, 10, false, true);
+			restrict_input_x = true;
+			restrict_input_y = true;
+			sliding = true;
+			base_parent->dealt_damage = false;
+			sliding_cooldown_timer = 0;
+			speed_x += force_x;
 		}
 	}
 	//if sliding and slowed down then end slide and allow movement input
@@ -403,11 +390,8 @@ void Movement::update_movement() {
 											DOWN AIR KICK
 	------------------------------------------------------------------------------------------
 	**/
-	if (!floor_collided && down_key_down && !down_key_pressed && a_key_down && !a_key_pressed && 
-		!double_jump && !restrict_input_y) {
+	if (!floor_collided && down_key->down && a_key->pressed && !double_jump && !restrict_input_y) {
 		update_move(moves.AIR_DOWN_KICK, 15, false, true);
-		down_key_pressed = true;
-		a_key_pressed = true;
 		restrict_input_x = true;
 		restrict_input_y = true;
 		down_air_kick = true;
@@ -426,14 +410,13 @@ void Movement::update_movement() {
 											RIGHT AIR KNEE
 	------------------------------------------------------------------------------------------
 	**/
-	if (!floor_collided && a_key_down && !a_key_pressed && !double_jump && !restrict_input_y &&
-		((flip == SDL_RendererFlip::SDL_FLIP_NONE && right_key_down) || 
-		(flip == SDL_RendererFlip::SDL_FLIP_HORIZONTAL && left_key_down))) {
+	if (!floor_collided && a_key->pressed && !double_jump && !restrict_input_y &&
+		((flip == SDL_RendererFlip::SDL_FLIP_NONE && right_key->down) || 
+		(flip == SDL_RendererFlip::SDL_FLIP_HORIZONTAL && left_key->down))) {
 		update_move(moves.AIR_KNEE, 15, false, true);
 		restrict_input_x = true;
 		restrict_input_y = true;
 		right_air_knee = true;
-		a_key_pressed = true;
 		base_parent->dealt_damage = false;
 	}
 	if (right_air_knee && !lock_move_update) {
@@ -449,13 +432,11 @@ void Movement::update_movement() {
 											AIR SOMERSAULT
 	------------------------------------------------------------------------------------------
 	**/
-	if (!floor_collided && up_key_down && !down_key_pressed && a_key_down && !a_key_pressed && 
+	if (!floor_collided && up_key->down && !down_key->pressed && a_key->pressed && 
 		!restrict_input_y && !air_somersault) {
 		update_move(moves.AIR_SOMERSAULT, 10, false, true);
 		restrict_input_x = true;
 		restrict_input_y = true;
-		a_key_pressed = true;
-		up_key_down = true;
 		air_somersault = true;
 		base_parent->dealt_damage = false;
 		rotation = 0;
@@ -472,12 +453,11 @@ void Movement::update_movement() {
 											RIGHT AIR KICK
 	------------------------------------------------------------------------------------------
 	**/
-	if (!floor_collided && a_key_down && !a_key_pressed && !double_jump && !restrict_input_y && 
-		!right_key_down && !left_key_down && !up_key_down) {
+	if (!floor_collided && a_key->pressed && !double_jump && !restrict_input_y && 
+		!right_key->down && !left_key->down && !up_key->down) {
 		update_move(moves.AIR_KICK, 12, false);
 		restrict_input_x = true;
 		restrict_input_y = true;
-		a_key_pressed = true;
 		right_air_kick = true;
 		base_parent->dealt_damage = false;
 	}
@@ -496,11 +476,6 @@ void Movement::update_movement() {
 										APPLY VALUES
 	------------------------------------------------------------------------------------------
 	**/
-	//set keyboard keys to false when they aren't being pressed
-	if (!a_key_down) { a_key_pressed = false; }
-	if (!down_key_down) { down_key_pressed = false; }
-	if (!up_key_down) { up_key_pressed = false; holding_jump = false; }
-
 	//apply force friction to force_x
 	force_x = force_x * FORCE_FRICTION;
 
@@ -531,8 +506,7 @@ void Movement::update_move(int newmove, int fps, bool loop, bool lock) {
 	if (current_move != newmove) {
 		if (!lock_move_update || lock) {
 			current_move = newmove;
-			animation_sheet = base_universe->assets->fighter_sheets[0];
-			animator->update_texture(animation_sheet, 64, 64, moves.move_frames[current_move], 1);
+			animator->update_texture(base_parent->texture, 64, 64, moves.move_frames[current_move], 1);
 			animator->set_fps(fps);
 			animator->loop = loop;
 			animator->paused = false;

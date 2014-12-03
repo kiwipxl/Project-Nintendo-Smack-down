@@ -12,6 +12,7 @@ class MenuUI : Universal {
 		void create();
 		void update();
 		void remove();
+		void resize_update(int w = 0, int h = 0);
 
 	private:
 		float box_pos;

@@ -8,6 +8,7 @@
 #include "input/InputManager.h"
 #include "managers/StateManager.h"
 #include "map/Camera.h"
+#include "tools/timer/TimerCallback.h"
 
 class Universe {
 
@@ -18,6 +19,7 @@ class Universe {
 		static DebugUI* debug_ui;
 		static InputManager* input;
 		static StateManager* state;
+		static TimerCallback* timer;
 };
 
 void GameLoop::start() {
@@ -36,6 +38,8 @@ void GameLoop::start() {
 			if (e.type == SDL_QUIT) {
 				quit = true;
 				break;
+			}else if (e.type == SDL_WINDOWEVENT) {
+				universe->win_manager->update_resize();
 			}
 			universe->mouse->event_update(e);
 			universe->input->event_update(e);
@@ -43,8 +47,10 @@ void GameLoop::start() {
 
 		SDL_SetRenderDrawColor(universe->win_manager->renderer, 255, 240, 220, 255);
 		SDL_RenderClear(universe->win_manager->renderer);
+		universe->timer->update();
 		universe->state->update();
 		SDL_RenderPresent(universe->win_manager->renderer);
+		glClear(GL_COLOR_BUFFER_BIT);
 
 		//SDL_FillRect(universe->win_manager->screensurface, NULL, SDL_MapRGB(universe->win_manager->screensurface->format, 255, 255, 255));
 		//SDL_UpdateWindowSurface(universe->win_manager->window);

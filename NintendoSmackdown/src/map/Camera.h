@@ -20,16 +20,17 @@ class Camera : Universal {
 		float get_offset_x(float pos_x);
 		float get_offset_y(float pos_y);
 
+		int min_bounds_x;
+		int max_bounds_x;
+		int min_bounds_y;
+		int max_bounds_y;
+
 	private:
 		const int ZOOM_SMOOTHING = 20;
 		const int MOVE_SMOOTHING = 10;
 		const float ZOOM = 500.f;
 		const float MAX_ZOOM = 2;
 		const float MIN_ZOOM = .8f;
-		int min_bounds_x;
-		int max_bounds_x;
-		int min_bounds_y;
-		int max_bounds_y;
 };
 
 #endif

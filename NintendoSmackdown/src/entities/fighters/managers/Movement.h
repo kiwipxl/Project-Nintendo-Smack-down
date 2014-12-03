@@ -6,6 +6,7 @@
 #include "../../../tools/Animator.h"
 #include "../../../managers/Texture.h"
 #include "../../../map/Node.h"
+#include "../../../input/InputManager.h"
 #include "FighterBase.h"
 
 class Movement : FighterBase {
@@ -29,16 +30,12 @@ class Movement : FighterBase {
 		int current_move;
 
 		//input
-		bool up_key_pressed = false;
-		bool down_key_pressed = false;
-		bool a_key_pressed = false;
-
-		bool left_key_down = false;
-		bool right_key_down = false;
-		bool up_key_down = false;
-		bool down_key_down = false;
-		bool a_key_down = false;
-		bool b_key_down = false;
+		Key* left_key;
+		Key* right_key;
+		Key* up_key;
+		Key* down_key;
+		Key* a_key;
+		Key* b_key;
 
 		//force
 		float force_x;
@@ -84,7 +81,7 @@ class Movement : FighterBase {
 		//punching
 		int punch_timer;
 		int punch_cycle;
-		const int PUNCH_CYCLE_TIME = 20;
+		const int PUNCH_CYCLE_TIME = 40;
 		bool punching;
 
 		//dash attack
@@ -111,11 +108,6 @@ class Movement : FighterBase {
 		//animation
 		bool lock_move_update;
 
-		/**
-		changes the current move to a new move and updates the animation
-		**/
-		void update_move(int new_move, int fps, bool loop = true, bool lock = false);
-
 	protected:
 		//rendering
 		SDL_Rect rect;
@@ -123,9 +115,13 @@ class Movement : FighterBase {
 
 		//animation
 		Animator* animator;
-		Texture* animation_sheet;
 		SDL_Point origin;
 		float rotation;
+
+		/**
+		changes the current move to a new move and updates the animation
+		**/
+		void update_move(int new_move, int fps, bool loop = true, bool lock = false);
 };
 
 #endif

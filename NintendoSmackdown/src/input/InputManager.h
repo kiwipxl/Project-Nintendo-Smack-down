@@ -40,7 +40,7 @@ class InputManager : Universal {
 		void event_update(SDL_Event e);
 		void update();
 		void refreshjoysticks();
-		void set_keys_down(int key, KeyType type, bool down, bool checkifdown = false);
+		void set_keys_down(int key, KeyType type, bool down, bool check_if_down = false);
 };
 
 #endif

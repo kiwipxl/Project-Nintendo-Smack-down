@@ -12,13 +12,14 @@ class Text : Universal {
 		Text(int x, int y, int font_size, SDL_Colour colour, std::string font_text, bool smooth = false);
 		~Text();
 
+		SDL_Rect rect;
+
 		void render();
 		void render_text(std::string font_text, bool smooth = false);
 
 	private:
 		SDL_Texture* font;
 		bool rendered;
-		SDL_Rect rect;
 		TTF_Font* square;
 		SDL_Colour colour;
 		std::string text;

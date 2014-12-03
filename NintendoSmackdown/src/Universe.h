@@ -16,6 +16,7 @@
 #include "tools/MapParser.h"
 #include "ui/GameUI.h"
 #include "ui/MenuUI.h"
+#include "tools/timer/TimerCallback.h"
 
 class Universe {
 
@@ -34,6 +35,7 @@ class Universe {
 		static EntityManager* entity_manager;
 
 		static MapParser* map_parser;
+		static TimerCallback* timer;
 
 		static DebugUI* debug_ui;
 		static GameUI* game_ui;

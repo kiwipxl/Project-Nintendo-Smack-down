@@ -12,7 +12,7 @@ class Universe {
 
 void Assets::initiate() {
 	//load fighter sprite sheets
-	fighter_sheets.push_back(load_texture("captainfalcon.png"));
+	fighter_sheets.push_back(load_texture("captainfalcon.png", false));
 
 	//load tile sprite sheets
 	tile_sheets.push_back(load_texture("groundtiles.png"));
@@ -28,12 +28,16 @@ void Assets::initiate() {
 /**
 loads an image in the assets folder and returns a texture from it
 **/
-Texture* Assets::load_texture(char* path) {
+Texture* Assets::load_texture(char* path, bool dispose_surface) {
 	std::string texturepath = "assets/";
 	texturepath += path;
 	SDL_Surface* surface = IMG_Load(texturepath.c_str());
 	Texture* texture = new Texture(SDL_CreateTextureFromSurface(universe->win_manager->renderer, surface));
-	SDL_FreeSurface(surface);
+	if (dispose_surface) {
+		SDL_FreeSurface(surface);
+	}else {
+		texture->s = surface;
+	}
 	textures.push_back(texture->t);
 	return texture;
 }

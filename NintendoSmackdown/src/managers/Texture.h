@@ -10,6 +10,7 @@ class Texture {
 		Texture(SDL_Texture* c_t);
 
 		SDL_Texture* t;
+		SDL_Surface* s;
 		int width;
 		int height;
 };

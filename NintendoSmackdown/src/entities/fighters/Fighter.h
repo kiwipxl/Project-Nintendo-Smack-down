@@ -26,8 +26,14 @@ class Fighter : Universal, public Movement, public Damage {
 		int playerid;
 		FighterName name;
 		FighterType type;
+		bool respawning;
+		bool invincible;
+		Texture* texture;
 
 		void update();
+
+	private:
+		float alpha_colour;
 };
 
 #endif

@@ -83,7 +83,7 @@ void InputManager::update() {
 
 void InputManager::event_update(SDL_Event e) {
 	if (e.type == SDL_KEYDOWN) {
-		set_keys_down(e.key.keysym.sym, KEYBOARD, true);
+		set_keys_down(e.key.keysym.sym, KEYBOARD, true, true);
 	}else if (e.type == SDL_KEYUP) {
 		set_keys_down(e.key.keysym.sym, KEYBOARD, false);
 	}else if (e.type == SDL_JOYBUTTONDOWN) {
@@ -143,11 +143,11 @@ void InputManager::event_update(SDL_Event e) {
 	}
 }
 
-void InputManager::set_keys_down(int key, KeyType type, bool down, bool checkifdown) {
+void InputManager::set_keys_down(int key, KeyType type, bool down, bool check_if_down) {
 	for (int n = 0; n < KEYS; ++n) {
 		for (int i = 0; i < INPUTS; ++i) {
 			Key* inputkey = allkeys[n][i];
-			if ((inputkey->type == type && key == inputkey->key) && (!checkifdown || inputkey->down)) {
+			if ((inputkey->type == type && key == inputkey->key) && (!check_if_down || !inputkey->down)) {
 				inputkey->down = down;
 				inputkey->pressed = down;
 			}

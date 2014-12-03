@@ -1,12 +1,53 @@
-﻿Build started 12/2/2014 4:42:05 AM.
+﻿Build started 12/3/2014 9:40:20 PM.
      1>Project "C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\NintendoSmackdown\NintendoSmackdown.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\ui\MenuUI.cpp
-         MenuUI.cpp
-     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\ui\menuui.cpp(20): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\ui\menuui.cpp(41): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\Main.cpp src\Universe.cpp src\entities\EntityManager.cpp src\entities\fighters\Fighter.cpp src\entities\fighters\managers\Damage.cpp src\entities\fighters\managers\Movement.cpp src\managers\StateManager.cpp src\map\Camera.cpp src\map\Map.cpp
+         Map.cpp
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(72): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(73): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(77): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(88): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(91): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+         Camera.cpp
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(27): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(28): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(29): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(30): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(44): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(45): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         StateManager.cpp
+         Damage.cpp
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\managers\damage.cpp(73): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         Fighter.cpp
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\fighter.cpp(31): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\fighter.cpp(55): warning C4244: 'argument' : conversion from 'float' to 'Uint8', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\fighter.cpp(62): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\fighter.cpp(63): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\fighter.cpp(64): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\fighter.cpp(72): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\fighter.cpp(80): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         Universe.cpp
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\universe.cpp(20): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+         Main.cpp
+         Generating Code...
+         Compiling...
+         Movement.cpp
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\managers\movement.cpp(70): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\managers\movement.cpp(73): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\managers\movement.cpp(134): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\managers\movement.cpp(150): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\managers\movement.cpp(194): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\entities\fighters\managers\movement.cpp(234): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+         Generating Code...
+         Skipping... (no relevant changes detected)
+         EntityManager.cpp
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.lib" /MACHINE:X86 Debug\MenuUI.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib opengl32.lib glu32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.lib" /MACHINE:X86 Debug\Particle.obj
+         Debug\ParticleEmitter.obj
+         Debug\ParticleManager.obj
+         Debug\ParticleRenderer.obj
+         Debug\TimerCallback.obj
+         Debug\MenuUI.obj
          Debug\GameUI.obj
          Debug\Camera.obj
          Debug\Damage.obj
@@ -32,11 +73,11 @@
          Debug\StateManager.obj
          Debug\Tiles.obj
          Debug\Texture.obj
-     1>MenuUI.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+     1>Particle.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
      1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
          NintendoSmackdown.vcxproj -> C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe
      1>Done Building Project "C:\Users\Richman\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\NintendoSmackdown\NintendoSmackdown.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.94
+Time Elapsed 00:00:06.13

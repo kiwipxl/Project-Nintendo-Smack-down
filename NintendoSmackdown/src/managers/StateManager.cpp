@@ -9,10 +9,12 @@
 #include "../ui/GameUI.h"
 #include "../ui/MenuUI.h"
 #include "../input/InputManager.h"
+#include "WindowManager.h"
 
 class Universe {
 
 	public:
+		static WindowManager* win_manager;
 		static DebugUI* debug_ui;
 		static Map* map;
 		static EntityManager* entity_manager;
@@ -112,4 +114,27 @@ void StateManager::update() {
 	}
 	universe->debug_ui->update();
 	universe->input->update();
+}
+
+/**
+calls a resize function for parts in the state
+**/
+void StateManager::resize_current_state() {
+	int w = universe->win_manager->screen_width;
+	int h = universe->win_manager->screen_height;
+	switch (state) {
+		case TITLE_SCREEN:
+			break;
+		case MAIN_MENU:
+			universe->menu_ui->resize_update(w, h);
+			break;
+		case CHAR_SELECT:
+			break;
+		case GAME:
+			universe->map->resize_update(w, h);
+			universe->game_ui->resize_update(w, h);
+			break;
+		case EDITOR:
+			break;
+	}
 }

@@ -79,6 +79,21 @@
     <ClCompile Include="src\ui\MenuUI.cpp">
       <Filter>src\ui</Filter>
     </ClCompile>
+    <ClCompile Include="src\tools\timer\TimerCallback.cpp">
+      <Filter>src\tools\timer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particles\Particle.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particles\ParticleEmitter.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particles\ParticleManager.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particles\ParticleRenderer.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -183,6 +198,24 @@
     <ClInclude Include="src\ui\MenuUI.h">
       <Filter>src\ui</Filter>
     </ClInclude>
+    <ClInclude Include="src\tools\timer\Timer.h">
+      <Filter>src\tools\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\timer\TimerCallback.h">
+      <Filter>src\tools\timer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particles\Particle.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particles\ParticleEmitter.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particles\ParticleManager.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particles\ParticleRenderer.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">
@@ -212,7 +245,10 @@
     <None Include="libwebp-4.dll">
       <Filter>lib</Filter>
     </None>
-    <None Include="msvcp120.dll">
+    <None Include="glu.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="opengl.dll">
       <Filter>lib</Filter>
     </None>
   </ItemGroup>
@@ -255,6 +291,12 @@
     </Filter>
     <Filter Include="src\ui\tools">
       <UniqueIdentifier>{441cc830-e750-42b3-bb8d-723327d00f25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\tools\timer">
+      <UniqueIdentifier>{90bafe7b-4bb5-4199-80ee-b8cb01dbb58e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\particles">
+      <UniqueIdentifier>{eeec4883-6857-41b8-987f-4ae05936d115}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

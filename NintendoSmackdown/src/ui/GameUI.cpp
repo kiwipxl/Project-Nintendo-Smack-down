@@ -17,15 +17,13 @@ void GameUI::create() {
 }
 
 void GameUI::create_damage_texts(int fighters) {
-	int pos_x = universe->win_manager->screen_width / (fighters + 1);
 	for (int n = 0; n < fighters; ++n) {
-		Text* text = new Text(pos_x * (n + 1), universe->win_manager->screen_height - 60, 
-		35, { 0, 0, 0 }, "0%", true);
+		Text* text = new Text(0, 0, 35, { 0, 0, 0 }, "0%", true);
 		damage_texts.push_back(text);
-		Text* name_text = new Text(pos_x * (n + 1) - 25, universe->win_manager->screen_height - 90, 
-		18, { 0, 0, 0 }, "Captain Falcon", true);
+		Text* name_text = new Text(0, 0, 18, { 0, 0, 0 }, "Captain Falcon", true);
 		name_texts.push_back(name_text);
 	}
+	resize_update();
 }
 
 void GameUI::update() {
@@ -51,4 +49,25 @@ void GameUI::remove() {
 		delete text;
 	}
 	name_texts.clear();
+}
+
+void GameUI::resize_update(int w, int h) {
+	if (w == 0 && h == 0) {
+		w = universe->win_manager->screen_width;
+		h = universe->win_manager->screen_height;
+	}
+	int pos_x = w / (damage_texts.size() + 1);
+	int n = 0;
+	for (Text* text : damage_texts) {
+		text->rect.x = pos_x * (n + 1);
+		text->rect.y = h - 60;
+		++n;
+	}
+	n = 0;
+	pos_x = w / (name_texts.size() + 1);
+	for (Text* text : name_texts) {
+		text->rect.x = pos_x * (n + 1) - 25;
+		text->rect.y = h - 90;
+		++n;
+	}
 }

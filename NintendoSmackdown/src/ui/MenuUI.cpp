@@ -16,20 +16,14 @@ class Universe {
 };
 
 void MenuUI::create() {
-	box_src_rect.w = 620; box_src_rect.h = 800;
-	box_rect.w = universe->win_manager->screen_width / 3.5f;
-	box_rect.h = universe->win_manager->screen_height / 2;
-	if (box_rect.w > box_src_rect.w) { box_rect.w = box_src_rect.w; }
-	if (box_rect.h > box_src_rect.h) { box_rect.h = box_src_rect.h; }
+	box_src_rect.w = 310; box_src_rect.h = 400;
+	box_rect.w = 300;
+	box_rect.h = 400;
 	box_pos = 0;
 	box_index = 0;
-	bg_rect.x = 0; bg_rect.y = 0;
-	bg_rect.w = 1920;
-	bg_rect.h = 1080;
-	if (1920 > universe->win_manager->screen_width) {
-		bg_rect.x = -(1920 - universe->win_manager->screen_width) / 2;
-	}
 	bg_src_rect.x = 0; bg_src_rect.y = 0; bg_src_rect.w = 1920; bg_src_rect.h = 1080;
+
+	resize_update();
 	std::cout << "menu ui initiated\n";
 }
 
@@ -74,4 +68,18 @@ void MenuUI::update() {
 
 void MenuUI::remove() {
 
+}
+
+void MenuUI::resize_update(int w, int h) {
+	if (w == 0 && h == 0) {
+		w = universe->win_manager->screen_width;
+		h = universe->win_manager->screen_height;
+	}
+	bg_rect.w = 1920; bg_rect.h = 1080;
+	bg_rect.x = 0; bg_rect.y = 0;
+	if (1920 > universe->win_manager->screen_width) {
+		bg_rect.x = -(1920 - universe->win_manager->screen_width) / 2;
+	}else {
+		bg_rect.w = universe->win_manager->screen_width;
+	}
 }

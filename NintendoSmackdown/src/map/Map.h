@@ -19,11 +19,14 @@ class Map : Universal {
 		int grid_height;
 		int map_width;
 		int map_height;
+		int map_width_scaled;
+		int map_height_scaled;
 		vector<vector<Node*>> nodes;
 
 		void create();
 		void update();
 		void remove();
+		void resize_update(int w = 0, int h = 0);
 
 	private:
 		//map renderering

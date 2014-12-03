@@ -1,32 +1,47 @@
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\vc120.pdb
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\vc120.idb
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\editor.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\animator.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\fighter.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\entitymanager.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\gameloop.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\keyboardmanager.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\mousemanager.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\main.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\assets.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\windowmanager.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\map.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\imagetools.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\universal.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\text.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\uimanager.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\universe.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\statemanager.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\tiles.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\texture.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\collision.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\movement.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\damage.obj
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\debug\nintendosmackdown.exe
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\debug\nintendosmackdown.pdb
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\cl.command.1.tlog
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\cl.read.1.tlog
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\cl.write.1.tlog
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link.command.1.tlog
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link.read.1.tlog
-c:\users\richman\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link.write.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\vc120.pdb
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\vc120.idb
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\editor.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\animator.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\fighter.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\entitymanager.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\gameloop.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\inputmanager.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\mousemanager.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\main.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\assets.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\windowmanager.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\map.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\imagetools.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\mapparser.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\universal.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\text.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\debugui.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\universe.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\statemanager.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\tiles.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\texture.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\menuui.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\gameui.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\camera.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\damage.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\movement.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\collision.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\timercallback.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\particle.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\particleemitter.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\particlemanager.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\particlerenderer.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\debug\nintendosmackdown.exe
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\debug\nintendosmackdown.pdb
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\keyboardmanager.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\uimanager.obj
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\cl.command.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\cl.read.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\cl.write.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link-cvtres.read.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link-cvtres.write.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link-rc.read.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link-rc.write.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link.command.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link.read.1.tlog
+c:\users\rstewart\desktop\newsupersmash-3-12-2014\project-nintendo-smack-down-master\nintendosmackdown\debug\nintendo.9e9a4ca8.tlog\link.write.1.tlog

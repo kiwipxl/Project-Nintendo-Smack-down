@@ -58,7 +58,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,18 +79,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="glu.dll" />
     <None Include="libfreetype-6.dll" />
     <None Include="libjpeg-9.dll" />
     <None Include="libpng16-16.dll" />
     <None Include="libtiff-5.dll" />
-    <None Include="msvcp120.dll" />
     <None Include="libwebp-4.dll" />
+    <None Include="opengl.dll" />
     <None Include="SDL2.dll" />
     <None Include="SDL2_image.dll" />
     <None Include="SDL2_ttf.dll" />
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\particles\Particle.cpp" />
+    <ClCompile Include="src\particles\ParticleEmitter.cpp" />
+    <ClCompile Include="src\particles\ParticleManager.cpp" />
+    <ClCompile Include="src\particles\ParticleRenderer.cpp" />
+    <ClCompile Include="src\tools\timer\TimerCallback.cpp" />
     <ClCompile Include="src\ui\MenuUI.cpp" />
     <ClCompile Include="src\ui\GameUI.cpp" />
     <ClCompile Include="src\map\Camera.cpp" />
@@ -119,6 +125,12 @@
     <ClCompile Include="src\managers\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\particles\Particle.h" />
+    <ClInclude Include="src\particles\ParticleEmitter.h" />
+    <ClInclude Include="src\particles\ParticleManager.h" />
+    <ClInclude Include="src\particles\ParticleRenderer.h" />
+    <ClInclude Include="src\tools\timer\Timer.h" />
+    <ClInclude Include="src\tools\timer\TimerCallback.h" />
     <ClInclude Include="src\ui\MenuUI.h" />
     <ClInclude Include="src\input\Key.h" />
     <ClInclude Include="src\input\Joystick.h" />

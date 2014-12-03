@@ -35,6 +35,11 @@ class StateManager : Universal {
 		**/
 		void switch_state(State new_state);
 
+		/**
+		calls a resize function for parts in the state
+		**/
+		void resize_current_state();
+
 	private:
 		/**
 		handles the creation of the new state

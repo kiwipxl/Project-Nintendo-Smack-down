@@ -26,7 +26,7 @@ class Assets : Universal {
 		/**
 		loads an image in the assets folder and returns a texture from it
 		**/
-		Texture* load_texture(char* path);
+		Texture* load_texture(char* path, bool dispose_surface = true);
 
 		/**
 		loads an image in the assets folder and returns a surface from it

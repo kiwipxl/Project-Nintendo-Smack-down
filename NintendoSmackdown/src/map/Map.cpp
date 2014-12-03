@@ -51,19 +51,17 @@ void Map::create() {
 	}
 	src_rect.w = 16; src_rect.h = 16;
 	rect.w = 32; rect.h = 32;
-
-	bgsrc_rect.x = 512; bgsrc_rect.y = 0;
-	bgsrc_rect.w = 512; bgsrc_rect.h = 432;
-	bgrect.x = 0; bgrect.y = 0;
-	bgrect.w = universe->win_manager->screen_width; bgrect.h = universe->win_manager->screen_height;
+	resize_update();
 
 	//nodes[12][13]->type = Tiles::BLOCK;
 	//nodes[12][13]->solid = true;
 
 	universe->map_parser->load("map1.txt");
 
-	map_width = grid_width * (32 * universe->camera->scale);
-	map_height = grid_height * (32 * universe->camera->scale);
+	map_width = grid_width * 32;
+	map_height = grid_height * 32;
+
+	universe->camera->reset();
 }
 
 void Map::remove() {
@@ -71,8 +69,8 @@ void Map::remove() {
 }
 
 void Map::update() {
-	map_width = grid_width * (32 * universe->camera->scale);
-	map_height = grid_height * (32 * universe->camera->scale);
+	map_width_scaled = grid_width * (32 * universe->camera->scale);
+	map_height_scaled = grid_height * (32 * universe->camera->scale);
 
 	float pos_x = universe->camera->x + universe->camera->get_offset_x(0);
 	float pos_y = universe->camera->y + universe->camera->get_offset_y(0);
@@ -99,4 +97,15 @@ void Map::update() {
 		pos_x = universe->camera->x + universe->camera->get_offset_x(0);
 		pos_y += universe->camera->grid_size;
 	}
+}
+
+void Map::resize_update(int w, int h) {
+	if (w == 0 && h == 0) {
+		w = universe->win_manager->screen_width;
+		h = universe->win_manager->screen_height;
+	}
+	bgsrc_rect.x = 512; bgsrc_rect.y = 0;
+	bgsrc_rect.w = 512; bgsrc_rect.h = 432;
+	bgrect.x = 0; bgrect.y = 0;
+	bgrect.w = universe->win_manager->screen_width; bgrect.h = universe->win_manager->screen_height;
 }

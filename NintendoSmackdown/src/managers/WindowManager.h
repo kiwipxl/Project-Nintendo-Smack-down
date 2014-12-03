@@ -2,8 +2,10 @@
 #define WINDOW_MANAGER_H
 
 #include <SDL.h>
+#include <SDL_opengl.h>
+#include "../tools/Universal.h"
 
-class WindowManager {
+class WindowManager : Universal {
 
 	public:
 		WindowManager() {
@@ -23,8 +25,20 @@ class WindowManager {
 		int center_x;
 		int center_y;
 
+		SDL_GLContext context;
+
+		/**
+		creates and initialises the window and renderer
+		**/
 		void initiate();
+		/**
+		updates the screen width and height to a new value and updates the state
+		**/
 		void resize(int w, int h);
+		/**
+		updates the screen width and height to the current window resolution and updates the state
+		**/
+		void update_resize();
 
 	private:
 		const char* WINDOW_TITLE = "Project Nintendo Smack-down";

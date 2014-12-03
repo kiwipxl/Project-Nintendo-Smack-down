@@ -27,7 +27,7 @@ void Damage::update_damage() {
 			if (f != otherf) {
 				if (f->pos.x >= otherf->pos.x - 48 && f->pos.x <= otherf->pos.x + 48) {
 					if (f->pos.y >= otherf->pos.y - 64 && f->pos.y <= otherf->pos.y + 64) {
-						if (!f->dealt_damage) {
+						if (!f->dealt_damage && !otherf->invincible) {
 							force_x = 0; force_y = 0;
 							if (f->current_move == f->moves.PUNCH) {
 								force_x = .2f; force_y = 1;

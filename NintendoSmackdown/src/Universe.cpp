@@ -14,6 +14,7 @@ Camera* Universe::camera;
 MapParser* Universe::map_parser;
 GameUI* Universe::game_ui;
 MenuUI* Universe::menu_ui;
+TimerCallback* Universe::timer;
 
 void Universe::initiate() {
 	srand(time(NULL));
@@ -34,6 +35,7 @@ void Universe::initiate() {
 	map_parser = new MapParser();
 	game_ui = new GameUI();
 	menu_ui = new MenuUI();
+	timer = new TimerCallback();
 
 	win_manager->initiate();
 	assets->initiate();
