@@ -5,6 +5,7 @@
 #include "../managers/Assets.h"
 #include "../input/InputManager.h"
 #include "../managers/StateManager.h"
+#include "../renderer/Renderer.h"
 
 class Universe {
 
@@ -13,6 +14,7 @@ class Universe {
 		static Assets* assets;
 		static InputManager* input;
 		static StateManager* state;
+		static Renderer* renderer;
 };
 
 void MenuUI::create() {
@@ -28,8 +30,7 @@ void MenuUI::create() {
 }
 
 void MenuUI::update() {
-	SDL_RenderCopy(universe->win_manager->renderer, universe->assets->menu_background->t,
-		&bg_src_rect, &bg_rect);
+	universe->renderer->render(universe->assets->menu_background, &bg_src_rect, &bg_rect);
 
 	box_pos -= (box_pos - (box_rect.w * box_index)) / 5;
 	box_rect.x = (universe->win_manager->screen_width / 2) - (box_rect.w / 2) - box_pos;
@@ -38,13 +39,11 @@ void MenuUI::update() {
 		box_rect.x += 4;
 		box_src_rect.x = box_src_rect.w * 4;
 		if (i == box_index) { box_src_rect.x += box_src_rect.w; }
-		SDL_RenderCopy(universe->win_manager->renderer, universe->assets->menu_boxes_sheet->t,
-			&box_src_rect, &box_rect);
+		universe->renderer->render(universe->assets->menu_boxes_sheet, &box_src_rect, &box_rect);
 		box_rect.x -= 4;
 		box_src_rect.x = box_src_rect.w * i;
 		box_src_rect.y = 0;
-		SDL_RenderCopy(universe->win_manager->renderer, universe->assets->menu_boxes_sheet->t,
-						&box_src_rect, &box_rect);
+		universe->renderer->render(universe->assets->menu_boxes_sheet, &box_src_rect, &box_rect);
 		box_rect.x += box_rect.w;
 	}
 

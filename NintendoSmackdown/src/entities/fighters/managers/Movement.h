@@ -4,7 +4,7 @@
 #include "../moves/CaptainFalcon.h"
 #include "../../../tools/Point2DF.h"
 #include "../../../tools/Animator.h"
-#include "../../../managers/Texture.h"
+#include "../../../renderer/Texture.h"
 #include "../../../map/Node.h"
 #include "../../../input/InputManager.h"
 #include "FighterBase.h"

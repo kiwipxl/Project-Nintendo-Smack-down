@@ -6,6 +6,7 @@
 #include "Camera.h"
 #include "../tools/MapParser.h"
 #include "../ui/GameUI.h"
+#include "../renderer/Renderer.h"
 
 class Universe {
 
@@ -16,12 +17,15 @@ class Universe {
 		static Camera* camera;
 		static MapParser* map_parser;
 		static GameUI* game_ui;
+		static Renderer* renderer;
 };
 
 Map::Map() {
 	created = false;
 	grid_width = universe->win_manager->screen_width / 32;
 	grid_height = universe->win_manager->screen_height / 32;
+	grid_width = 100;
+	grid_height = 100;
 }
 
 void Map::create() {
@@ -38,7 +42,7 @@ void Map::create() {
 		for (int y = 0; y < grid_height; ++y) {
 			Node* node = new Node();
 			node->type = Tiles::NONE;
-			if (x >= 4 && y == 14 && x <= grid_width - 4) {
+			if (x >= 4 && y == 14 && x <= grid_width - 4 || x >= 20) {
 				node->type = Tiles::BLOCK; node->solid = true;
 			}
 			if ((x >= 5 && y == 15 && x <= grid_width - 5) ||
@@ -77,7 +81,7 @@ void Map::update() {
 	bgrect.x = -abs(universe->camera->x + pos_x) / 10; bgrect.y = -abs(universe->camera->y + pos_y) / 10;
 	bgrect.w = universe->win_manager->screen_width - bgrect.x;
 	bgrect.h = bgrect.w;
-	SDL_RenderCopy(universe->win_manager->renderer, universe->assets->background_tiles->t, &bgsrc_rect, &bgrect);
+	universe->renderer->render(universe->assets->background_tiles, &bgsrc_rect, &bgrect);
 
 	//updates the map
 	pos_x = universe->camera->x + universe->camera->get_offset_x(0);
@@ -89,8 +93,8 @@ void Map::update() {
 			if (node->type != Tiles::NONE) {
 				src_rect.x = node->type->src_x; src_rect.y = node->type->src_y;
 				rect.w = ceil(universe->camera->grid_size); rect.h = ceil(universe->camera->grid_size);
-				SDL_RenderCopy(universe->win_manager->renderer,
-					universe->assets->tile_sheets[node->type->sheet_index]->t, &src_rect, &rect);
+				universe->renderer->render(universe->assets->tile_sheets[node->type->sheet_index], 
+										   &src_rect, &rect);
 			}
 			pos_x += universe->camera->grid_size;
 		}

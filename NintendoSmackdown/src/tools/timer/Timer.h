@@ -12,6 +12,7 @@ class Timer {
 		std::function<void()> callback;
 		int interval;
 		clock_t start_time;
+		bool repeat;
 };
 
 #endif

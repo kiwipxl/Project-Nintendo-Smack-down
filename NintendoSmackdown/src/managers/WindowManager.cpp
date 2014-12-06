@@ -28,13 +28,28 @@ void WindowManager::initiate() {
 				if (context == NULL) {
 					std::cout << "context could not be created: " << SDL_GetError() << "\n";
 				}else {
+					glViewport(0, 0, screen_width, screen_height);
 					glMatrixMode(GL_PROJECTION);
 					glLoadIdentity();
+					glOrtho(0, screen_width, screen_height, 0, 1, -1);
+					glMatrixMode(GL_MODELVIEW);
+					glLoadIdentity();
+
 					if (glGetError() != GL_NO_ERROR) {
 						std::cout << "an error occurred while setting up matrix mode: " << glGetError() << "\n";
 					}
 					glClearColor(0, 0, 0, 1);
-					std::cout << "opengl initiated\n";
+					glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+					glEnable(GL_TEXTURE_2D);
+					glEnable(GL_BLEND);
+					
+					if (glewInit() == GLEW_OK) {
+						std::cout << "glew initiated\n";
+					}else {
+						std::cout << "glew initialisation failed\n";
+					}
+
+					std::cout << "opengl initiated (version: " << glGetString(GL_VERSION) << ")\n";
 				}
 				if (IMG_Init(IMG_INIT_PNG) == -1) {
 					std::cout << "png could not be initialised: " << IMG_GetError() << "\n";
@@ -54,6 +69,12 @@ void WindowManager::resize(int w, int h) {
 
 	SDL_SetWindowSize(window, w, h);
 
+	glViewport(0, 0, screen_width, screen_height);
+	glViewport(0, 0, screen_width, screen_height);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, screen_width, screen_height, 0, 1, -1);
+
 	std::cout << "resized window: " << w << "x" << h << "\n";
 
 	universe->state->resize_current_state();
@@ -64,6 +85,11 @@ void WindowManager::update_resize() {
 
 	center_x = screen_width / 2;
 	center_y = screen_height / 2;
+
+	glViewport(0, 0, screen_width, screen_height);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	glOrtho(0, screen_width, screen_height, 0, 1, -1);
 
 	std::cout << "resized window: " << screen_width << "x" << screen_height << "\n";
 

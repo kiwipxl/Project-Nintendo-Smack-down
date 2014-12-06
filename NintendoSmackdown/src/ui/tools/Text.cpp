@@ -2,12 +2,14 @@
 #include <sstream>
 #include "../../managers/WindowManager.h"
 #include "../../managers/Assets.h"
+#include "../../renderer/Renderer.h"
 
 class Universe {
 
 	public:
 		static WindowManager* win_manager;
 		static Assets* assets;
+		static Renderer* renderer;
 };
 
 Text::Text(int x, int y, int font_size, SDL_Colour font_colour, std::string font_text, bool smooth) {
@@ -15,6 +17,7 @@ Text::Text(int x, int y, int font_size, SDL_Colour font_colour, std::string font
 	text = font_text;
 	colour = font_colour;
 	rect.x = x; rect.y = y;
+	font = new Texture();
 	rendered = false;
 	render_text(text, smooth);
 }
@@ -24,7 +27,7 @@ Text::~Text() {
 }
 
 void Text::render() {
-	SDL_RenderCopy(universe->win_manager->renderer, font, NULL, &rect);
+	universe->renderer->render(font, NULL, &rect);
 }
 
 void Text::render_text(std::string font_text, bool smooth) {
@@ -36,8 +39,9 @@ void Text::render_text(std::string font_text, bool smooth) {
 		surface = TTF_RenderText_Solid(square, text.c_str(), colour);
 	}
 
-	if (rendered) { SDL_DestroyTexture(font); }
-	font = SDL_CreateTextureFromSurface(universe->win_manager->renderer, surface);
+	if (rendered) { delete font; font = new Texture(); }
+	font->create_texture(surface);
+
 	TTF_SizeText(square, text.c_str(), &rect.w, &rect.h);
 	SDL_FreeSurface(surface);
 

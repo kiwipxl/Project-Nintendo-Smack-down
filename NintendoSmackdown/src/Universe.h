@@ -17,6 +17,8 @@
 #include "ui/GameUI.h"
 #include "ui/MenuUI.h"
 #include "tools/timer/TimerCallback.h"
+#include "particles/ParticleManager.h"
+#include "renderer/Renderer.h"
 
 class Universe {
 
@@ -33,6 +35,10 @@ class Universe {
 		static InputManager* input;
 
 		static EntityManager* entity_manager;
+
+		static ParticleManager* particles;
+
+		static Renderer* renderer;
 
 		static MapParser* map_parser;
 		static TimerCallback* timer;

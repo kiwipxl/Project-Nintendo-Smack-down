@@ -10,6 +10,7 @@
 #include "../ui/MenuUI.h"
 #include "../input/InputManager.h"
 #include "WindowManager.h"
+#include "../particles/ParticleManager.h"
 
 class Universe {
 
@@ -23,6 +24,7 @@ class Universe {
 		static GameUI* game_ui;
 		static MenuUI* menu_ui;
 		static InputManager* input;
+		static ParticleManager* particles;
 };
 
 /**
@@ -107,6 +109,7 @@ void StateManager::update() {
 			universe->map->update();
 			universe->entity_manager->update();
 			universe->game_ui->update();
+			universe->particles->update();
 			break;
 		case EDITOR:
 			universe->editor->update();

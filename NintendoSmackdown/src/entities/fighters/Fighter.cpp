@@ -10,6 +10,7 @@
 #include "../EntityManager.h"
 #include "../../tools/timer/TimerCallback.h"
 #include "../../ui/GameUI.h"
+#include "../../renderer/Renderer.h"
 
 class Universe {
 
@@ -22,6 +23,7 @@ class Universe {
 		static EntityManager* entity_manager;
 		static TimerCallback* timer;
 		static GameUI* game_ui;
+		static Renderer* renderer;
 };
 
 Fighter::Fighter(int x, int y, FighterName fname, FighterType ftype) : Movement(this), Damage(this) {
@@ -33,7 +35,8 @@ Fighter::Fighter(int x, int y, FighterName fname, FighterType ftype) : Movement(
 	respawning = false;
 	invincible = false;
 
-	texture = new Texture(SDL_CreateTextureFromSurface(universe->win_manager->renderer, universe->assets->fighter_sheets[0]->s));
+	texture = new Texture();
+	texture->create_texture(universe->assets->fighter_sheets[0]->s);
 	animator = new Animator(texture, &src_rect, 64, 64, 5, true, true);
 	update_move(moves.JUMP, 10, false);
 	alpha_colour = 0;
@@ -52,7 +55,7 @@ void Fighter::update() {
 	}
 
 	if (invincible) {
-		SDL_SetTextureAlphaMod(texture->t, 140 + (sin(alpha_colour / 6) * 50));
+		//SDL_SetTextureAlphaMod(texture->t, 140 + (sin(alpha_colour / 6) * 50));
 		++alpha_colour;
 	}
 
@@ -63,7 +66,7 @@ void Fighter::update() {
 		rect.y = pos.y + universe->camera->y + universe->camera->get_offset_y(pos.y);
 		rect.w = 64 * universe->camera->scale; rect.h = 64 * universe->camera->scale;
 		origin.x = rect.w / 2; origin.y = rect.h / 2;
-		SDL_RenderCopyEx(universe->win_manager->renderer, texture->t, &src_rect, &rect, rotation, &origin, flip);
+		universe->renderer->render_transform(texture, &src_rect, &rect, rotation, &origin, flip);
 
 		if (pos.x < universe->camera->min_bounds_x - 400 || pos.x > universe->camera->max_bounds_x + 400 || 
 			pos.y < universe->camera->min_bounds_y - 250 || pos.y > universe->camera->max_bounds_y + 250) {
@@ -82,7 +85,8 @@ void Fighter::update() {
 				invincible = true;
 				alpha_colour = 0;
 				//turn off invincibility after 1 second
-				universe->timer->set_timer([this](void) { invincible = false; SDL_SetTextureAlphaMod(texture->t, 255); }, 2000);
+				universe->timer->set_timer([this](void) { invincible = false; //SDL_SetTextureAlphaMod(texture->t, 255);
+				}, 2000);
 			}, 1500);
 		}
 	}

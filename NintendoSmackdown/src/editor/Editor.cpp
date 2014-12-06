@@ -24,6 +24,4 @@ void Editor::remove() {
 
 void Editor::update() {
 	//update and render code here
-	SDL_RenderCopy(universe->win_manager->renderer, 
-		universe->assets->fighter_sheets[0]->t, NULL, NULL);
 }

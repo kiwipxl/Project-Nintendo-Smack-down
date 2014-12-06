@@ -5,6 +5,7 @@
 #include <SDL_ttf.h>
 #include <iostream>
 #include "../../tools/Universal.h"
+#include "../../renderer/Texture.h"
 
 class Text : Universal {
 
@@ -18,7 +19,7 @@ class Text : Universal {
 		void render_text(std::string font_text, bool smooth = false);
 
 	private:
-		SDL_Texture* font;
+		Texture* font;
 		bool rendered;
 		TTF_Font* square;
 		SDL_Colour colour;

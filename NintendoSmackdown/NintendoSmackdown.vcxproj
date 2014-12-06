@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\SDL2.03\include;$(ProjectDir)..\SDL2Image\include;$(ProjectDir)..\SDL2_ttf\include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)..\SDL2.03\lib\x86;$(ProjectDir)..\SDL2Image\lib\x86;$(ProjectDir)..\SDL2_ttf\lib\x86;</LibraryPath>
+    <IncludePath>$(ProjectDir)..\SDL2.03\include;$(ProjectDir)..\SDL2Image\include;$(ProjectDir)..\SDL2_ttf\include;$(ProjectDir)..\glew-1.11.0\include\GL;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)..\SDL2.03\lib\x86;$(ProjectDir)..\SDL2Image\lib\x86;$(ProjectDir)..\SDL2_ttf\lib\x86;$(ProjectDir)..\glew-1.11.0\lib\Release\Win32</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -53,12 +53,12 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;GLEW_STATIC;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;opengl32.lib;glu32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -79,12 +79,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="glu.dll" />
+    <None Include="glew32.dll" />
     <None Include="libfreetype-6.dll" />
     <None Include="libjpeg-9.dll" />
     <None Include="libpng16-16.dll" />
     <None Include="libtiff-5.dll" />
     <None Include="libwebp-4.dll" />
+    <None Include="msvcp120.dll" />
     <None Include="opengl.dll" />
     <None Include="SDL2.dll" />
     <None Include="SDL2_image.dll" />
@@ -92,10 +93,12 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\particles\Particle.cpp" />
+    <ClCompile Include="src\particles\Particles.cpp" />
     <ClCompile Include="src\particles\ParticleEmitter.cpp" />
     <ClCompile Include="src\particles\ParticleManager.cpp" />
     <ClCompile Include="src\particles\ParticleRenderer.cpp" />
+    <ClCompile Include="src\renderer\BufferObject.cpp" />
+    <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\tools\timer\TimerCallback.cpp" />
     <ClCompile Include="src\ui\MenuUI.cpp" />
     <ClCompile Include="src\ui\GameUI.cpp" />
@@ -122,13 +125,16 @@
     <ClCompile Include="src\Universe.cpp" />
     <ClCompile Include="src\managers\StateManager.cpp" />
     <ClCompile Include="src\map\Tiles.cpp" />
-    <ClCompile Include="src\managers\Texture.cpp" />
+    <ClCompile Include="src\renderer\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\particles\Particle.h" />
+    <ClInclude Include="src\particles\Particles.h" />
     <ClInclude Include="src\particles\ParticleEmitter.h" />
     <ClInclude Include="src\particles\ParticleManager.h" />
     <ClInclude Include="src\particles\ParticleRenderer.h" />
+    <ClInclude Include="src\renderer\BufferObject.h" />
+    <ClInclude Include="src\renderer\Renderer.h" />
+    <ClInclude Include="src\renderer\VertexPoint.h" />
     <ClInclude Include="src\tools\timer\Timer.h" />
     <ClInclude Include="src\tools\timer\TimerCallback.h" />
     <ClInclude Include="src\ui\MenuUI.h" />
@@ -164,7 +170,7 @@
     <ClInclude Include="src\Universe.h" />
     <ClInclude Include="src\managers\StateManager.h" />
     <ClInclude Include="src\map\Tiles.h" />
-    <ClInclude Include="src\managers\Texture.h" />
+    <ClInclude Include="src\renderer\Texture.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

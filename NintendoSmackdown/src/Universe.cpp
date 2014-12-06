@@ -15,6 +15,8 @@ MapParser* Universe::map_parser;
 GameUI* Universe::game_ui;
 MenuUI* Universe::menu_ui;
 TimerCallback* Universe::timer;
+ParticleManager* Universe::particles;
+Renderer* Universe::renderer;
 
 void Universe::initiate() {
 	srand(time(NULL));
@@ -36,10 +38,13 @@ void Universe::initiate() {
 	game_ui = new GameUI();
 	menu_ui = new MenuUI();
 	timer = new TimerCallback();
+	particles = new ParticleManager();
+	renderer = new Renderer();
 
 	win_manager->initiate();
 	assets->initiate();
 	state->initiate();
 	input->initiate();
+	particles->create_particle(new ParticleEmitter(78, 0, 0, 0, false));
 	game_loop->start();
 }

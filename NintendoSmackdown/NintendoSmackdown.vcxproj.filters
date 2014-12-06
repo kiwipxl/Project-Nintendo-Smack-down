@@ -43,9 +43,6 @@
     <ClCompile Include="src\map\Tiles.cpp">
       <Filter>src\map</Filter>
     </ClCompile>
-    <ClCompile Include="src\managers\Texture.cpp">
-      <Filter>src\managers</Filter>
-    </ClCompile>
     <ClCompile Include="src\map\Collision.cpp">
       <Filter>src\map</Filter>
     </ClCompile>
@@ -82,9 +79,6 @@
     <ClCompile Include="src\tools\timer\TimerCallback.cpp">
       <Filter>src\tools\timer</Filter>
     </ClCompile>
-    <ClCompile Include="src\particles\Particle.cpp">
-      <Filter>src\particles</Filter>
-    </ClCompile>
     <ClCompile Include="src\particles\ParticleEmitter.cpp">
       <Filter>src\particles</Filter>
     </ClCompile>
@@ -94,6 +88,16 @@
     <ClCompile Include="src\particles\ParticleRenderer.cpp">
       <Filter>src\particles</Filter>
     </ClCompile>
+    <ClCompile Include="src\particles\Particles.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\Renderer.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\Texture.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\BufferObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -146,9 +150,6 @@
     </ClInclude>
     <ClInclude Include="src\map\Tiles.h">
       <Filter>src\map</Filter>
-    </ClInclude>
-    <ClInclude Include="src\managers\Texture.h">
-      <Filter>src\managers</Filter>
     </ClInclude>
     <ClInclude Include="src\map\Collision.h">
       <Filter>src\map</Filter>
@@ -204,9 +205,6 @@
     <ClInclude Include="src\tools\timer\TimerCallback.h">
       <Filter>src\tools\timer</Filter>
     </ClInclude>
-    <ClInclude Include="src\particles\Particle.h">
-      <Filter>src\particles</Filter>
-    </ClInclude>
     <ClInclude Include="src\particles\ParticleEmitter.h">
       <Filter>src\particles</Filter>
     </ClInclude>
@@ -216,6 +214,17 @@
     <ClInclude Include="src\particles\ParticleRenderer.h">
       <Filter>src\particles</Filter>
     </ClInclude>
+    <ClInclude Include="src\particles\Particles.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\Renderer.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\Texture.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\BufferObject.h" />
+    <ClInclude Include="src\renderer\VertexPoint.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">
@@ -245,12 +254,13 @@
     <None Include="libwebp-4.dll">
       <Filter>lib</Filter>
     </None>
-    <None Include="glu.dll">
-      <Filter>lib</Filter>
-    </None>
     <None Include="opengl.dll">
       <Filter>lib</Filter>
     </None>
+    <None Include="msvcp120.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="glew32.dll" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -297,6 +307,9 @@
     </Filter>
     <Filter Include="src\particles">
       <UniqueIdentifier>{eeec4883-6857-41b8-987f-4ae05936d115}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\renderer">
+      <UniqueIdentifier>{3a1e515b-ea1e-4e7e-a300-9364b588118d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 #define ANIMATOR_H
 
 #include <SDL.h>
-#include "../managers/Texture.h"
+#include "../renderer/Texture.h"
 
 class Animator {
 

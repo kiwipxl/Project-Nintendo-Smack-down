@@ -9,6 +9,7 @@
 #include "managers/StateManager.h"
 #include "map/Camera.h"
 #include "tools/timer/TimerCallback.h"
+#include "renderer/Renderer.h"
 
 class Universe {
 
@@ -20,6 +21,7 @@ class Universe {
 		static InputManager* input;
 		static StateManager* state;
 		static TimerCallback* timer;
+		static Renderer* renderer;
 };
 
 void GameLoop::start() {
@@ -45,12 +47,32 @@ void GameLoop::start() {
 			universe->input->event_update(e);
 		}
 
+		//reset render call variables
+		universe->renderer->render_calls = 0;
+		universe->renderer->transform_render_calls = 0;
+		universe->renderer->vertices_uploaded = 0;
+		universe->renderer->total_render_calls = 0;
+
+		glClear(GL_COLOR_BUFFER_BIT);
+		glMatrixMode(GL_MODELVIEW);
+		glLoadIdentity();
+		std::clock_t start_render = std::clock();
+		universe->timer->update();
+		universe->state->update();
+
+		//update render info
+		universe->debug_ui->update_render_info();
+
+		//swaps back buffer to front buffer
+		SDL_GL_SwapWindow(universe->win_manager->window);
+
+		/**
 		SDL_SetRenderDrawColor(universe->win_manager->renderer, 255, 240, 220, 255);
 		SDL_RenderClear(universe->win_manager->renderer);
 		universe->timer->update();
 		universe->state->update();
 		SDL_RenderPresent(universe->win_manager->renderer);
-		glClear(GL_COLOR_BUFFER_BIT);
+		**/
 
 		//SDL_FillRect(universe->win_manager->screensurface, NULL, SDL_MapRGB(universe->win_manager->screensurface->format, 255, 255, 255));
 		//SDL_UpdateWindowSurface(universe->win_manager->window);

@@ -11,3 +11,7 @@ class Universe {
 ParticleRenderer::ParticleRenderer() {
 
 }
+
+void ParticleRenderer::update_renderer() {
+
+}

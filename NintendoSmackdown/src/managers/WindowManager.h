@@ -2,7 +2,7 @@
 #define WINDOW_MANAGER_H
 
 #include <SDL.h>
-#include <SDL_opengl.h>
+#include <glew.h>
 #include "../tools/Universal.h"
 
 class WindowManager : Universal {

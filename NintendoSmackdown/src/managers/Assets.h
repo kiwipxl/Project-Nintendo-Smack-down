@@ -7,13 +7,12 @@
 #include <vector>
 #include "../tools/Universal.h"
 #include "../map/Node.h"
-#include "Texture.h"
+#include "../renderer/Texture.h"
 
 class Assets : Universal {
 
 	public:
-		vector<SDL_Texture*> textures;
-		vector<SDL_Surface*> surfaces;
+		vector<Texture*> textures;
 		vector<Texture*> tile_sheets;
 		vector<Texture*> fighter_sheets;
 
@@ -27,11 +26,6 @@ class Assets : Universal {
 		loads an image in the assets folder and returns a texture from it
 		**/
 		Texture* load_texture(char* path, bool dispose_surface = true);
-
-		/**
-		loads an image in the assets folder and returns a surface from it
-		**/
-		SDL_Surface* load_surface(char* path);
 
 		/**
 		free memory from all textures loaded
