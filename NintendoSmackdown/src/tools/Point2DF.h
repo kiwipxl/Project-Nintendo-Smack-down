@@ -3,13 +3,13 @@
 
 class Point2DF {
 
-public:
-	Point2DF() {
-		x = y = 0;
-	}
+	public:
+		Point2DF() {
+			x = y = 0;
+		}
 	
-	float x;
-	float y;
+		float x;
+		float y;
 };
 
 #endif

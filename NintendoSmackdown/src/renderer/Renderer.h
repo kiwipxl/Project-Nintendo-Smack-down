@@ -25,7 +25,7 @@ class Renderer {
 	private:
 		Universe* universe;
 		
-		bool set_buffer(Texture* texture, SDL_Rect* src_rect, SDL_Rect* rect);
+		bool set_buffer(Texture* texture, SDL_Rect* src_rect);
 		void draw_buffer(Texture* texture, bool upload_buffer = false);
 };
 

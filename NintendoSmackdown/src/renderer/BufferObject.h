@@ -15,6 +15,8 @@ class BufferObject {
 		VertexPoint* vertex_data;
 		GLuint index_id;
 		GLuint* index_data;
+
+		void free();
 };
 
 #endif

@@ -121,7 +121,7 @@ void Movement::update_movement() {
 										EDGE GRABBING
 	------------------------------------------------------------------------------------------
 	**/
-	//check to see if you can collide_ down on the tile for an edge grab as well as a non solid tile below
+	//check to see if you can collide down on the tile for an edge grab as well as a non solid tile below
 	if (right_collided && !grabbing_edge && gravity >= 0 &&
 		(node = Collision::collide_down(coords.x + 1, coords.y - 1)) && node->solid && node->edgeempty && 
 		Collision::collide_down(coords.x, coords.y) == NULL &&
@@ -194,6 +194,10 @@ void Movement::update_movement() {
 				pos.y = (int)coords.y * 32;
 				double_jump = false;
 				floor_collided = true;
+				//play the landing animation after jumping or landing
+				if (current_move == moves.AIR_LAND || current_move == moves.JUMP || current_move == moves.LAND) {
+					update_move(moves.LAND, 10, false);
+				}
 				//if not doing other actions, idle if speed is low and start running if the speed is fast
 				if (current_move != moves.JUMP && current_move != moves.EDGE_GRAB) {
 					if (current_move != moves.CROUCH || 
@@ -208,10 +212,6 @@ void Movement::update_movement() {
 
 				//change to idle after the landing animation has finished
 				if (animator->paused && current_move == moves.LAND) { update_move(moves.IDLE, 5, true); }
-				//play the landing animation after jumping or landing
-				if (current_move == moves.JUMP || current_move == moves.LAND) {
-					update_move(moves.LAND, 10, false);
-				}
 			}
 
 			//change the move to jump when walked off solid platform
@@ -273,7 +273,7 @@ void Movement::update_movement() {
 	//apply rotation to double jump depending on direction
 	if (current_move == moves.DOUBLE_JUMP) {
 		if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { rotation -= 40; }else { rotation += 40; }
-	}else if (current_move == moves.JUMP && gravity > 0) {
+	}else if (!grabbing_edge && current_move == moves.JUMP && gravity > 0) {
 		update_move(moves.AIR_LAND, 4, false);
 	}
 
@@ -283,7 +283,7 @@ void Movement::update_movement() {
 	------------------------------------------------------------------------------------------
 	**/
 	//if the a key is pressed while idling or running, cycle between punch, kick and rapid punch
-	if (current_move != moves.DASH_ATTACK && current_move != moves.CROUCH) {
+	if (current_move != moves.DASH_ATTACK && current_move != moves.CROUCH && !grabbing_edge) {
 		if (current_move == moves.IDLE || (current_move == moves.RUN && 
 			!right_key->down && !left_key->down)) {
 			if (a_key->pressed) {
@@ -330,7 +330,7 @@ void Movement::update_movement() {
 	**/
 	//if the dash attack is not on cooldown then perform a dash attack when the a is pressed
 	if (!dashing) { ++dash_cooldown_timer; }
-	if (current_move == moves.RUN && dash_cooldown_timer >= DASH_COOLDOWN) {
+	if (current_move == moves.RUN && dash_cooldown_timer >= DASH_COOLDOWN && !grabbing_edge) {
 		if (a_key->pressed) {
 			//apply force depending on flip direction
 			if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { force_x += 10; }else { force_x -= 10; }
@@ -365,7 +365,7 @@ void Movement::update_movement() {
 
 	//if the slide attack is not on cooldown then perform a slide attack when the a is pressed
 	if (!sliding) { ++sliding_cooldown_timer; }
-	if (current_move == moves.CROUCH && sliding_cooldown_timer >= SLIDE_COOLDOWN) {
+	if (current_move == moves.CROUCH && sliding_cooldown_timer >= SLIDE_COOLDOWN && !grabbing_edge) {
 		if (a_key->pressed && down_key->down) {
 			//apply force depending on flip direction
 			if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { force_x += 8; }else { force_x -= 8; }
@@ -390,7 +390,7 @@ void Movement::update_movement() {
 											DOWN AIR KICK
 	------------------------------------------------------------------------------------------
 	**/
-	if (!floor_collided && down_key->down && a_key->pressed && !double_jump && !restrict_input_y) {
+	if (!floor_collided && down_key->down && a_key->pressed && !double_jump && !restrict_input_y && !grabbing_edge) {
 		update_move(moves.AIR_DOWN_KICK, 15, false, true);
 		restrict_input_x = true;
 		restrict_input_y = true;
@@ -410,7 +410,7 @@ void Movement::update_movement() {
 											RIGHT AIR KNEE
 	------------------------------------------------------------------------------------------
 	**/
-	if (!floor_collided && a_key->pressed && !double_jump && !restrict_input_y &&
+	if (!floor_collided && a_key->pressed && !double_jump && !restrict_input_y && !grabbing_edge && 
 		((flip == SDL_RendererFlip::SDL_FLIP_NONE && right_key->down) || 
 		(flip == SDL_RendererFlip::SDL_FLIP_HORIZONTAL && left_key->down))) {
 		update_move(moves.AIR_KNEE, 15, false, true);
@@ -432,7 +432,7 @@ void Movement::update_movement() {
 											AIR SOMERSAULT
 	------------------------------------------------------------------------------------------
 	**/
-	if (!floor_collided && up_key->down && !down_key->pressed && a_key->pressed && 
+	if (!floor_collided && up_key->down && !down_key->pressed && a_key->pressed && !grabbing_edge && 
 		!restrict_input_y && !air_somersault) {
 		update_move(moves.AIR_SOMERSAULT, 10, false, true);
 		restrict_input_x = true;
@@ -454,7 +454,7 @@ void Movement::update_movement() {
 	------------------------------------------------------------------------------------------
 	**/
 	if (!floor_collided && a_key->pressed && !double_jump && !restrict_input_y && 
-		!right_key->down && !left_key->down && !up_key->down) {
+		!right_key->down && !left_key->down && !up_key->down && !grabbing_edge) {
 		update_move(moves.AIR_KICK, 12, false);
 		restrict_input_x = true;
 		restrict_input_y = true;

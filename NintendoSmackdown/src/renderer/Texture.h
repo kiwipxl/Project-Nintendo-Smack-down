@@ -16,11 +16,13 @@ class Texture {
 		GLuint id;
 		SDL_Surface* s;
 		bool created;
-		BufferObject* buffer_object;
+		BufferObject* buffer_object = NULL;
 		SDL_Rect last_src_rect;
-		SDL_Rect last_rect;
+		RGBA last_colour;
 
 		void create_texture(SDL_Surface* surface);
+		void set_colour(float r, float g, float b, float a);
+		void free();
 };
 
 #endif

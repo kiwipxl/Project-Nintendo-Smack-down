@@ -225,6 +225,9 @@
     </ClInclude>
     <ClInclude Include="src\renderer\BufferObject.h" />
     <ClInclude Include="src\renderer\VertexPoint.h" />
+    <ClInclude Include="src\tools\Point3D.h" />
+    <ClInclude Include="src\tools\Point3Df.h" />
+    <ClInclude Include="src\tools\RGBA.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">

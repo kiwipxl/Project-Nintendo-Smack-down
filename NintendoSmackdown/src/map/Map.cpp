@@ -24,8 +24,6 @@ Map::Map() {
 	created = false;
 	grid_width = universe->win_manager->screen_width / 32;
 	grid_height = universe->win_manager->screen_height / 32;
-	grid_width = 100;
-	grid_height = 100;
 }
 
 void Map::create() {
@@ -42,7 +40,7 @@ void Map::create() {
 		for (int y = 0; y < grid_height; ++y) {
 			Node* node = new Node();
 			node->type = Tiles::NONE;
-			if (x >= 4 && y == 14 && x <= grid_width - 4 || x >= 20) {
+			if (x >= 4 && y == 14 && x <= grid_width - 4) {
 				node->type = Tiles::BLOCK; node->solid = true;
 			}
 			if ((x >= 5 && y == 15 && x <= grid_width - 5) ||

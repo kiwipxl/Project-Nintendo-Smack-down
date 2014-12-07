@@ -22,22 +22,29 @@ void Animator::update() {
 	if (!paused) {
 		++fps_counter;
 		if (fps_counter >= fps) {
-			++current_frame;
-			fps_counter = 0;
-			src_rect->x += width;
-			if (src_rect->x > src_width - width) {
-				if (!horizontal_only) {
-					src_rect->y += height;
-					if (src_rect->y > src_height - height) {
-						if (!loop) { src_rect->x -= width; src_rect->y -= height; paused = true; return; }
-						src_rect->y = 0;
-						current_frame = 0;
-					}
-				}else if (!loop) { src_rect->x -= width; paused = true; return; }
-				src_rect->x = 0;
-				if (horizontal_only) { current_frame = 0; }
-			}
+			next_frame();
 		}
+	}
+}
+
+/**
+plays the next frame
+**/
+void Animator::next_frame() {
+	++current_frame;
+	fps_counter = 0;
+	src_rect->x += width;
+	if (src_rect->x > src_width - width) {
+		if (!horizontal_only) {
+			src_rect->y += height;
+			if (src_rect->y > src_height - height) {
+				if (!loop) { src_rect->x -= width; src_rect->y -= height; paused = true; return; }
+				src_rect->y = 0;
+				current_frame = 0;
+			}
+		}else if (!loop) { src_rect->x -= width; paused = true; return; }
+		src_rect->x = 0;
+		if (horizontal_only) { current_frame = 0; }
 	}
 }
 

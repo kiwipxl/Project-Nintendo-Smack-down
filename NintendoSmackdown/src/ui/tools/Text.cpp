@@ -39,7 +39,6 @@ void Text::render_text(std::string font_text, bool smooth) {
 		surface = TTF_RenderText_Solid(square, text.c_str(), colour);
 	}
 
-	if (rendered) { delete font; font = new Texture(); }
 	font->create_texture(surface);
 
 	TTF_SizeText(square, text.c_str(), &rect.w, &rect.h);

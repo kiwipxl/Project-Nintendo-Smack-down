@@ -35,6 +35,11 @@ class Animator {
 		**/
 		void set_fps(int new_fps);
 
+		/**
+		plays the next frame
+		**/
+		void next_frame();
+
 	private:
 		int fps;
 		float fps_counter;

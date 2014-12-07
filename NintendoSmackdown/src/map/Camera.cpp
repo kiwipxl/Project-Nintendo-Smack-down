@@ -41,7 +41,7 @@ void Camera::update() {
 	if (min_x < min_bounds_x) { min_x = min_bounds_x; } if (max_x > max_bounds_x) { max_x = max_bounds_x; }
 	if (min_y < min_bounds_y) { min_y = min_bounds_y; } if (max_y > max_bounds_y) { max_y = max_bounds_y; }
 
-	int dif_x = (min_x + ((max_x - min_x) / 2) - (universe->win_manager->center_x)) * scale;
+	int dif_x = (min_x + ((max_x - min_x) / 2) - (universe->win_manager->center_x - 32)) * scale;
 	int dif_y = (min_y + ((max_y - min_y) / 2) - (universe->win_manager->center_y - 64)) * scale;
 	x -= (x + dif_x) / MOVE_SMOOTHING;
 	y -= (y + dif_y) / MOVE_SMOOTHING;

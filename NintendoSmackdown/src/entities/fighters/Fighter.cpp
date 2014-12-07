@@ -55,7 +55,7 @@ void Fighter::update() {
 	}
 
 	if (invincible) {
-		//SDL_SetTextureAlphaMod(texture->t, 140 + (sin(alpha_colour / 6) * 50));
+		texture->set_colour(1, 1, 1, .25f + ((sin(alpha_colour / 4) + 1) / 2.5f));
 		++alpha_colour;
 	}
 
@@ -85,8 +85,8 @@ void Fighter::update() {
 				invincible = true;
 				alpha_colour = 0;
 				//turn off invincibility after 1 second
-				universe->timer->set_timer([this](void) { invincible = false; //SDL_SetTextureAlphaMod(texture->t, 255);
-				}, 2000);
+				universe->timer->set_timer([this](void) { invincible = false; texture->set_colour(1, 1, 1, 1);
+				}, 2500);
 			}, 1500);
 		}
 	}
