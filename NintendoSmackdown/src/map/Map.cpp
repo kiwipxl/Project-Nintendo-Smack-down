@@ -24,6 +24,8 @@ Map::Map() {
 	created = false;
 	grid_width = universe->win_manager->screen_width / 32;
 	grid_height = universe->win_manager->screen_height / 32;
+	grid_width = 24;
+	grid_height = 24;
 }
 
 void Map::create() {

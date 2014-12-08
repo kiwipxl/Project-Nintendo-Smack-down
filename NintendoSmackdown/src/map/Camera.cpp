@@ -42,10 +42,12 @@ void Camera::update() {
 	if (min_y < min_bounds_y) { min_y = min_bounds_y; } if (max_y > max_bounds_y) { max_y = max_bounds_y; }
 
 	int dif_x = (min_x + ((max_x - min_x) / 2) - (universe->win_manager->center_x - 32)) * scale;
-	int dif_y = (min_y + ((max_y - min_y) / 2) - (universe->win_manager->center_y - 64)) * scale;
+	int dif_y = (min_y + ((max_y - min_y) / 2) - (universe->win_manager->center_y - 32)) * scale;
 	x -= (x + dif_x) / MOVE_SMOOTHING;
 	y -= (y + dif_y) / MOVE_SMOOTHING;
-	scale -= (scale - (1 + ((((min_x + universe->win_manager->center_x) - max_x)) / ZOOM))) / ZOOM_SMOOTHING;
+	scale -= (scale - (1.5f + (((min_x + universe->win_manager->center_x) - max_x) +
+		(min_y - max_x)) / ZOOM)) / ZOOM_SMOOTHING;
+	cout << (min_x + universe->win_manager->center_x) - max_x << "\n";
 	if (scale > MAX_ZOOM) { scale = MAX_ZOOM;
 	}else if (scale < MIN_ZOOM) { scale = MIN_ZOOM; }
 

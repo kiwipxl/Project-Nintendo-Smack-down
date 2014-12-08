@@ -23,7 +23,7 @@ class InputManager : Universal {
 		InputManager() { }
 
 		static const int INPUTS = 4;
-		static const int KEYS = 6;
+		static const int KEYS = 7;
 
 		Key* right_key[INPUTS];
 		Key* left_key[INPUTS];
@@ -32,6 +32,8 @@ class InputManager : Universal {
 
 		Key* a_key[INPUTS];
 		Key* b_key[INPUTS];
+
+		Key* d_key[INPUTS];
 
 		vector<Joystick> joysticks;
 		Key*** allkeys = new Key**[KEYS];

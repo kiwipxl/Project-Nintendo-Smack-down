@@ -104,6 +104,7 @@ class Movement : FighterBase {
 		bool floor_collided;
 		bool right_collided;
 		bool left_collided;
+		bool roof_collided;
 
 		//animation
 		bool lock_move_update;

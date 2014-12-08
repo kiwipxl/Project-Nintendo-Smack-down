@@ -5,6 +5,7 @@
 #include "../managers/WindowManager.h"
 #include "../GameLoop.h"
 #include "../renderer/Renderer.h"
+#include "../input/InputManager.h"
 
 class Universe {
 
@@ -12,9 +13,11 @@ class Universe {
 		static WindowManager* win_manager;
 		static GameLoop* game_loop;
 		static Renderer* renderer;
+		static InputManager* input;
 };
 
 void DebugUI::create() {
+	debugging = true;
 	fps_text = new Text(5, 0, 20, { 0, 0, 0 }, "", true);
 	render_text = new Text(5, 25, 14, { 0, 0, 0 }, "", true);
 	transform_render_text = new Text(5, 42, 14, { 0, 0, 0 }, "", true);
@@ -24,11 +27,17 @@ void DebugUI::create() {
 }
 
 void DebugUI::update() {
-	fps_text->render();
-	render_text->render();
-	transform_render_text->render();
-	vertices_uploaded_text->render();
-	total_renders_text->render();
+	if (debugging) {
+		fps_text->render();
+		render_text->render();
+		transform_render_text->render();
+		vertices_uploaded_text->render();
+		total_renders_text->render();
+	}
+
+	if (universe->input->d_key[0]->pressed) {
+		debugging = !debugging;
+	}
 }
 
 void DebugUI::update_fps_text(int fps) {
@@ -38,21 +47,23 @@ void DebugUI::update_fps_text(int fps) {
 }
 
 void DebugUI::update_render_info() {
-	std::string normal_render_str = "Render calls: ";
-	normal_render_str += std::to_string(universe->renderer->render_calls);
-	render_text->render_text(normal_render_str, true);
+	if (debugging) {
+		std::string normal_render_str = "Render calls: ";
+		normal_render_str += std::to_string(universe->renderer->render_calls);
+		render_text->render_text(normal_render_str, true);
 
-	std::string transform_render_str = "Transformed render calls: ";
-	transform_render_str += std::to_string(universe->renderer->transform_render_calls);
-	transform_render_text->render_text(transform_render_str, true);
+		std::string transform_render_str = "Transformed render calls: ";
+		transform_render_str += std::to_string(universe->renderer->transform_render_calls);
+		transform_render_text->render_text(transform_render_str, true);
 
-	std::string vertices_uploaded_str = "Vertices uploaded to GPU: ";
-	vertices_uploaded_str += std::to_string(universe->renderer->vertices_uploaded);
-	vertices_uploaded_text->render_text(vertices_uploaded_str, true);
+		std::string vertices_uploaded_str = "Vertices uploaded to GPU: ";
+		vertices_uploaded_str += std::to_string(universe->renderer->vertices_uploaded);
+		vertices_uploaded_text->render_text(vertices_uploaded_str, true);
 
-	std::string total_renders_str = "Total render calls: ";
-	total_renders_str += std::to_string(universe->renderer->total_render_calls);
-	total_renders_text->render_text(total_renders_str, true);
+		std::string total_renders_str = "Total render calls: ";
+		total_renders_str += std::to_string(universe->renderer->total_render_calls);
+		total_renders_text->render_text(total_renders_str, true);
+	}
 }
 
 void DebugUI::remove() {

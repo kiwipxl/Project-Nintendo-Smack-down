@@ -26,12 +26,16 @@ class Universe {
 		static Renderer* renderer;
 };
 
-Fighter::Fighter(int x, int y, FighterName fname, FighterType ftype) : Movement(this), Damage(this) {
+Fighter::Fighter(int x, int y, int c_player_id, int c_id, FighterName f_name, FighterType f_type) 
+	: Movement(this), Damage(this) {
 	//setup the moves from the inputted fighter
 	moves = CaptainFalcon();
 
+	player_id = c_player_id;
+	id = c_id;
+
 	pos.x = x; pos.y = y;
-	name = fname; type = ftype;
+	name = f_name; type = f_type;
 	respawning = false;
 	invincible = false;
 
@@ -40,22 +44,29 @@ Fighter::Fighter(int x, int y, FighterName fname, FighterType ftype) : Movement(
 	animator = new Animator(texture, &src_rect, 64, 64, 5, true, true);
 	update_move(moves.JUMP, 10, false);
 	alpha_colour = 0;
+
+	if (id == 1) {
+		texture->set_colour(0, .5f, 1, 1);
+	}
 }
 
 void Fighter::update() {
 	if (type == PLAYER) {
-		left_key = universe->input->left_key[playerid];
-		right_key = universe->input->right_key[playerid];
-		up_key = universe->input->up_key[playerid];
-		down_key = universe->input->down_key[playerid];
-		a_key = universe->input->a_key[playerid];
-		b_key = universe->input->b_key[playerid];
+		left_key = universe->input->left_key[player_id];
+		right_key = universe->input->right_key[player_id];
+		up_key = universe->input->up_key[player_id];
+		down_key = universe->input->down_key[player_id];
+		a_key = universe->input->a_key[player_id];
+		b_key = universe->input->b_key[player_id];
 	}else {
 		//TODO implement ai here
 	}
 
 	if (invincible) {
 		texture->set_colour(1, 1, 1, .25f + ((sin(alpha_colour / 4) + 1) / 2.5f));
+		if (id == 1) {
+			texture->set_colour(0, .5f, 1, .25f + ((sin(alpha_colour / 4) + 1) / 2.5f));
+		}
 		++alpha_colour;
 	}
 
@@ -86,6 +97,9 @@ void Fighter::update() {
 				alpha_colour = 0;
 				//turn off invincibility after 1 second
 				universe->timer->set_timer([this](void) { invincible = false; texture->set_colour(1, 1, 1, 1);
+					if (id == 1) {
+						texture->set_colour(0, .5f, 1, 1);
+					}
 				}, 2500);
 			}, 1500);
 		}

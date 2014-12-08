@@ -35,7 +35,6 @@ Movement::Movement(Fighter* parent) {
 	restrict_input_x = false;
 	restrict_input_y = false;
 	dashing = false;
-	floor_collided = false;
 	sliding = false;
 	down_air_kick = false;
 	right_air_knee = false;
@@ -92,8 +91,10 @@ void Movement::update_movement() {
 		}
 	}
 
+	floor_collided = false;
 	right_collided = false;
 	left_collided = false;
+	roof_collided = false;
 
 	//check for left and right tile collision
 	if ((node = Collision::collide_right(coords.x, coords.y)) && node->solid) {
@@ -232,6 +233,7 @@ void Movement::update_movement() {
 		if (gravity < 0 && (node = Collision::collide_up(coords.x, coords.y)) && node->solid) {
 			gravity = 0;
 			pos.y = ((int)coords.y + 1) * 32;
+			roof_collided = true;
 		}
 	}
 
@@ -251,7 +253,7 @@ void Movement::update_movement() {
 	}
 
 	//double jumps and hold for higher jumps
-	if (up_key->down && !restrict_input_y) {
+	if (up_key->down && !restrict_input_y && !roof_collided) {
 		//if the up key is down after jumping once then apply a double jump
 		if (up_key->pressed && !double_jump) {
 			gravity = -jump_height / 8;
@@ -434,7 +436,7 @@ void Movement::update_movement() {
 	**/
 	if (!floor_collided && up_key->down && !down_key->pressed && a_key->pressed && !grabbing_edge && 
 		!restrict_input_y && !air_somersault) {
-		update_move(moves.AIR_SOMERSAULT, 10, false, true);
+		update_move(moves.AIR_SOMERSAULT, 15, false, true);
 		restrict_input_x = true;
 		restrict_input_y = true;
 		air_somersault = true;
@@ -533,8 +535,8 @@ void Movement::add_flip_force(SDL_RendererFlip newflip, float forcemultiplierx, 
 adds force depending on health
 **/
 void Movement::add_force(float forcemultiplierx, float forcemultipliery) {
-	force_x += ((base_parent->health / 100.f) + 1) * forcemultiplierx;
-	gravity -= ((base_parent->health / 100.f) + 1) * forcemultipliery;
+	force_x += ((base_parent->health / 50.f) + 1) * forcemultiplierx;
+	gravity -= ((base_parent->health / 50.f) + 1) * forcemultipliery;
 	if (grabbing_edge) {
 		grabbing_edge = false; edge_node->edgeempty = true; edge_node = nullptr; update_move(moves.JUMP, 10, false);
 	}

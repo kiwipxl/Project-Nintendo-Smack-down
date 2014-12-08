@@ -26,7 +26,7 @@ class Universe {
 
 void GameLoop::start() {
 	ms_per_frame = 1000 / fps;
-	start_second_time = std::clock();
+	start_second_time = 0;
 
 	SDL_JoystickEventState(SDL_ENABLE);
 
@@ -66,17 +66,6 @@ void GameLoop::start() {
 		//swaps back buffer to front buffer
 		SDL_GL_SwapWindow(universe->win_manager->window);
 
-		/**
-		SDL_SetRenderDrawColor(universe->win_manager->renderer, 255, 240, 220, 255);
-		SDL_RenderClear(universe->win_manager->renderer);
-		universe->timer->update();
-		universe->state->update();
-		SDL_RenderPresent(universe->win_manager->renderer);
-		**/
-
-		//SDL_FillRect(universe->win_manager->screensurface, NULL, SDL_MapRGB(universe->win_manager->screensurface->format, 255, 255, 255));
-		//SDL_UpdateWindowSurface(universe->win_manager->window);
-
 		double ms = std::clock() - start_time;
 		if (ms >= 0 && ms < ms_per_frame - 1) { Sleep(floor(ms_per_frame - ms - 1)); }
 
@@ -88,8 +77,4 @@ void GameLoop::start() {
 			start_second_time = std::clock();
 		}
 	}
-
-	universe->assets->free_textures();
-	SDL_DestroyWindow(universe->win_manager->window);
-	SDL_Quit();
 }

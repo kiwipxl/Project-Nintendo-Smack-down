@@ -11,9 +11,9 @@ class EntityManager : Universal {
 		EntityManager();
 		
 		vector<Fighter*> fighters;
-		int playerscreated;
+		int players_created;
 		
-		Fighter* create_fighter(int x, int y, FighterName fname, FighterType ftype);
+		Fighter* create_fighter(int x, int y, FighterName f_name, FighterType f_type);
 
 		void update();
 };

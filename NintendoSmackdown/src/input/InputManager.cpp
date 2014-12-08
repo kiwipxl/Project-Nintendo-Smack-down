@@ -15,6 +15,7 @@ void InputManager::initiate() {
 	allkeys[3] = down_key;
 	allkeys[4] = a_key;
 	allkeys[5] = b_key;
+	allkeys[6] = d_key;
 
 	for (int n = 0; n < KEYS; ++n) {
 		for (int i = 0; i < INPUTS; ++i) {
@@ -29,6 +30,7 @@ void InputManager::initiate() {
 	down_key[0]->set_key(SDLK_DOWN, KEYBOARD);
 	a_key[0]->set_key(SDLK_z, KEYBOARD);
 	b_key[0]->set_key(SDLK_x, KEYBOARD);
+	d_key[0]->set_key(SDLK_d, KEYBOARD);
 
 	//default p2 joystick buttons
 	right_key[1]->set_key(13, JOY_BUTTON);
@@ -39,10 +41,12 @@ void InputManager::initiate() {
 	b_key[1]->set_key(1, JOY_BUTTON);
 
 	//default p2 joystick axis
+	/**
 	right_key[1]->set_key(JOY_AXIS_RIGHT, JOY_AXIS);
 	left_key[1]->set_key(JOY_AXIS_LEFT, JOY_AXIS);
 	up_key[1]->set_key(JOY_AXIS_UP, JOY_AXIS);
 	down_key[1]->set_key(JOY_AXIS_DOWN, JOY_AXIS);
+	**/
 
 	/**
 	//default p2 joystick hat

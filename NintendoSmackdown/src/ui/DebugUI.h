@@ -11,6 +11,8 @@ class DebugUI : Universal {
 		void update();
 		void remove();
 
+		bool debugging;
+
 		void update_fps_text(int fps);
 		void update_render_info();
 

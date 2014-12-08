@@ -103,7 +103,6 @@ bool Renderer::set_buffer(Texture* texture, SDL_Rect* src_rect) {
 		v[0].colour.b != texture->last_colour.b || 
 		v[0].colour.a != texture->last_colour.a) {
 		has_changed = true;
-		cout << "id: " << v[0].colour.a << "\n";
 		texture->last_colour.r = v[0].colour.r;
 		texture->last_colour.g = v[0].colour.g;
 		texture->last_colour.b = v[0].colour.b;

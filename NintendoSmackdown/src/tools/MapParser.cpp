@@ -50,7 +50,12 @@ void MapParser::parse(string data) {
 		if (data[i] == '\r' && data[i + 1] == '\n') {
 			x = 0; ++y; ++i;
 		}else if (data[i] != ',' && data[i] != ' ') {
-			universe->map->nodes[x][y]->type = Tiles::types[data[i] - 48];
+			if (data[i] - 48 >= 0) {
+				universe->map->nodes[x][y]->type = Tiles::types[data[i] - 48];
+				bool solid = true;
+				if (data[i] - 48 == 0) { solid = false; }
+				universe->map->nodes[x][y]->solid = solid;
+			}
 			++x;
 		}
 	}

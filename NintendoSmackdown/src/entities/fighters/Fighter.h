@@ -20,10 +20,10 @@ enum FighterType {
 class Fighter : Universal, public Movement, public Damage {
 
 	public:
-		Fighter(int x, int y, FighterName fname, FighterType ftype);
+		Fighter(int x, int y, int c_player_id, int c_id, FighterName f_name, FighterType f_type);
 
 		int id;
-		int playerid;
+		int player_id;
 		FighterName name;
 		FighterType type;
 		bool respawning;
