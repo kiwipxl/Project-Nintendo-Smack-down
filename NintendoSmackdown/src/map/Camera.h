@@ -28,7 +28,7 @@ class Camera : Universal {
 	private:
 		const int ZOOM_SMOOTHING = 10;
 		const int MOVE_SMOOTHING = 5;
-		const float ZOOM = 500.f;
+		const float ZOOM = 1000.f;
 		const float MAX_ZOOM = 2;
 		const float MIN_ZOOM = .8f;
 };

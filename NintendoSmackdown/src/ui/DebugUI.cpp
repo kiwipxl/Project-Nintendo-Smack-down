@@ -6,6 +6,7 @@
 #include "../GameLoop.h"
 #include "../renderer/Renderer.h"
 #include "../input/InputManager.h"
+#include "../particles/ParticleManager.h"
 
 class Universe {
 
@@ -14,6 +15,7 @@ class Universe {
 		static GameLoop* game_loop;
 		static Renderer* renderer;
 		static InputManager* input;
+		static ParticleManager* particles;
 };
 
 void DebugUI::create() {
@@ -23,6 +25,9 @@ void DebugUI::create() {
 	transform_render_text = new Text(5, 42, 14, { 0, 0, 0 }, "", true);
 	vertices_uploaded_text = new Text(5, 60, 14, { 0, 0, 0 }, "", true);
 	total_renders_text = new Text(5, 80, 14, { 0, 0, 0 }, "", true);
+	particles_drawn_text = new Text(5, 99, 14, { 0, 0, 0 }, "", true);
+	particles_uploaded_text = new Text(5, 118, 14, { 0, 0, 0 }, "", true);
+	particle_chunks_text = new Text(5, 137, 14, { 0, 0, 0 }, "", true);
 	std::cout << "debug_ui created\n";
 }
 
@@ -33,6 +38,9 @@ void DebugUI::update() {
 		transform_render_text->render();
 		vertices_uploaded_text->render();
 		total_renders_text->render();
+		particles_drawn_text->render();
+		particles_uploaded_text->render();
+		particle_chunks_text->render();
 	}
 
 	if (universe->input->d_key[0]->pressed) {
@@ -48,21 +56,34 @@ void DebugUI::update_fps_text(int fps) {
 
 void DebugUI::update_render_info() {
 	if (debugging) {
-		std::string normal_render_str = "Render calls: ";
-		normal_render_str += std::to_string(universe->renderer->render_calls);
-		render_text->render_text(normal_render_str, true);
+		std::string str;
+		str = "Render calls: ";
+		str += std::to_string(universe->renderer->render_calls);
+		render_text->render_text(str, true);
 
-		std::string transform_render_str = "Transformed render calls: ";
-		transform_render_str += std::to_string(universe->renderer->transform_render_calls);
-		transform_render_text->render_text(transform_render_str, true);
+		str = "Transformed render calls: ";
+		str += std::to_string(universe->renderer->transform_render_calls);
+		transform_render_text->render_text(str, true);
 
-		std::string vertices_uploaded_str = "Vertices uploaded to GPU: ";
-		vertices_uploaded_str += std::to_string(universe->renderer->vertices_uploaded);
-		vertices_uploaded_text->render_text(vertices_uploaded_str, true);
+		str = "Vertices uploaded: ";
+		str += std::to_string(universe->renderer->vertices_uploaded);
+		vertices_uploaded_text->render_text(str, true);
 
-		std::string total_renders_str = "Total render calls: ";
-		total_renders_str += std::to_string(universe->renderer->total_render_calls);
-		total_renders_text->render_text(total_renders_str, true);
+		str = "Total render calls: ";
+		str += std::to_string(universe->renderer->total_render_calls);
+		total_renders_text->render_text(str, true);
+
+		str = "Particles drawn: ";
+		str += std::to_string(universe->particles->particles_drawn);
+		particles_drawn_text->render_text(str, true);
+
+		str = "Particles uploaded: ";
+		str += std::to_string(universe->particles->particles_uploaded);
+		particles_uploaded_text->render_text(str, true);
+
+		str = "Particle chunks: ";
+		str += std::to_string(universe->particles->particle_chunks.size());
+		particle_chunks_text->render_text(str, true);
 	}
 }
 
@@ -72,4 +93,7 @@ void DebugUI::remove() {
 	delete transform_render_text;
 	delete vertices_uploaded_text;
 	delete total_renders_text;
+	delete particles_drawn_text;
+	delete particles_uploaded_text;
+	delete particle_chunks_text;
 }

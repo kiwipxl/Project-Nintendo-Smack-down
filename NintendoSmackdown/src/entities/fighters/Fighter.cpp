@@ -11,6 +11,7 @@
 #include "../../tools/timer/TimerCallback.h"
 #include "../../ui/GameUI.h"
 #include "../../renderer/Renderer.h"
+#include "../../particles/ParticleManager.h"
 
 class Universe {
 
@@ -24,6 +25,7 @@ class Universe {
 		static TimerCallback* timer;
 		static GameUI* game_ui;
 		static Renderer* renderer;
+		static ParticleManager* particles;
 };
 
 Fighter::Fighter(int x, int y, int c_player_id, int c_id, FighterName f_name, FighterType f_type) 
@@ -38,6 +40,7 @@ Fighter::Fighter(int x, int y, int c_player_id, int c_id, FighterName f_name, Fi
 	name = f_name; type = f_type;
 	respawning = false;
 	invincible = false;
+	enable_camera_view = true;
 
 	texture = new Texture();
 	texture->create_texture(universe->assets->fighter_sheets[0]->s);
@@ -48,9 +51,19 @@ Fighter::Fighter(int x, int y, int c_player_id, int c_id, FighterName f_name, Fi
 	if (id == 1) {
 		texture->set_colour(0, .5f, 1, 1);
 	}
+
+	blood_particles = universe->particles->create_particle_chunk(
+		new ParticleEmitter(pos.x + 80, pos.y + 64, 10, 1, 4, false), BLOOD);
+	blood_particles->max_particles = 0;
 }
 
 void Fighter::update() {
+	if (health >= 100) {
+		blood_particles->max_particles = 4;
+		blood_particles->spawn_x = pos.x + 80;
+		blood_particles->spawn_y = pos.y + 64;
+	}
+
 	if (type == PLAYER) {
 		left_key = universe->input->left_key[player_id];
 		right_key = universe->input->right_key[player_id];
@@ -79,18 +92,29 @@ void Fighter::update() {
 		origin.x = rect.w / 2; origin.y = rect.h / 2;
 		universe->renderer->render_transform(texture, &src_rect, &rect, rotation, &origin, flip);
 
-		if (pos.x < universe->camera->min_bounds_x - 400 || pos.x > universe->camera->max_bounds_x + 400 || 
-			pos.y < universe->camera->min_bounds_y - 250 || pos.y > universe->camera->max_bounds_y + 250) {
+		int min_bounds_x = universe->camera->min_bounds_x - 250;
+		int max_bounds_x = universe->camera->max_bounds_x + 300;
+		int min_bounds_y = universe->camera->min_bounds_y - 250;
+		int max_bounds_y = universe->camera->max_bounds_y + 250;
+		if (pos.x < min_bounds_x || pos.x > max_bounds_x || pos.y < min_bounds_y || pos.y > max_bounds_y) {
+			int p_x = pos.x; int p_y = pos.y;
+			if (p_x < min_bounds_x) { p_x = min_bounds_x; }else if (p_x > max_bounds_x) { p_x = max_bounds_x; }
+			if (p_y < min_bounds_y) { p_y = min_bounds_y; }else if (p_y > max_bounds_y) { p_y = max_bounds_y; }
+
+			universe->particles->create_particle_chunk(new ParticleEmitter(p_x, p_y, 
+																		   0, 250, 250, true), CLOUD);
+
 			respawning = true;
 			health = 0;
 			universe->game_ui->update_damage_text(id, health);
 
-			//respawn after 1.5 seconds
+			//respawn after 2.5 seconds
 			universe->timer->set_timer([this](void) {
 				current_move = moves.IDLE;
 				rotation = 0;
 				gravity = 0;
 				respawning = false;
+				enable_camera_view = true;
 				pos.x = 100 + (rand() % (universe->map->map_width - 400));
 				pos.y = -150;
 				invincible = true;
@@ -101,6 +125,13 @@ void Fighter::update() {
 						texture->set_colour(0, .5f, 1, 1);
 					}
 				}, 2500);
+			}, 2500);
+
+			//turn off camera view after 1.5 seconds
+			universe->timer->set_timer([this](void) {
+				if (respawning) {
+					enable_camera_view = false;
+				}
 			}, 1500);
 		}
 	}

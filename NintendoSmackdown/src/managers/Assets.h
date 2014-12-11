@@ -19,6 +19,7 @@ class Assets : Universal {
 		Texture* background_tiles;
 		Texture* menu_boxes_sheet;
 		Texture* menu_background;
+		Texture* particle_sheet;
 
 		void initiate();
 

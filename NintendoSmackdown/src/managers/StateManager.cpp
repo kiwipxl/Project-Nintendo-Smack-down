@@ -108,8 +108,8 @@ void StateManager::update() {
 			universe->camera->update();
 			universe->map->update();
 			universe->entity_manager->update();
-			universe->game_ui->update();
 			universe->particles->update();
+			universe->game_ui->update();
 			break;
 		case EDITOR:
 			universe->editor->update();

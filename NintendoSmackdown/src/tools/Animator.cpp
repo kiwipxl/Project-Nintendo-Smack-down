@@ -38,11 +38,12 @@ void Animator::next_frame() {
 		if (!horizontal_only) {
 			src_rect->y += height;
 			if (src_rect->y > src_height - height) {
-				if (!loop) { src_rect->x -= width; src_rect->y -= height; paused = true; return; }
+				if (!loop) { ++looped; src_rect->x -= width; src_rect->y -= height; paused = true; return; }
 				src_rect->y = 0;
 				current_frame = 0;
+				++looped;
 			}
-		}else if (!loop) { src_rect->x -= width; paused = true; return; }
+		}else if (!loop) { ++looped; src_rect->x -= width; paused = true; return; }
 		src_rect->x = 0;
 		if (horizontal_only) { current_frame = 0; }
 	}
@@ -52,6 +53,7 @@ void Animator::next_frame() {
 updates the animator with a new texture and width/height
 **/
 void Animator::update_texture(Texture* c_t, int c_width, int c_height, int frames_x, int frames_y) {
+	looped = 0;
 	fps_counter = 0;
 	current_frame = 0;
 	width = c_width;

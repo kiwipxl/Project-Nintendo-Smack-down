@@ -1,22 +1,22 @@
-﻿Build started 8/12/2014 11:21:11 PM.
+﻿Build started 12/12/2014 1:03:58 AM.
      1>Project "C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\NintendoSmackdown\NintendoSmackdown.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GLEW_STATIC /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\map\Camera.cpp
-         Camera.cpp
-     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(27): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(28): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(29): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(30): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(44): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\camera.cpp(45): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D GLEW_STATIC /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt src\map\Map.cpp
+         Map.cpp
+     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(74): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(75): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(87): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
+     1>c:\users\flynnuser\desktop\development\c++ projects\nintendosmackdown\project-nintendo-smack-down\nintendosmackdown\src\map\map.cpp(90): warning C4244: '=' : conversion from 'float' to 'int', possible loss of data
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib opengl32.lib glew32s.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.lib" /MACHINE:X86 Debug\Particles.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe" /INCREMENTAL:NO /NOLOGO SDL2.lib SDL2main.lib SDL2_image.lib SDL2_ttf.lib opengl32.lib glew32s.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.lib" /MACHINE:X86 Debug\ParticleMovement.obj
+         Debug\ParticleController.obj
          Debug\ParticleEmitter.obj
          Debug\ParticleManager.obj
          Debug\ParticleRenderer.obj
          Debug\BufferObject.obj
          Debug\Renderer.obj
          Debug\TimerCallback.obj
+         Debug\DropdownBox.obj
          Debug\MenuUI.obj
          Debug\GameUI.obj
          Debug\Camera.obj
@@ -43,13 +43,27 @@
          Debug\StateManager.obj
          Debug\Tiles.obj
          Debug\Texture.obj
-     1>Particles.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+     1>ParticleMovement.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
      1>LINK : warning LNK4098: defaultlib 'LIBCMT' conflicts with use of other libs; use /NODEFAULTLIB:library
      1>MSVCRTD.lib(cinitexe.obj) : warning LNK4098: defaultlib 'msvcrt.lib' conflicts with use of other libs; use /NODEFAULTLIB:library
+     1>Texture.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'Texture.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>Tiles.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'Tiles.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>Universal.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'Universal.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>MapParser.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'MapParser.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>ImageTools.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'ImageTools.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>WindowManager.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'WindowManager.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>Assets.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'Assets.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>MouseManager.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'MouseManager.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>InputManager.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'InputManager.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>Editor.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'Editor.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>Collision.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'Collision.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>TimerCallback.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'TimerCallback.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>Renderer.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'Renderer.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
+     1>BufferObject.obj : warning LNK4099: PDB 'vc120.pdb' was not found with 'BufferObject.obj' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
      1>glew32s.lib(glew.obj) : warning LNK4099: PDB 'vc120.pdb' was not found with 'glew32s.lib(glew.obj)' or at 'C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\vc120.pdb'; linking object as if no debug info
          NintendoSmackdown.vcxproj -> C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\Debug\NintendoSmackdown.exe
      1>Done Building Project "C:\Users\FlynnUser\Desktop\Development\C++ Projects\NintendoSmackdown\Project-Nintendo-Smack-down\NintendoSmackdown\NintendoSmackdown.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.10
+Time Elapsed 00:00:01.11

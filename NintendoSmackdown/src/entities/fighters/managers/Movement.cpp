@@ -205,7 +205,7 @@ void Movement::update_movement() {
 						(current_move == moves.CROUCH && !down_key->down)) {
 						if (speed_x >= 1 || speed_x <= -1) {
 							update_move(moves.RUN, 15, true);
-						}else if (current_move != moves.LAND) {
+						}else if (current_move != moves.LAND && current_move != moves.HIT) {
 							update_move(moves.IDLE, 5, true);
 						}
 					}
@@ -488,12 +488,13 @@ void Movement::update_movement() {
 	pos.x += force_x;
 
 	//if the animation is locked and has looped once then unlock it
-	if (lock_move_update && animator->paused) {
+	if ((lock_move_update || current_move == moves.HIT) && animator->looped >= 1) {
 		lock_move_update = false;
 		if (current_move == moves.HIT) {
-			if (!floor_collided) { update_move(moves.JUMP, 10, false); }
-			restrict_input_x = false;
-			restrict_input_y = false;
+			if (!floor_collided) { update_move(moves.JUMP, 10, false);
+			}else { update_move(moves.IDLE, 5, true); }
+			//restrict_input_x = false;
+			//restrict_input_y = false;
 		}
 	}
 
@@ -535,12 +536,14 @@ void Movement::add_flip_force(SDL_RendererFlip newflip, float forcemultiplierx, 
 adds force depending on health
 **/
 void Movement::add_force(float forcemultiplierx, float forcemultipliery) {
-	force_x += ((base_parent->health / 50.f) + 1) * forcemultiplierx;
-	gravity -= ((base_parent->health / 50.f) + 1) * forcemultipliery;
+	force_x += ((base_parent->health / 100.f) + 1) * forcemultiplierx;
+	gravity += ((base_parent->health / 100.f) + 1) * forcemultipliery;
+	pos.x += force_x;
+	pos.y += gravity;
 	if (grabbing_edge) {
 		grabbing_edge = false; edge_node->edgeempty = true; edge_node = nullptr; update_move(moves.JUMP, 10, false);
 	}
-	update_move(moves.HIT, 5, false, true);
-	restrict_input_x = true;
-	restrict_input_y = true;
+	update_move(moves.HIT, 5, false);
+	//restrict_input_x = true;
+	//restrict_input_y = true;
 }

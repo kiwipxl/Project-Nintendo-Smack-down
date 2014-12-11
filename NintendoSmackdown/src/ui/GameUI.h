@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "../tools/Universal.h"
-#include "tools/Text.h"
+#include "components/Text.h"
 
 class GameUI : Universal {
 

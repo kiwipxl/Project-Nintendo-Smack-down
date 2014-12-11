@@ -45,6 +45,5 @@ void Universe::initiate() {
 	assets->initiate();
 	state->initiate();
 	input->initiate();
-	particles->create_particle(new ParticleEmitter(78, 0, 0, 0, false));
 	game_loop->start();
 }

@@ -17,6 +17,8 @@ enum FighterType {
 	HARDAI
 };
 
+class ParticleController;
+
 class Fighter : Universal, public Movement, public Damage {
 
 	public:
@@ -29,11 +31,13 @@ class Fighter : Universal, public Movement, public Damage {
 		bool respawning;
 		bool invincible;
 		Texture* texture;
+		bool enable_camera_view;
 
 		void update();
 
 	private:
 		float alpha_colour;
+		ParticleController* blood_particles;
 };
 
 #endif

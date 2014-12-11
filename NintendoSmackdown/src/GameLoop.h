@@ -10,7 +10,7 @@ class GameLoop : Universal {
 
 	public:
 		GameLoop() {
-			fps = 60;
+			fps = 90;
 			ms_per_frame = 0;
 			quit = false;
 		}

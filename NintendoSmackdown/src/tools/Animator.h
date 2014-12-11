@@ -19,6 +19,7 @@ class Animator {
 		bool paused = false;
 		Texture* t;
 		bool horizontal_only;
+		int looped;
 
 		/**
 		updates the animator and adds 1 to the fps counter which changes the srcrect position

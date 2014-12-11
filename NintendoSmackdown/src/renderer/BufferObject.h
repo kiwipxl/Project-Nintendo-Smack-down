@@ -3,14 +3,16 @@
 
 #include <SDL.h>
 #include <glew.h>
+#include <vector>
 #include "VertexPoint.h"
 
 class BufferObject {
 
 	public:
-		BufferObject();
+		BufferObject(int c_buffer_size = 4);
 		~BufferObject();
 
+		int buffer_size;
 		GLuint vertex_id;
 		VertexPoint* vertex_data;
 		GLuint index_id;

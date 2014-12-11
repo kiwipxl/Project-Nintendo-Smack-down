@@ -12,7 +12,7 @@ Renderer::Renderer() {
 
 }
 
-void Renderer::render(Texture* texture, SDL_Rect* src_rect, SDL_Rect* rect) {
+void Renderer::render(Texture* texture, SDL_Rect* src_rect, SDL_Rect* rect, bool c_set_buffer) {
 	if (texture->created) {
 		if (rect->x + rect->w < 0 || rect->y + rect->h < 0 || 
 			rect->x > universe->win_manager->screen_width || rect->y > universe->win_manager->screen_height) {
@@ -24,14 +24,16 @@ void Renderer::render(Texture* texture, SDL_Rect* src_rect, SDL_Rect* rect) {
 		glTranslatef(rect->x, rect->y, 0);
 		glScalef(rect->w / texture->width, rect->h / texture->height, 1);
 
-		draw_buffer(texture, set_buffer(texture, src_rect));
+		bool upload_buffer = false;
+		if (c_set_buffer) { upload_buffer = set_buffer(texture, src_rect); }
+		draw_buffer(texture, upload_buffer);
 
 		++render_calls;
 	}
 }
 
 void Renderer::render_transform(Texture* texture, SDL_Rect* src_rect, SDL_Rect* rect,
-								float angle, SDL_Point* origin, SDL_RendererFlip flip) {
+								float angle, SDL_Point* origin, SDL_RendererFlip flip, bool c_set_buffer) {
 	if (texture->created) {
 		if (rect->x + rect->w < 0 || rect->y + rect->h < 0 ||
 			rect->x > universe->win_manager->screen_width || rect->y > universe->win_manager->screen_height) {
@@ -58,7 +60,9 @@ void Renderer::render_transform(Texture* texture, SDL_Rect* src_rect, SDL_Rect* 
 				break;
 		}
 
-		draw_buffer(texture, set_buffer(texture, src_rect));
+		bool upload_buffer = false;
+		if (c_set_buffer) { upload_buffer = set_buffer(texture, src_rect); }
+		draw_buffer(texture, upload_buffer);
 
 		++transform_render_calls;
 	}
@@ -100,7 +104,7 @@ bool Renderer::set_buffer(Texture* texture, SDL_Rect* src_rect) {
 
 	if (v[0].colour.r != texture->last_colour.r ||
 		v[0].colour.g != texture->last_colour.g ||
-		v[0].colour.b != texture->last_colour.b || 
+		v[0].colour.b != texture->last_colour.b ||
 		v[0].colour.a != texture->last_colour.a) {
 		has_changed = true;
 		texture->last_colour.r = v[0].colour.r;
@@ -121,7 +125,7 @@ void Renderer::draw_buffer(Texture* texture, bool upload_buffer) {
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, texture->buffer_object->vertex_id);
 		if (upload_buffer) {
-			glBufferSubData(GL_ARRAY_BUFFER, 0, 4 * sizeof(VertexPoint), texture->buffer_object->vertex_data);
+			glBufferSubData(GL_ARRAY_BUFFER, 0, texture->buffer_object->buffer_size * sizeof(VertexPoint), texture->buffer_object->vertex_data);
 			++vertices_uploaded;
 		}
 
@@ -130,7 +134,7 @@ void Renderer::draw_buffer(Texture* texture, bool upload_buffer) {
 		glColorPointer(4, GL_FLOAT, sizeof(VertexPoint), (GLvoid*)offsetof(VertexPoint, colour));
 
 		glBindBuffer(GL_ARRAY_BUFFER, texture->buffer_object->index_id);
-		glDrawElements(GL_QUADS, 4, GL_UNSIGNED_INT, texture->buffer_object->index_data);
+		glDrawElements(GL_QUADS, texture->buffer_object->buffer_size, GL_UNSIGNED_INT, texture->buffer_object->index_data);
 	}
 
 	glDisableClientState(GL_VERTEX_ARRAY);

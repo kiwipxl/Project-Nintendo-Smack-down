@@ -64,9 +64,6 @@
     <ClCompile Include="src\ui\GameUI.cpp">
       <Filter>src\ui</Filter>
     </ClCompile>
-    <ClCompile Include="src\ui\tools\Text.cpp">
-      <Filter>src\ui\tools</Filter>
-    </ClCompile>
     <ClCompile Include="src\ui\DebugUI.cpp">
       <Filter>src\ui</Filter>
     </ClCompile>
@@ -79,16 +76,7 @@
     <ClCompile Include="src\tools\timer\TimerCallback.cpp">
       <Filter>src\tools\timer</Filter>
     </ClCompile>
-    <ClCompile Include="src\particles\ParticleEmitter.cpp">
-      <Filter>src\particles</Filter>
-    </ClCompile>
     <ClCompile Include="src\particles\ParticleManager.cpp">
-      <Filter>src\particles</Filter>
-    </ClCompile>
-    <ClCompile Include="src\particles\ParticleRenderer.cpp">
-      <Filter>src\particles</Filter>
-    </ClCompile>
-    <ClCompile Include="src\particles\Particles.cpp">
       <Filter>src\particles</Filter>
     </ClCompile>
     <ClCompile Include="src\renderer\Renderer.cpp">
@@ -97,7 +85,23 @@
     <ClCompile Include="src\renderer\Texture.cpp">
       <Filter>src\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\renderer\BufferObject.cpp" />
+    <ClCompile Include="src\particles\ParticleController.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\renderer\BufferObject.cpp">
+      <Filter>src\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particles\components\ParticleRenderer.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particles\components\ParticleEmitter.cpp">
+      <Filter>src\particles</Filter>
+    </ClCompile>
+    <ClCompile Include="src\particles\components\ParticleMovement.cpp" />
+    <ClCompile Include="src\ui\components\Text.cpp">
+      <Filter>src\ui\tools</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ui\components\DropdownBox.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -178,9 +182,6 @@
     <ClInclude Include="src\ui\GameUI.h">
       <Filter>src\ui</Filter>
     </ClInclude>
-    <ClInclude Include="src\ui\tools\Text.h">
-      <Filter>src\ui\tools</Filter>
-    </ClInclude>
     <ClInclude Include="src\ui\DebugUI.h">
       <Filter>src\ui</Filter>
     </ClInclude>
@@ -205,16 +206,7 @@
     <ClInclude Include="src\tools\timer\TimerCallback.h">
       <Filter>src\tools\timer</Filter>
     </ClInclude>
-    <ClInclude Include="src\particles\ParticleEmitter.h">
-      <Filter>src\particles</Filter>
-    </ClInclude>
     <ClInclude Include="src\particles\ParticleManager.h">
-      <Filter>src\particles</Filter>
-    </ClInclude>
-    <ClInclude Include="src\particles\ParticleRenderer.h">
-      <Filter>src\particles</Filter>
-    </ClInclude>
-    <ClInclude Include="src\particles\Particles.h">
       <Filter>src\particles</Filter>
     </ClInclude>
     <ClInclude Include="src\renderer\Renderer.h">
@@ -223,11 +215,39 @@
     <ClInclude Include="src\renderer\Texture.h">
       <Filter>src\renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\renderer\BufferObject.h" />
-    <ClInclude Include="src\renderer\VertexPoint.h" />
-    <ClInclude Include="src\tools\Point3D.h" />
-    <ClInclude Include="src\tools\Point3Df.h" />
-    <ClInclude Include="src\tools\RGBA.h" />
+    <ClInclude Include="src\particles\ParticleController.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\BufferObject.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particles\Particle.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\Point3D.h">
+      <Filter>src\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\Point3Df.h">
+      <Filter>src\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\tools\RGBA.h">
+      <Filter>src\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\renderer\VertexPoint.h">
+      <Filter>src\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particles\components\ParticleRenderer.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particles\components\ParticleEmitter.h">
+      <Filter>src\particles</Filter>
+    </ClInclude>
+    <ClInclude Include="src\particles\components\ParticleMovement.h" />
+    <ClInclude Include="src\particles\ParticleTypes.h" />
+    <ClInclude Include="src\ui\components\Text.h">
+      <Filter>src\ui\tools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ui\components\DropdownBox.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">
@@ -263,7 +283,9 @@
     <None Include="msvcp120.dll">
       <Filter>lib</Filter>
     </None>
-    <None Include="glew32.dll" />
+    <None Include="glew32.dll">
+      <Filter>lib</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">

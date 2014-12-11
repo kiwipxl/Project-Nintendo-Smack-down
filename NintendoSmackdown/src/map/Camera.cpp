@@ -23,7 +23,7 @@ void Camera::update() {
 	int max_y = -INT_MAX;
 	bool set_boundaries = false;
 	for (Fighter* f : universe->entity_manager->fighters) {
-		if (!f->respawning) {
+		if (f->enable_camera_view) {
 			if (f->pos.x < min_x) { min_x = f->pos.x; }
 			if (f->pos.x > max_x) { max_x = f->pos.x; }
 			if (f->pos.y < min_y) { min_y = f->pos.y; }
@@ -45,9 +45,8 @@ void Camera::update() {
 	int dif_y = (min_y + ((max_y - min_y) / 2) - (universe->win_manager->center_y - 32)) * scale;
 	x -= (x + dif_x) / MOVE_SMOOTHING;
 	y -= (y + dif_y) / MOVE_SMOOTHING;
-	scale -= (scale - (1.5f + (((min_x + universe->win_manager->center_x) - max_x) +
-		(min_y - max_x)) / ZOOM)) / ZOOM_SMOOTHING;
-	cout << (min_x + universe->win_manager->center_x) - max_x << "\n";
+	scale -= (scale - (1 + (((min_x + universe->win_manager->center_x) - max_x) + 
+		((min_y + universe->win_manager->center_y) - max_y)) / ZOOM)) / ZOOM_SMOOTHING;
 	if (scale > MAX_ZOOM) { scale = MAX_ZOOM;
 	}else if (scale < MIN_ZOOM) { scale = MIN_ZOOM; }
 

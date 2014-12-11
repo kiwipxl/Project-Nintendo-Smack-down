@@ -38,7 +38,7 @@ void WindowManager::initiate() {
 					if (glGetError() != GL_NO_ERROR) {
 						std::cout << "an error occurred while setting up matrix mode: " << glGetError() << "\n";
 					}
-					glClearColor(0, 0, 0, 1);
+					glClearColor(1, 1, 1, 1);
 					glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 					glEnable(GL_TEXTURE_2D);
 					glEnable(GL_BLEND);

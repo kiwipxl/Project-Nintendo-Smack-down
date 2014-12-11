@@ -24,8 +24,6 @@ Map::Map() {
 	created = false;
 	grid_width = universe->win_manager->screen_width / 32;
 	grid_height = universe->win_manager->screen_height / 32;
-	grid_width = 24;
-	grid_height = 24;
 }
 
 void Map::create() {
@@ -60,7 +58,7 @@ void Map::create() {
 	//nodes[12][13]->type = Tiles::BLOCK;
 	//nodes[12][13]->solid = true;
 
-	universe->map_parser->load("map1.txt");
+	//universe->map_parser->load("map1.txt");
 
 	map_width = grid_width * 32;
 	map_height = grid_height * 32;
@@ -78,9 +76,6 @@ void Map::update() {
 
 	float pos_x = universe->camera->x + universe->camera->get_offset_x(0);
 	float pos_y = universe->camera->y + universe->camera->get_offset_y(0);
-	bgrect.x = -abs(universe->camera->x + pos_x) / 10; bgrect.y = -abs(universe->camera->y + pos_y) / 10;
-	bgrect.w = universe->win_manager->screen_width - bgrect.x;
-	bgrect.h = bgrect.w;
 	universe->renderer->render(universe->assets->background_tiles, &bgsrc_rect, &bgrect);
 
 	//updates the map
@@ -108,8 +103,8 @@ void Map::resize_update(int w, int h) {
 		w = universe->win_manager->screen_width;
 		h = universe->win_manager->screen_height;
 	}
-	bgsrc_rect.x = 512; bgsrc_rect.y = 0;
+	bgsrc_rect.x = 0; bgsrc_rect.y = 1296;
 	bgsrc_rect.w = 512; bgsrc_rect.h = 432;
-	bgrect.x = 0; bgrect.y = 0;
-	bgrect.w = universe->win_manager->screen_width; bgrect.h = universe->win_manager->screen_height;
+	bgrect.x = 0; bgrect.y = -216;
+	bgrect.w = universe->win_manager->screen_width; bgrect.h = universe->win_manager->screen_height + 432;
 }

@@ -1,7 +1,8 @@
 #ifndef PARTICLE_MANAGER_H
 #define PARTICLE_MANAGER_H
 
-#include "Particles.h"
+#include "ParticleController.h"
+#include "ParticleManager.h"
 #include <vector>
 
 class ParticleManager {
@@ -9,11 +10,13 @@ class ParticleManager {
 	public:
 		ParticleManager();
 
-		std::vector<Particles*> particles;
+		std::vector<ParticleController*> particle_chunks;
+		int particles_uploaded = 0;
+		int particles_drawn = 0;
 
 		void update();
 
-		Particles* create_particle(ParticleEmitter* emitter);
+		ParticleController* create_particle_chunk(ParticleEmitter* emitter, ParticleType type);
 };
 
 #endif

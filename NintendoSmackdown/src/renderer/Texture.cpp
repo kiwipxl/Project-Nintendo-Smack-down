@@ -1,7 +1,7 @@
 #include "Texture.h"
 #include <iostream>
 
-void Texture::create_texture(SDL_Surface* surface) {
+void Texture::create_texture(SDL_Surface* surface, int buffer_size) {
 	if (surface != NULL) {
 		//if the texture is already created then delete the texture but not the buffer
 		if (created) {
@@ -10,7 +10,7 @@ void Texture::create_texture(SDL_Surface* surface) {
 		}else {
 			//free the buffer if it's already being used and create a new buffer object
 			if (buffer_object != NULL) { buffer_object->free(); }
-			buffer_object = new BufferObject();
+			buffer_object = new BufferObject(buffer_size);
 		}
 
 		width = surface->w;

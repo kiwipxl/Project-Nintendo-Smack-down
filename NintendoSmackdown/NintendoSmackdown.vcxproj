@@ -93,13 +93,15 @@
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\particles\Particles.cpp" />
-    <ClCompile Include="src\particles\ParticleEmitter.cpp" />
+    <ClCompile Include="src\particles\components\ParticleMovement.cpp" />
+    <ClCompile Include="src\particles\ParticleController.cpp" />
+    <ClCompile Include="src\particles\components\ParticleEmitter.cpp" />
     <ClCompile Include="src\particles\ParticleManager.cpp" />
-    <ClCompile Include="src\particles\ParticleRenderer.cpp" />
+    <ClCompile Include="src\particles\components\ParticleRenderer.cpp" />
     <ClCompile Include="src\renderer\BufferObject.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\tools\timer\TimerCallback.cpp" />
+    <ClCompile Include="src\ui\components\DropdownBox.cpp" />
     <ClCompile Include="src\ui\MenuUI.cpp" />
     <ClCompile Include="src\ui\GameUI.cpp" />
     <ClCompile Include="src\map\Camera.cpp" />
@@ -120,7 +122,7 @@
     <ClCompile Include="src\tools\ImageTools.cpp" />
     <ClCompile Include="src\tools\MapParser.cpp" />
     <ClCompile Include="src\tools\Universal.cpp" />
-    <ClCompile Include="src\ui\tools\Text.cpp" />
+    <ClCompile Include="src\ui\components\Text.cpp" />
     <ClCompile Include="src\ui\DebugUI.cpp" />
     <ClCompile Include="src\Universe.cpp" />
     <ClCompile Include="src\managers\StateManager.cpp" />
@@ -128,10 +130,13 @@
     <ClCompile Include="src\renderer\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\particles\Particles.h" />
-    <ClInclude Include="src\particles\ParticleEmitter.h" />
+    <ClInclude Include="src\particles\components\ParticleMovement.h" />
+    <ClInclude Include="src\particles\Particle.h" />
+    <ClInclude Include="src\particles\ParticleController.h" />
+    <ClInclude Include="src\particles\components\ParticleEmitter.h" />
     <ClInclude Include="src\particles\ParticleManager.h" />
-    <ClInclude Include="src\particles\ParticleRenderer.h" />
+    <ClInclude Include="src\particles\components\ParticleRenderer.h" />
+    <ClInclude Include="src\particles\ParticleTypes.h" />
     <ClInclude Include="src\renderer\BufferObject.h" />
     <ClInclude Include="src\renderer\Renderer.h" />
     <ClInclude Include="src\renderer\VertexPoint.h" />
@@ -140,6 +145,7 @@
     <ClInclude Include="src\tools\RGBA.h" />
     <ClInclude Include="src\tools\timer\Timer.h" />
     <ClInclude Include="src\tools\timer\TimerCallback.h" />
+    <ClInclude Include="src\ui\components\DropdownBox.h" />
     <ClInclude Include="src\ui\MenuUI.h" />
     <ClInclude Include="src\input\Key.h" />
     <ClInclude Include="src\input\Joystick.h" />
@@ -168,7 +174,7 @@
     <ClInclude Include="src\tools\ImageTools.h" />
     <ClInclude Include="src\tools\Point2D.h" />
     <ClInclude Include="src\tools\Universal.h" />
-    <ClInclude Include="src\ui\tools\Text.h" />
+    <ClInclude Include="src\ui\components\Text.h" />
     <ClInclude Include="src\ui\DebugUI.h" />
     <ClInclude Include="src\Universe.h" />
     <ClInclude Include="src\managers\StateManager.h" />

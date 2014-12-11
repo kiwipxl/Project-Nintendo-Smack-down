@@ -20,7 +20,7 @@ class Texture {
 		SDL_Rect last_src_rect;
 		RGBA last_colour;
 
-		void create_texture(SDL_Surface* surface);
+		void create_texture(SDL_Surface* surface, int buffer_size = 4);
 		void set_colour(float r, float g, float b, float a);
 		void free();
 };

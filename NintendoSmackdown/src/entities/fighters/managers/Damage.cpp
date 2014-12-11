@@ -3,6 +3,7 @@
 #include "../../../map/Map.h"
 #include "../../EntityManager.h"
 #include "../../../ui/GameUI.h"
+#include "../../../particles/ParticleManager.h"
 
 class Universe {
 
@@ -10,6 +11,7 @@ class Universe {
 		static Map* map;
 		static EntityManager* entity_manager;
 		static GameUI* game_ui;
+		static ParticleManager* particles;
 };
 
 Damage::Damage(Fighter* parent) {
@@ -29,48 +31,56 @@ void Damage::update_damage() {
 					if (f->pos.y >= otherf->pos.y - 64 && f->pos.y <= otherf->pos.y + 64) {
 						if (!f->dealt_damage && !otherf->invincible) {
 							force_x = 0; force_y = 0;
+							int damage = 0;
 							if (f->current_move == f->moves.PUNCH) {
-								force_x = .2f; force_y = 1;
+								force_x = .2f; force_y = -1;
 								f->dealt_damage = true;
-								otherf->health += 5;
+								damage = 5;
 							}else if (f->current_move == f->moves.KICK) {
-								force_x = .2f; force_y = 2;
+								force_x = .2f; force_y = -2;
 								f->dealt_damage = true;
-								otherf->health += 5;
+								damage = 5;
 							}else if (f->current_move == f->moves.RAPID_PUNCH) {
-								force_x = .1f; force_y = 1;
+								force_x = .1f; force_y = -1;
 								f->dealt_damage = true;
-								otherf->health += 2;
+								damage = 2;
 							}else if (f->current_move == f->moves.DASH_ATTACK) {
-								force_x = 3; force_y = 2;
+								force_x = 3; force_y = -2.5f;
 								f->dealt_damage = true;
-								otherf->health += 7;
+								damage = 7;
 							}else if (f->current_move == f->moves.SLIDE_ATTACK) {
-								force_x = 3.5f; force_y = 2;
+								force_x = 3.5f; force_y = -2.5f;
 								f->dealt_damage = true;
-								otherf->health += 8;
+								damage = 8;
 							}else if (f->current_move == f->moves.AIR_DOWN_KICK) {
-								force_y = -5;
+								force_y = 5;
 								f->dealt_damage = true;
-								otherf->health += 11;
+								damage = 11;
 							}else if (f->current_move == f->moves.AIR_KNEE) {
-								force_x = 5; force_y = 1;
+								force_x = 4; force_y = -3;
 								f->dealt_damage = true;
-								otherf->health += 12;
+								damage = 12;
 							}else if (f->current_move == f->moves.AIR_SOMERSAULT) {
-								force_y = 4;
+								force_y = -3.5f;
 								f->dealt_damage = true;
-								otherf->health += 11;
+								damage = 11;
 							}else if (f->current_move == f->moves.AIR_KICK) {
-								force_x = 1.5f; force_y = 1.5f;
+								force_x = 2.5f; force_y = -4;
 								f->dealt_damage = true;
-								otherf->health += 10;
+								damage = 10;
 							}
 							if (force_x != 0 || force_y != 0) {
-								if (f->pos.y < otherf->pos.y - 32) { force_y = -force_y; }
 								otherf->add_flip_force(f->flip, force_x, force_y);
 							}
+							otherf->health += damage;
+
 							base_universe->game_ui->update_damage_text(otherf->id, otherf->health);
+
+							if (f->dealt_damage && damage != 0) {
+								base_universe->particles->create_particle_chunk(
+										new ParticleEmitter(otherf->pos.x + 80, otherf->pos.y + 64, 
+										0, damage, damage, true), BLOOD);
+							}
 						}
 					}
 				}

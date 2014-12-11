@@ -27,6 +27,7 @@ class Universe {
 void GameLoop::start() {
 	ms_per_frame = 1000 / fps;
 	start_second_time = 0;
+	frame_counter = 0;
 
 	SDL_JoystickEventState(SDL_ENABLE);
 
