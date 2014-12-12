@@ -28,6 +28,7 @@ class Text : Universal {
 		void render_text(std::string font_text, bool smooth = false);
 
 		std::string get_text() { return text; }
+		void update_alignment();
 
 	private:
 		Texture* font;

@@ -18,6 +18,7 @@ class DropdownBox : Universal {
 		void open();
 		void close();
 		void select(int index, bool call_press = false);
+		void set_pos(int c_x, int c_y);
 
 	private:
 		int x;

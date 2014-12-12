@@ -19,7 +19,7 @@ class Universe {
 void OptionsUI::create() {
 	bg_src_rect.x = 0; bg_src_rect.y = 0; bg_src_rect.w = 1920; bg_src_rect.h = 1080;
 
-	dropdown_box = new DropdownBox(universe->win_manager->center_x, universe->win_manager->center_y);
+	dropdown_box = new DropdownBox(0, 0);
 	dropdown_box->add_box("640x400", [this](void) { universe->win_manager->resize(640, 400); });
 	dropdown_box->add_box("1024x640", [this](void) { universe->win_manager->resize(1024, 640); });
 	dropdown_box->add_box("1080x768", [this](void) { universe->win_manager->resize(1080, 768); });
@@ -34,14 +34,17 @@ void OptionsUI::create() {
 	dropdown_box->add_box("2560x1920", [this](void) { universe->win_manager->resize(2560, 1920); });
 	dropdown_box->select(3);
 
+	apply_button = new Button(0, 0, "Apply changes", [this](void) {});
+
 	resize_update();
-	std::cout << "menu ui initiated\n";
+	std::cout << "options ui initiated\n";
 }
 
 void OptionsUI::update() {
 	universe->renderer->render(universe->assets->menu_background, &bg_src_rect, &bg_rect);
 
 	dropdown_box->render();
+	apply_button->render();
 
 	for (int i = 0; i < universe->input->INPUTS; ++i) {
 		if (universe->input->b_key[i]->pressed) {
@@ -52,7 +55,8 @@ void OptionsUI::update() {
 }
 
 void OptionsUI::remove() {
-
+	delete dropdown_box;
+	delete apply_button;
 }
 
 void OptionsUI::resize_update(int w, int h) {
@@ -67,4 +71,7 @@ void OptionsUI::resize_update(int w, int h) {
 	}else {
 		bg_rect.w = universe->win_manager->screen_width;
 	}
+
+	apply_button->set_pos(w - 256, h - 128);
+	dropdown_box->set_pos(w - 400, h - 500);
 }

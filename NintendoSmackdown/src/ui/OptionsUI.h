@@ -6,6 +6,7 @@
 #include "../tools/Universal.h"
 #include "components/Text.h"
 #include "components/DropdownBox.h"
+#include "components/Button.h"
 
 class OptionsUI : Universal {
 
@@ -19,6 +20,7 @@ class OptionsUI : Universal {
 		SDL_Rect bg_rect;
 		SDL_Rect bg_src_rect;
 		DropdownBox* dropdown_box;
+		Button* apply_button;
 };
 
 #endif

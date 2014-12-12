@@ -48,6 +48,13 @@ void Text::render_text(std::string font_text, bool smooth) {
 	TTF_SizeText(square, text.c_str(), &rect.w, &rect.h);
 	SDL_FreeSurface(surface);
 
+	update_alignment();
+
+	rendered = true;
+}
+
+void Text::update_alignment() {
+	rect.x = origin_x; rect.y = origin_y;
 	switch (align) {
 		case CENTER:
 			rect.x = origin_x + (max_width / 2) - (rect.w / 2) - 2;
@@ -56,6 +63,4 @@ void Text::render_text(std::string font_text, bool smooth) {
 			rect.x = origin_x + (max_width - rect.w);
 			break;
 	}
-
-	rendered = true;
 }

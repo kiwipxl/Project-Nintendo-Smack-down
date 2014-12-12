@@ -103,6 +103,7 @@
     </ClCompile>
     <ClCompile Include="src\ui\components\DropdownBox.cpp" />
     <ClCompile Include="src\ui\OptionsUI.cpp" />
+    <ClCompile Include="src\ui\components\Button.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -251,6 +252,7 @@
     <ClInclude Include="src\ui\components\DropdownBox.h" />
     <ClInclude Include="src\ui\components\DropBox.h" />
     <ClInclude Include="src\ui\OptionsUI.h" />
+    <ClInclude Include="src\ui\components\Button.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">

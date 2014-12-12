@@ -21,6 +21,7 @@ class Assets : Universal {
 		Texture* menu_background;
 		Texture* particle_sheet;
 		Texture* dropdown_box_sheet;
+		Texture* button_sheet;
 
 		void initiate();
 

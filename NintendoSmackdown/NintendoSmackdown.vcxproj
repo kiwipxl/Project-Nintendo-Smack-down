@@ -101,6 +101,7 @@
     <ClCompile Include="src\renderer\BufferObject.cpp" />
     <ClCompile Include="src\renderer\Renderer.cpp" />
     <ClCompile Include="src\tools\timer\TimerCallback.cpp" />
+    <ClCompile Include="src\ui\components\Button.cpp" />
     <ClCompile Include="src\ui\components\DropdownBox.cpp" />
     <ClCompile Include="src\ui\MenuUI.cpp" />
     <ClCompile Include="src\ui\GameUI.cpp" />
@@ -146,6 +147,7 @@
     <ClInclude Include="src\tools\RGBA.h" />
     <ClInclude Include="src\tools\timer\Timer.h" />
     <ClInclude Include="src\tools\timer\TimerCallback.h" />
+    <ClInclude Include="src\ui\components\Button.h" />
     <ClInclude Include="src\ui\components\DropBox.h" />
     <ClInclude Include="src\ui\components\DropdownBox.h" />
     <ClInclude Include="src\ui\MenuUI.h" />

@@ -22,6 +22,7 @@ DropdownBox::DropdownBox(int c_x, int c_y) {
 	rect.x = x; rect.y = y;
 	rect.w = 160; rect.h = 28;
 	selected_box = add_box("", nullptr, { 200, 100, 0 });
+	set_pos(x, y);
 }
 
 DropdownBox::~DropdownBox() {
@@ -113,4 +114,17 @@ void DropdownBox::render() {
 	universe->renderer->render(universe->assets->dropdown_box_sheet, &src_rect, &rect);
 	selected_box->text->rect.y = rect.y + 2;
 	selected_box->text->render();
+}
+
+void DropdownBox::set_pos(int c_x, int c_y) {
+	x = c_x; y = c_y;
+	rect.x = x; rect.y = y;
+	for (DropBox* box : boxes) {
+		box->text->origin_x = x;
+		box->text->origin_y = y + 16;
+		box->text->update_alignment();
+		box->dest_y = y;
+		box->y = y;
+	}
+	close();
 }
