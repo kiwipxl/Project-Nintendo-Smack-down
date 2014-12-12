@@ -20,6 +20,7 @@
 #include "particles/ParticleManager.h"
 #include "renderer/Renderer.h"
 #include "ui/OptionsUI.h"
+#include "ui/MessageBoxManager.h"
 
 class Universe {
 
@@ -48,6 +49,7 @@ class Universe {
 		static GameUI* game_ui;
 		static MenuUI* menu_ui;
 		static OptionsUI* options_ui;
+		static MessageBoxManager* messagebox;
 
 		static Editor* editor;
 

@@ -30,6 +30,10 @@ void Assets::initiate() {
 	//load ui sheets
 	dropdown_box_sheet = load_texture("dropdownboxsheet.png");
 	button_sheet = load_texture("buttonsheet.png");
+	messagebox_sheet = load_texture("messageboxsheet.png");
+
+	//load plain colours
+	plain_colours = load_texture("plaincolours.png");
 }
 
 /**

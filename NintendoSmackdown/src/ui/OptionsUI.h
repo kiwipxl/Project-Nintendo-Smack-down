@@ -7,6 +7,7 @@
 #include "components/Text.h"
 #include "components/DropdownBox.h"
 #include "components/Button.h"
+#include "components/MessageBox.h"
 
 class OptionsUI : Universal {
 
@@ -14,6 +15,7 @@ class OptionsUI : Universal {
 		void create();
 		void update();
 		void remove();
+
 		void resize_update(int w = 0, int h = 0);
 
 	private:

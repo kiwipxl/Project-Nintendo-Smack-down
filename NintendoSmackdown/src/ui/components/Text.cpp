@@ -12,8 +12,9 @@ class Universe {
 		static Renderer* renderer;
 };
 
-Text::Text(int x, int y, int font_size, SDL_Colour font_colour, std::string font_text, 
+Text::Text(int x, int y, int size, SDL_Colour font_colour, std::string font_text, 
 		   bool smooth, int max_width_align, TextAlign text_align) {
+	font_size = size;
 	square = TTF_OpenFont("assets/square.ttf", font_size);
 	text = font_text;
 	colour = font_colour;
@@ -28,6 +29,7 @@ Text::Text(int x, int y, int font_size, SDL_Colour font_colour, std::string font
 
 Text::~Text() {
 	TTF_CloseFont(square);
+	delete font;
 }
 
 void Text::render() {

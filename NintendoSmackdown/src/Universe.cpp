@@ -18,6 +18,7 @@ TimerCallback* Universe::timer;
 ParticleManager* Universe::particles;
 Renderer* Universe::renderer;
 OptionsUI* Universe::options_ui;
+MessageBoxManager* Universe::messagebox;
 
 void Universe::initiate() {
 	srand(time(NULL));
@@ -42,6 +43,7 @@ void Universe::initiate() {
 	particles = new ParticleManager();
 	renderer = new Renderer();
 	options_ui = new OptionsUI();
+	messagebox = new MessageBoxManager();
 
 	win_manager->initiate();
 	assets->initiate();

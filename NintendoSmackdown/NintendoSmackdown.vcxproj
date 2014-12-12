@@ -103,6 +103,8 @@
     <ClCompile Include="src\tools\timer\TimerCallback.cpp" />
     <ClCompile Include="src\ui\components\Button.cpp" />
     <ClCompile Include="src\ui\components\DropdownBox.cpp" />
+    <ClCompile Include="src\ui\components\MessageBox.cpp" />
+    <ClCompile Include="src\ui\MessageBoxManager.cpp" />
     <ClCompile Include="src\ui\MenuUI.cpp" />
     <ClCompile Include="src\ui\GameUI.cpp" />
     <ClCompile Include="src\map\Camera.cpp" />
@@ -150,6 +152,8 @@
     <ClInclude Include="src\ui\components\Button.h" />
     <ClInclude Include="src\ui\components\DropBox.h" />
     <ClInclude Include="src\ui\components\DropdownBox.h" />
+    <ClInclude Include="src\ui\components\MessageBox.h" />
+    <ClInclude Include="src\ui\MessageBoxManager.h" />
     <ClInclude Include="src\ui\MenuUI.h" />
     <ClInclude Include="src\input\Key.h" />
     <ClInclude Include="src\input\Joystick.h" />

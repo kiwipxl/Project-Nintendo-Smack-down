@@ -104,6 +104,8 @@
     <ClCompile Include="src\ui\components\DropdownBox.cpp" />
     <ClCompile Include="src\ui\OptionsUI.cpp" />
     <ClCompile Include="src\ui\components\Button.cpp" />
+    <ClCompile Include="src\ui\components\MessageBox.cpp" />
+    <ClCompile Include="src\ui\MessageBoxManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -253,6 +255,8 @@
     <ClInclude Include="src\ui\components\DropBox.h" />
     <ClInclude Include="src\ui\OptionsUI.h" />
     <ClInclude Include="src\ui\components\Button.h" />
+    <ClInclude Include="src\ui\components\MessageBox.h" />
+    <ClInclude Include="src\ui\MessageBoxManager.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">

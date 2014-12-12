@@ -16,7 +16,7 @@ enum TextAlign {
 class Text : Universal {
 
 	public:
-		Text(int x, int y, int font_size, SDL_Colour colour, std::string font_text,
+		Text(int x, int y, int size, SDL_Colour colour, std::string font_text,
 			bool smooth = false, int max_width_align = 0, TextAlign text_align = LEFT);
 		~Text();
 
@@ -28,6 +28,8 @@ class Text : Universal {
 		void render_text(std::string font_text, bool smooth = false);
 
 		std::string get_text() { return text; }
+		int get_font_size() { return font_size; }
+
 		void update_alignment();
 
 	private:
@@ -38,6 +40,7 @@ class Text : Universal {
 		std::string text;
 		TextAlign align;
 		int max_width;
+		int font_size;
 };
 
 #endif

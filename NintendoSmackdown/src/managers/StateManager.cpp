@@ -12,6 +12,7 @@
 #include "WindowManager.h"
 #include "../particles/ParticleManager.h"
 #include "../ui/OptionsUI.h"
+#include "../ui/MessageBoxManager.h"
 
 class Universe {
 
@@ -27,6 +28,7 @@ class Universe {
 		static InputManager* input;
 		static ParticleManager* particles;
 		static OptionsUI* options_ui;
+		static MessageBoxManager* messagebox;
 };
 
 /**
@@ -78,6 +80,7 @@ handles the removing of the current state
 **/
 void StateManager::remove_current_state() {
 	universe->debug_ui->remove();
+	universe->messagebox->remove();
 	switch (state) {
 		case TITLE_SCREEN:
 			break;
@@ -128,6 +131,7 @@ void StateManager::update() {
 	}
 	universe->debug_ui->update();
 	universe->input->update();
+	universe->messagebox->update();
 }
 
 /**
@@ -154,4 +158,5 @@ void StateManager::resize_current_state() {
 		case EDITOR:
 			break;
 	}
+	universe->messagebox->resize_update(w, h);
 }

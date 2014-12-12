@@ -5,6 +5,7 @@
 #include "../input/InputManager.h"
 #include "../managers/StateManager.h"
 #include "../renderer/Renderer.h"
+#include "MessageBoxManager.h"
 
 class Universe {
 
@@ -14,6 +15,7 @@ class Universe {
 		static InputManager* input;
 		static StateManager* state;
 		static Renderer* renderer;
+		static MessageBoxManager* messagebox;
 };
 
 void OptionsUI::create() {
@@ -35,6 +37,8 @@ void OptionsUI::create() {
 	dropdown_box->select(3);
 
 	apply_button = new Button(0, 0, "Apply changes", [this](void) {});
+
+	universe->messagebox->create(new MessageBox(0, 0, "this is a messagebox title", "this is a msg", 20));
 
 	resize_update();
 	std::cout << "options ui initiated\n";
