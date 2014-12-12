@@ -12,13 +12,17 @@ class Universe {
 		static Renderer* renderer;
 };
 
-Text::Text(int x, int y, int font_size, SDL_Colour font_colour, std::string font_text, bool smooth) {
+Text::Text(int x, int y, int font_size, SDL_Colour font_colour, std::string font_text, 
+		   bool smooth, int max_width_align, TextAlign text_align) {
 	square = TTF_OpenFont("assets/square.ttf", font_size);
 	text = font_text;
 	colour = font_colour;
 	rect.x = x; rect.y = y;
+	origin_x = x; origin_y = y;
 	font = new Texture();
 	rendered = false;
+	max_width = max_width_align;
+	align = text_align;
 	render_text(text, smooth);
 }
 
@@ -43,6 +47,15 @@ void Text::render_text(std::string font_text, bool smooth) {
 
 	TTF_SizeText(square, text.c_str(), &rect.w, &rect.h);
 	SDL_FreeSurface(surface);
+
+	switch (align) {
+		case CENTER:
+			rect.x = origin_x + (max_width / 2) - (rect.w / 2) - 2;
+			break;
+		case RIGHT:
+			rect.x = origin_x + (max_width - rect.w);
+			break;
+	}
 
 	rendered = true;
 }

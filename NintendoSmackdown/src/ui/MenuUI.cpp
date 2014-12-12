@@ -25,8 +25,6 @@ void MenuUI::create() {
 	box_index = 0;
 	bg_src_rect.x = 0; bg_src_rect.y = 0; bg_src_rect.w = 1920; bg_src_rect.h = 1080;
 
-	dropdown_box = new DropdownBox(500, 400);
-
 	resize_update();
 	std::cout << "menu ui initiated\n";
 }
@@ -61,6 +59,9 @@ void MenuUI::update() {
 			switch (box_index) {
 				case 0:
 					universe->state->switch_state(GAME);
+					break;
+				case 3:
+					universe->state->switch_state(OPTIONS);
 					break;
 			}
 		}

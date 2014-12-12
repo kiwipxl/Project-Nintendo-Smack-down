@@ -19,6 +19,7 @@
 #include "tools/timer/TimerCallback.h"
 #include "particles/ParticleManager.h"
 #include "renderer/Renderer.h"
+#include "ui/OptionsUI.h"
 
 class Universe {
 
@@ -46,6 +47,7 @@ class Universe {
 		static DebugUI* debug_ui;
 		static GameUI* game_ui;
 		static MenuUI* menu_ui;
+		static OptionsUI* options_ui;
 
 		static Editor* editor;
 

@@ -17,6 +17,7 @@ MenuUI* Universe::menu_ui;
 TimerCallback* Universe::timer;
 ParticleManager* Universe::particles;
 Renderer* Universe::renderer;
+OptionsUI* Universe::options_ui;
 
 void Universe::initiate() {
 	srand(time(NULL));
@@ -40,6 +41,7 @@ void Universe::initiate() {
 	timer = new TimerCallback();
 	particles = new ParticleManager();
 	renderer = new Renderer();
+	options_ui = new OptionsUI();
 
 	win_manager->initiate();
 	assets->initiate();

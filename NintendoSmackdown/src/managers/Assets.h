@@ -20,6 +20,7 @@ class Assets : Universal {
 		Texture* menu_boxes_sheet;
 		Texture* menu_background;
 		Texture* particle_sheet;
+		Texture* dropdown_box_sheet;
 
 		void initiate();
 

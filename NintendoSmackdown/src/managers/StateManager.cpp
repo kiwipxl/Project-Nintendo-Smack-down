@@ -11,6 +11,7 @@
 #include "../input/InputManager.h"
 #include "WindowManager.h"
 #include "../particles/ParticleManager.h"
+#include "../ui/OptionsUI.h"
 
 class Universe {
 
@@ -25,6 +26,7 @@ class Universe {
 		static MenuUI* menu_ui;
 		static InputManager* input;
 		static ParticleManager* particles;
+		static OptionsUI* options_ui;
 };
 
 /**
@@ -54,6 +56,9 @@ void StateManager::create_current_state() {
 		case MAIN_MENU:
 			universe->menu_ui->create();
 			break;
+		case OPTIONS:
+			universe->options_ui->create();
+			break;
 		case CHAR_SELECT:
 			break;
 		case GAME:
@@ -79,6 +84,9 @@ void StateManager::remove_current_state() {
 		case MAIN_MENU:
 			universe->menu_ui->remove();
 			break;
+		case OPTIONS:
+			universe->options_ui->remove();
+			break;
 		case CHAR_SELECT:
 			break;
 		case GAME:
@@ -101,6 +109,9 @@ void StateManager::update() {
 			break;
 		case MAIN_MENU:
 			universe->menu_ui->update();
+			break;
+		case OPTIONS:
+			universe->options_ui->update();
 			break;
 		case CHAR_SELECT:
 			break;
@@ -130,6 +141,9 @@ void StateManager::resize_current_state() {
 			break;
 		case MAIN_MENU:
 			universe->menu_ui->resize_update(w, h);
+			break;
+		case OPTIONS:
+			universe->options_ui->resize_update(w, h);
 			break;
 		case CHAR_SELECT:
 			break;

@@ -124,6 +124,7 @@
     <ClCompile Include="src\tools\Universal.cpp" />
     <ClCompile Include="src\ui\components\Text.cpp" />
     <ClCompile Include="src\ui\DebugUI.cpp" />
+    <ClCompile Include="src\ui\OptionsUI.cpp" />
     <ClCompile Include="src\Universe.cpp" />
     <ClCompile Include="src\managers\StateManager.cpp" />
     <ClCompile Include="src\map\Tiles.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="src\tools\RGBA.h" />
     <ClInclude Include="src\tools\timer\Timer.h" />
     <ClInclude Include="src\tools\timer\TimerCallback.h" />
+    <ClInclude Include="src\ui\components\DropBox.h" />
     <ClInclude Include="src\ui\components\DropdownBox.h" />
     <ClInclude Include="src\ui\MenuUI.h" />
     <ClInclude Include="src\input\Key.h" />
@@ -176,6 +178,7 @@
     <ClInclude Include="src\tools\Universal.h" />
     <ClInclude Include="src\ui\components\Text.h" />
     <ClInclude Include="src\ui\DebugUI.h" />
+    <ClInclude Include="src\ui\OptionsUI.h" />
     <ClInclude Include="src\Universe.h" />
     <ClInclude Include="src\managers\StateManager.h" />
     <ClInclude Include="src\map\Tiles.h" />

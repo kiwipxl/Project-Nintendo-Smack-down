@@ -6,9 +6,10 @@
 enum State {
 	TITLE_SCREEN,	//0
 	MAIN_MENU,		//1
-	CHAR_SELECT,		//2
-	GAME,			//3
-	EDITOR			//4
+	OPTIONS,		//2
+	CHAR_SELECT,	//3
+	GAME,			//4
+	EDITOR			//5
 };
 
 class StateManager : Universal {

@@ -20,14 +20,15 @@ void Assets::initiate() {
 	//load background tile sheets
 	background_tiles = load_texture("backgroundtiles.png");
 
-	particle_sheet = load_texture("menubackground.png");
-
 	//load main menu textures and sheets
 	menu_boxes_sheet = load_texture("menuboxes.png");
 	menu_background = load_texture("menubackground.png");
 
 	//load particle sheet
 	particle_sheet = load_texture("particlesheet.png", false);
+
+	//load ui sheets
+	dropdown_box_sheet = load_texture("dropdownboxsheet.png");
 }
 
 /**

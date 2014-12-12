@@ -5,7 +5,6 @@
 #include <vector>
 #include "../tools/Universal.h"
 #include "components/Text.h"
-#include "components/DropdownBox.h"
 
 class MenuUI : Universal {
 
@@ -23,7 +22,6 @@ class MenuUI : Universal {
 		SDL_Rect box_src_rect;
 		SDL_Rect bg_rect;
 		SDL_Rect bg_src_rect;
-		DropdownBox* dropdown_box;
 };
 
 #endif
