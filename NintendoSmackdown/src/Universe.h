@@ -22,6 +22,8 @@
 #include "ui/OptionsUI.h"
 #include "ui/MessageBoxManager.h"
 #include "ui/TitleUI.h"
+#include "managers/Audio.h"
+#include "ui/FighterSelectUI.h"
 
 class Universe {
 
@@ -30,6 +32,7 @@ class Universe {
 		static GameLoop* game_loop;
 		static Assets* assets;
 		static StateManager* state;
+		static Audio* audio;
 
 		static Map* map;
 		static Camera* camera;
@@ -52,6 +55,7 @@ class Universe {
 		static OptionsUI* options_ui;
 		static MessageBoxManager* messagebox;
 		static TitleUI* title_ui;
+		static FighterSelectUI* fighter_select_ui;
 
 		static Editor* editor;
 

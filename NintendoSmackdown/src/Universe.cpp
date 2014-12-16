@@ -20,6 +20,8 @@ Renderer* Universe::renderer;
 OptionsUI* Universe::options_ui;
 MessageBoxManager* Universe::messagebox;
 TitleUI* Universe::title_ui;
+Audio* Universe::audio;
+FighterSelectUI* Universe::fighter_select_ui;
 
 void Universe::initiate() {
 	srand(time(NULL));
@@ -46,9 +48,12 @@ void Universe::initiate() {
 	options_ui = new OptionsUI();
 	messagebox = new MessageBoxManager();
 	title_ui = new TitleUI();
+	audio = new Audio();
+	fighter_select_ui = new FighterSelectUI();
 
 	win_manager->initiate();
 	assets->initiate();
+	audio->initiate();
 	state->initiate();
 	input->initiate();
 	game_loop->start();

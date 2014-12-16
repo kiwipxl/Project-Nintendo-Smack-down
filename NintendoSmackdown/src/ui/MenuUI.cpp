@@ -65,7 +65,7 @@ void MenuUI::update() {
 		if (universe->input->a_key[i]->pressed) {
 			switch (box_index) {
 				case 0:
-					universe->state->switch_state(GAME);
+					universe->state->switch_state(CHAR_SELECT);
 					break;
 				case 2:
 					universe->state->switch_state(EDITOR);

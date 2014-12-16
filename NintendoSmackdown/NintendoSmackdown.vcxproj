@@ -41,8 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\SDL2.03\include;$(ProjectDir)..\SDL2Image\include;$(ProjectDir)..\SDL2_ttf\include;$(ProjectDir)..\glew-1.11.0\include\GL;$(IncludePath)</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)..\SDL2.03\lib\x86;$(ProjectDir)..\SDL2Image\lib\x86;$(ProjectDir)..\SDL2_ttf\lib\x86;$(ProjectDir)..\glew-1.11.0\lib\Release\Win32</LibraryPath>
+    <IncludePath>$(ProjectDir)..\SDL2.03\include;$(ProjectDir)..\SDL2Image\include;$(ProjectDir)..\SDL2_ttf\include;$(ProjectDir)..\glew-1.11.0\include\GL;$(ProjectDir)..\SDL2_mixer-2.0.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(ProjectDir)..\SDL2.03\lib\x86;$(ProjectDir)..\SDL2Image\lib\x86;$(ProjectDir)..\SDL2_ttf\lib\x86;$(ProjectDir)..\glew-1.11.0\lib\Release\Win32;$(ProjectDir)..\SDL2_mixer-2.0.0\lib\x86</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -58,7 +58,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;opengl32.lib;glew32s.lib;Vfw32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;opengl32.lib;glew32s.lib;Vfw32.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -80,19 +80,28 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <None Include="glew32.dll" />
+    <None Include="libFLAC-8.dll" />
     <None Include="libfreetype-6.dll" />
     <None Include="libjpeg-9.dll" />
+    <None Include="libmikmod-2.dll" />
+    <None Include="libmodplug-1.dll" />
+    <None Include="libogg-0.dll" />
     <None Include="libpng16-16.dll" />
     <None Include="libtiff-5.dll" />
+    <None Include="libvorbis-0.dll" />
+    <None Include="libvorbisfile-3.dll" />
     <None Include="libwebp-4.dll" />
     <None Include="msvcp120.dll" />
     <None Include="opengl.dll" />
     <None Include="SDL2.dll" />
     <None Include="SDL2_image.dll" />
+    <None Include="SDL2_mixer.dll" />
     <None Include="SDL2_ttf.dll" />
+    <None Include="smpeg2.dll" />
     <None Include="zlib1.dll" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\managers\Audio.cpp" />
     <ClCompile Include="src\particles\components\ParticleMovement.cpp" />
     <ClCompile Include="src\particles\ParticleController.cpp" />
     <ClCompile Include="src\particles\components\ParticleEmitter.cpp" />
@@ -104,6 +113,7 @@
     <ClCompile Include="src\ui\components\Button.cpp" />
     <ClCompile Include="src\ui\components\DropdownBox.cpp" />
     <ClCompile Include="src\ui\components\MessageBox.cpp" />
+    <ClCompile Include="src\ui\FighterSelectUI.cpp" />
     <ClCompile Include="src\ui\MessageBoxManager.cpp" />
     <ClCompile Include="src\ui\MenuUI.cpp" />
     <ClCompile Include="src\ui\GameUI.cpp" />
@@ -136,6 +146,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\entities\fighters\moves\Thor.h" />
+    <ClInclude Include="src\managers\Audio.h" />
     <ClInclude Include="src\particles\components\ParticleMovement.h" />
     <ClInclude Include="src\particles\Particle.h" />
     <ClInclude Include="src\particles\ParticleController.h" />
@@ -155,6 +166,8 @@
     <ClInclude Include="src\ui\components\DropBox.h" />
     <ClInclude Include="src\ui\components\DropdownBox.h" />
     <ClInclude Include="src\ui\components\MessageBox.h" />
+    <ClInclude Include="src\ui\components\Selector.h" />
+    <ClInclude Include="src\ui\FighterSelectUI.h" />
     <ClInclude Include="src\ui\MessageBoxManager.h" />
     <ClInclude Include="src\ui\MenuUI.h" />
     <ClInclude Include="src\input\Key.h" />

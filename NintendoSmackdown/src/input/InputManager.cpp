@@ -44,10 +44,12 @@ void InputManager::initiate() {
 	b_key[1]->set_key(1, JOY_BUTTON);
 
 	//default p2 joystick axis
+	/**
 	right_key[1]->set_key(JOY_AXIS_RIGHT, JOY_AXIS);
 	left_key[1]->set_key(JOY_AXIS_LEFT, JOY_AXIS);
 	up_key[1]->set_key(JOY_AXIS_UP, JOY_AXIS);
 	down_key[1]->set_key(JOY_AXIS_DOWN, JOY_AXIS);
+	**/
 
 	/**
 	//default p2 joystick hat

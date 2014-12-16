@@ -23,6 +23,9 @@ class Map : Universal {
 		int map_height_scaled;
 		vector<vector<Node*>> nodes;
 
+		vector<int> fighter_types;
+		vector<int> player_ids;
+
 		void create();
 		void update();
 		void remove();

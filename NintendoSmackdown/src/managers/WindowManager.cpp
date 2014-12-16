@@ -1,5 +1,6 @@
 #include "WindowManager.h"
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <iostream>
 #include "StateManager.h"
 
@@ -51,6 +52,11 @@ void WindowManager::initiate() {
 				std::cout << "png could not be initialised: " << IMG_GetError() << "\n";
 			}else {
 				std::cout << "window initialised successfully\n";
+			}
+			if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+				std::cout << "initiated mixer successfully\n";
+			}else {
+				std::cout << "mixer could not be initiated. error: " << Mix_GetError() << "\n";
 			}
 
 			SDL_DisplayMode display;

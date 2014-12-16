@@ -26,6 +26,8 @@ class Assets : Universal {
 		Texture* plain_colours;
 		Texture* options_background;
 		Texture* title_background;
+		Texture* fighter_portraits;
+		Texture* fighter_selector;
 
 		Texture* selecty;
 		Texture* editorUI;

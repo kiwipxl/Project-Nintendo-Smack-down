@@ -14,6 +14,8 @@
 #include "../ui/OptionsUI.h"
 #include "../ui/MessageBoxManager.h"
 #include "../ui/TitleUI.h"
+#include "Audio.h"
+#include "../ui/FighterSelectUI.h"
 
 class Universe {
 
@@ -31,6 +33,8 @@ class Universe {
 		static OptionsUI* options_ui;
 		static MessageBoxManager* messagebox;
 		static TitleUI* title_ui;
+		static Audio* audio;
+		static FighterSelectUI* fighter_select_ui;
 };
 
 /**
@@ -57,22 +61,29 @@ void StateManager::create_current_state() {
 	switch (state) {
 		case TITLE_SCREEN:
 			universe->title_ui->create();
+			universe->audio->play_music(universe->audio->pirate_song, INT_MAX);
 			break;
 		case MAIN_MENU:
 			universe->menu_ui->create();
+			universe->audio->play_music(universe->audio->pirate_song, INT_MAX);
 			break;
 		case OPTIONS:
 			universe->options_ui->create();
+			universe->audio->play_music(universe->audio->pirate_song, INT_MAX);
 			break;
 		case CHAR_SELECT:
+			universe->fighter_select_ui->create();
+			universe->audio->play_music(universe->audio->pirate_song, INT_MAX);
 			break;
 		case GAME:
 			universe->camera->reset();
 			universe->map->create();
 			universe->game_ui->create();
+			universe->audio->play_music(universe->audio->theme_song, 0);
 			break;
 		case EDITOR:
 			universe->editor->create();
+			universe->audio->play_music(universe->audio->pirate_song, INT_MAX);
 			break;
 	}
 	std::cout << "created state " << state << "\n";
@@ -95,6 +106,7 @@ void StateManager::remove_current_state() {
 			universe->options_ui->remove();
 			break;
 		case CHAR_SELECT:
+			universe->fighter_select_ui->remove();
 			break;
 		case GAME:
 			universe->map->remove();
@@ -122,6 +134,7 @@ void StateManager::update() {
 			universe->options_ui->update();
 			break;
 		case CHAR_SELECT:
+			universe->fighter_select_ui->update();
 			break;
 		case GAME:
 			universe->camera->update();
@@ -135,6 +148,7 @@ void StateManager::update() {
 			universe->editor->update();
 			break;
 	}
+	universe->audio->update();
 	universe->input->update();
 	universe->messagebox->update();
 }
@@ -155,6 +169,7 @@ void StateManager::resize_current_state() {
 			universe->options_ui->resize_update(w, h);
 			break;
 		case CHAR_SELECT:
+			universe->fighter_select_ui->resize_update(w, h);
 			break;
 		case GAME:
 			universe->map->resize_update(w, h);

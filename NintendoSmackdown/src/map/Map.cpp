@@ -29,8 +29,11 @@ Map::Map() {
 void Map::create() {
 	Tiles::initiate();
 
-	universe->entity_manager->create_fighter(250, 250, THOR, PLAYER);
-	universe->entity_manager->create_fighter(500, 250, CAPTAIN_FALCON, PLAYER);
+	for (int n = 0; n < fighter_types.size(); ++n) {
+		Fighter* f = universe->entity_manager->create_fighter(250 + (n * 64), 250,
+			(FighterName)fighter_types[n], PLAYER);
+		f->player_id = player_ids[n];
+	}
 
 	universe->game_ui->create_damage_texts(universe->entity_manager->fighters.size());
 

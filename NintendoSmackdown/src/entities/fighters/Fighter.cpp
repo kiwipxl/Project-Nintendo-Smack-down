@@ -63,9 +63,15 @@ Fighter::Fighter(int x, int y, int c_player_id, int c_id, FighterName f_name, Fi
 	update_move(moves.JUMP, 10, false);
 	alpha_colour = 0;
 
+	r = 1; g = 1; b = 1;
 	if (id == 1) {
-		texture->set_colour(0, .5f, 1, 1);
+		r = 0; g = .5f; b = 1;
+	}else if (id == 2) {
+		r = 1; g = .5f; b = 0;
+	}else if (id == 3) {
+		r = 0; g = 1; b = .5f;
 	}
+	texture->set_colour(r, g, b, 1);
 
 	blood_particles = universe->particles->create_particle_chunk(
 		new ParticleEmitter(pos.x + 80, pos.y + 64, 10, 1, 4, false), BLOOD);
@@ -91,10 +97,7 @@ void Fighter::update() {
 	}
 
 	if (invincible) {
-		texture->set_colour(1, 1, 1, .25f + ((sin(alpha_colour / 4) + 1) / 2.5f));
-		if (id == 1) {
-			texture->set_colour(0, .5f, 1, .25f + ((sin(alpha_colour / 4) + 1) / 2.5f));
-		}
+		texture->set_colour(r, g, b,  .25f + ((sin(alpha_colour / 4) + 1) / 2.5f));
 		++alpha_colour;
 	}
 
@@ -135,10 +138,7 @@ void Fighter::update() {
 				invincible = true;
 				alpha_colour = 0;
 				//turn off invincibility after 1 second
-				universe->timer->set_timer([this](void) { invincible = false; texture->set_colour(1, 1, 1, 1);
-					if (id == 1) {
-						texture->set_colour(0, .5f, 1, 1);
-					}
+				universe->timer->set_timer([this](void) { invincible = false; texture->set_colour(r, g, b, 1);
 				}, 2500);
 			}, 2500);
 

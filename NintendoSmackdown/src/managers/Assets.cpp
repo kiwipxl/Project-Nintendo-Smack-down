@@ -35,6 +35,10 @@ void Assets::initiate() {
 	button_sheet = load_texture("buttonsheet.png");
 	messagebox_sheet = load_texture("messageboxsheet.png");
 
+	//load fighter ui sheets
+	fighter_portraits = load_texture("fighterportraits.png");
+	fighter_selector = load_texture("fighterselector.png");
+
 	//load plain colours
 	plain_colours = load_texture("plaincolours.png");
 

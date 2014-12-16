@@ -107,6 +107,8 @@
     <ClCompile Include="src\ui\components\MessageBox.cpp" />
     <ClCompile Include="src\ui\MessageBoxManager.cpp" />
     <ClCompile Include="src\ui\TitleUI.cpp" />
+    <ClCompile Include="src\managers\Audio.cpp" />
+    <ClCompile Include="src\ui\FighterSelectUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -260,6 +262,9 @@
     <ClInclude Include="src\ui\MessageBoxManager.h" />
     <ClInclude Include="src\ui\TitleUI.h" />
     <ClInclude Include="src\entities\fighters\moves\Thor.h" />
+    <ClInclude Include="src\managers\Audio.h" />
+    <ClInclude Include="src\ui\FighterSelectUI.h" />
+    <ClInclude Include="src\ui\components\Selector.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">
@@ -296,6 +301,30 @@
       <Filter>lib</Filter>
     </None>
     <None Include="glew32.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libFLAC-8.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libmikmod-2.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libmodplug-1.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libogg-0.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libvorbis-0.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="libvorbisfile-3.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="SDL2_mixer.dll">
+      <Filter>lib</Filter>
+    </None>
+    <None Include="smpeg2.dll">
       <Filter>lib</Filter>
     </None>
   </ItemGroup>

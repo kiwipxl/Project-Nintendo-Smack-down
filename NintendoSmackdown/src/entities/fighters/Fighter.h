@@ -30,6 +30,9 @@ class Fighter : Universal, public Movement, public Damage {
 		bool enable_camera_view;
 		int width;
 		int height;
+		float r;
+		float g;
+		float b;
 
 		void update();
 
