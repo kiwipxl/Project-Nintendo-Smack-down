@@ -9,19 +9,28 @@
 #include "components/Button.h"
 #include "components/MessageBox.h"
 
+enum DialogType {
+	OK,
+	CANCEL_OK, 
+	NO_YES, 
+};
+
 class MessageBoxManager : Universal {
 
 	public:
-		void create(MessageBox* c_message_box);
+		void show(MessageBox* c_message_box, DialogType type);
 		void update();
-		void remove();
+		void hide();
 
 		void resize_update(int w = 0, int h = 0);
 
-		void remove_message_box();
+		void change_press_function(int button_index, std::function<void()> press_function);
+		void add_custom_button(Button* button);
 
 	private:
 		MessageBox* message_box = NULL;
+
+		void remove_message_box();
 };
 
 #endif

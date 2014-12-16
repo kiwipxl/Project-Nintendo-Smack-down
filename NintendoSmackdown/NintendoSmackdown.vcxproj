@@ -58,7 +58,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;opengl32.lib;glew32s.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;opengl32.lib;glew32s.lib;Vfw32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -128,12 +128,14 @@
     <ClCompile Include="src\ui\components\Text.cpp" />
     <ClCompile Include="src\ui\DebugUI.cpp" />
     <ClCompile Include="src\ui\OptionsUI.cpp" />
+    <ClCompile Include="src\ui\TitleUI.cpp" />
     <ClCompile Include="src\Universe.cpp" />
     <ClCompile Include="src\managers\StateManager.cpp" />
     <ClCompile Include="src\map\Tiles.cpp" />
     <ClCompile Include="src\renderer\Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\entities\fighters\moves\Thor.h" />
     <ClInclude Include="src\particles\components\ParticleMovement.h" />
     <ClInclude Include="src\particles\Particle.h" />
     <ClInclude Include="src\particles\ParticleController.h" />
@@ -185,6 +187,7 @@
     <ClInclude Include="src\ui\components\Text.h" />
     <ClInclude Include="src\ui\DebugUI.h" />
     <ClInclude Include="src\ui\OptionsUI.h" />
+    <ClInclude Include="src\ui\TitleUI.h" />
     <ClInclude Include="src\Universe.h" />
     <ClInclude Include="src\managers\StateManager.h" />
     <ClInclude Include="src\map\Tiles.h" />

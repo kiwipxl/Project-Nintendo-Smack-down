@@ -21,7 +21,7 @@ Button::Button(int c_x, int c_y, std::string title, std::function<void()> press,
 	origin_x = x;
 	origin_y = y;
 	src_rect.x = 0; src_rect.y = 0;
-	src_rect.w = width; src_rect.h = 64;
+	src_rect.w = 192; src_rect.h = 64;
 	rect.x = x; rect.y = y;
 	rect.w = width; rect.h = height;
 	press_function = press;
@@ -57,5 +57,6 @@ void Button::set_pos(int c_x, int c_y) {
 	x = c_x; y = c_y;
 	rect.x = x; rect.y = y;
 	text->origin_x = x; text->origin_y = y + ((rect.h / 2) - (text->rect.h / 2));
+	text->max_width = rect.w;
 	text->update_alignment();
 }

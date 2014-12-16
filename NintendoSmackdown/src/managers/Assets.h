@@ -24,6 +24,12 @@ class Assets : Universal {
 		Texture* button_sheet;
 		Texture* messagebox_sheet;
 		Texture* plain_colours;
+		Texture* options_background;
+		Texture* title_background;
+
+		Texture* selecty;
+		Texture* editorUI;
+		Texture* editgrid;
 
 		void initiate();
 

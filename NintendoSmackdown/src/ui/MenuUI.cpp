@@ -23,6 +23,7 @@ void MenuUI::create() {
 	box_rect.h = 400;
 	box_pos = 0;
 	box_index = 0;
+	box_dest_x = 0;
 	bg_src_rect.x = 0; bg_src_rect.y = 0; bg_src_rect.w = 1920; bg_src_rect.h = 1080;
 
 	resize_update();
@@ -32,14 +33,16 @@ void MenuUI::create() {
 void MenuUI::update() {
 	universe->renderer->render(universe->assets->menu_background, &bg_src_rect, &bg_rect);
 
-	box_pos -= (box_pos - (box_rect.w * box_index)) / 5;
+	box_pos -= (box_pos - box_dest_x) / 5;
 	box_rect.x = (universe->win_manager->screen_width / 2) - (box_rect.w / 2) - box_pos;
 	box_rect.y = (universe->win_manager->screen_height / 2) - (box_rect.h / 2) + 100;
 	for (int i = 0; i < BOX_AMOUNT; ++i) {
-		box_rect.x += 4;
+		box_rect.x += 8;
 		box_src_rect.x = box_src_rect.w * 4;
-		if (i == box_index) { box_src_rect.x += box_src_rect.w; }
-		universe->renderer->render(universe->assets->menu_boxes_sheet, &box_src_rect, &box_rect);
+		if (i == box_index) {
+			box_src_rect.x += box_src_rect.w; 
+			universe->renderer->render(universe->assets->menu_boxes_sheet, &box_src_rect, &box_rect);
+		}
 		box_rect.x -= 4;
 		box_src_rect.x = box_src_rect.w * i;
 		box_src_rect.y = 0;
@@ -55,10 +58,17 @@ void MenuUI::update() {
 		}
 		if (box_index < 0) { box_index = 0; }else if (box_index >= BOX_AMOUNT) { box_index = BOX_AMOUNT - 1; }
 
+		box_dest_x = box_rect.w * box_index;
+		if (box_dest_x <= box_rect.w) { box_dest_x = box_rect.w;
+		}else if (box_dest_x >= box_rect.w * 2) { box_dest_x = box_rect.w * 2; }
+
 		if (universe->input->a_key[i]->pressed) {
 			switch (box_index) {
 				case 0:
 					universe->state->switch_state(GAME);
+					break;
+				case 2:
+					universe->state->switch_state(EDITOR);
 					break;
 				case 3:
 					universe->state->switch_state(OPTIONS);

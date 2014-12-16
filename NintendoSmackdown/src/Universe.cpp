@@ -19,6 +19,7 @@ ParticleManager* Universe::particles;
 Renderer* Universe::renderer;
 OptionsUI* Universe::options_ui;
 MessageBoxManager* Universe::messagebox;
+TitleUI* Universe::title_ui;
 
 void Universe::initiate() {
 	srand(time(NULL));
@@ -44,6 +45,7 @@ void Universe::initiate() {
 	renderer = new Renderer();
 	options_ui = new OptionsUI();
 	messagebox = new MessageBoxManager();
+	title_ui = new TitleUI();
 
 	win_manager->initiate();
 	assets->initiate();

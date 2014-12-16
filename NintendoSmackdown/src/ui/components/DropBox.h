@@ -11,7 +11,7 @@ class DropBox {
 			id = c_id;
 			y = c_y;
 			dest_y = y;
-			text = new Text(c_x, c_y, 20, colour, title, true, 160, CENTER);
+			text = new Text(c_x, c_y, 15, colour, title, true, 160, CENTER);
 		}
 
 		int id;

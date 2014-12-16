@@ -57,6 +57,11 @@ class Movement : FighterBase {
 		**/
 		void add_force(float force_multiplier_x, float force_multiplier_y);
 
+		/**
+		resets the movement
+		**/
+		void reset();
+
 	private:
 		//movement restrictions
 		bool restrict_input_x;
@@ -99,6 +104,7 @@ class Movement : FighterBase {
 		bool right_air_knee;
 		bool air_somersault;
 		bool right_air_kick;
+		bool down_hammer_slam;
 
 		//collision
 		bool floor_collided;

@@ -98,12 +98,12 @@ void DropdownBox::render() {
 		rect.y = box->y;
 
 		if (box == hover_box) { src_rect.y = src_rect.h; }
-		if (selected_box->id == box->id) { src_rect.y = src_rect.h * 2; }
-		if (selected_box->id == box->id && box == hover_box) { src_rect.y = src_rect.h * 3; }
+		if (selected_box->id == box->id) { src_rect.y = src_rect.h * 4; }
+		if (selected_box->id == box->id && box == hover_box) { src_rect.y = src_rect.h * 5; }
 
 		if (box != selected_box) {
 			universe->renderer->render(universe->assets->dropdown_box_sheet, &src_rect, &rect);
-			box->text->rect.y = rect.y + 2;
+			box->text->rect.y = rect.y + 5;
 			box->text->render();
 		}
 	}
@@ -112,7 +112,7 @@ void DropdownBox::render() {
 	if (selected_box == hover_box) { src_rect.y = src_rect.h * 3; }
 	rect.y = y;
 	universe->renderer->render(universe->assets->dropdown_box_sheet, &src_rect, &rect);
-	selected_box->text->rect.y = rect.y + 2;
+	selected_box->text->rect.y = rect.y + 5;
 	selected_box->text->render();
 }
 
@@ -121,7 +121,7 @@ void DropdownBox::set_pos(int c_x, int c_y) {
 	rect.x = x; rect.y = y;
 	for (DropBox* box : boxes) {
 		box->text->origin_x = x;
-		box->text->origin_y = y + 16;
+		box->text->origin_y = y;
 		box->text->update_alignment();
 		box->dest_y = y;
 		box->y = y;

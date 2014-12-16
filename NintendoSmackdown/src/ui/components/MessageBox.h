@@ -15,6 +15,7 @@ class MessageBox : Universal {
 
 		SDL_Rect rect;
 		bool removed;
+		vector<Button*> buttons;
 
 		void render();
 		void add_button(Button* button);
@@ -34,7 +35,6 @@ class MessageBox : Universal {
 		SDL_Rect bg_rect;
 		Text* title_text;
 		Text* message_text;
-		vector<Button*> buttons;
 };
 
 #endif

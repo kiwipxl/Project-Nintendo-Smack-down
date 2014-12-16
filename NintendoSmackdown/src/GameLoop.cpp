@@ -25,9 +25,10 @@ class Universe {
 };
 
 void GameLoop::start() {
-	ms_per_frame = 1000 / fps;
+	set_fps(90);
 	start_second_time = 0;
 	frame_counter = 0;
+	quit = false;
 
 	SDL_JoystickEventState(SDL_ENABLE);
 
@@ -68,7 +69,7 @@ void GameLoop::start() {
 		SDL_GL_SwapWindow(universe->win_manager->window);
 
 		double ms = std::clock() - start_time;
-		if (ms >= 0 && ms < ms_per_frame - 1) { Sleep(floor(ms_per_frame - ms - 1)); }
+		if (ms >= 0 && ms < ms_per_frame) { Sleep(floor(ms_per_frame - ms)); }
 
 		++frame_counter;
 		if (std::clock() - start_second_time >= 1000) {

@@ -16,10 +16,27 @@ class Universe {
 		static Renderer* renderer;
 };
 
-void MessageBoxManager::create(MessageBox* c_message_box) {
+void MessageBoxManager::show(MessageBox* c_message_box, DialogType type) {
 	message_box = c_message_box;
-	message_box->add_button(new Button(message_box->rect.w - 140, message_box->rect.h - 55, "OK",
-		[this](void) { remove_message_box(); }, 110, 40));
+
+	switch (type) {
+		case OK:
+			message_box->add_button(new Button(message_box->rect.w - 140, message_box->rect.h - 55, "OK",
+				[this](void) { remove_message_box(); }, 110, 40));
+			break;
+		case CANCEL_OK:
+			message_box->add_button(new Button(message_box->rect.w - 140, message_box->rect.h - 55, "OK",
+				[this](void) { remove_message_box(); }, 110, 40));
+			message_box->add_button(new Button(message_box->rect.w - 270, message_box->rect.h - 55, "Cancel", 
+				[this](void) { remove_message_box(); }, 110, 40));
+			break;
+		case NO_YES:
+			message_box->add_button(new Button(message_box->rect.w - 140, message_box->rect.h - 55, "Yes", 
+				[this](void) { remove_message_box(); }, 110, 40));
+			message_box->add_button(new Button(message_box->rect.w - 270, message_box->rect.h - 55, "No", 
+				[this](void) { remove_message_box(); }, 110, 40));
+			break;
+	}
 
 	resize_update();
 }
@@ -28,7 +45,7 @@ void MessageBoxManager::update() {
 	if (message_box != NULL) { message_box->render(); }
 }
 
-void MessageBoxManager::remove() {
+void MessageBoxManager::hide() {
 	remove_message_box();
 }
 
@@ -46,4 +63,12 @@ void MessageBoxManager::resize_update(int w, int h) {
 	if (message_box != NULL) {
 		message_box->set_pos((w / 2) - (message_box->get_width() / 2), (h / 2) - (message_box->get_height() / 2));
 	}
+}
+
+void MessageBoxManager::change_press_function(int button_index, std::function<void()> press_function) {
+	message_box->buttons[button_index]->press_function = press_function;
+}
+
+void MessageBoxManager::add_custom_button(Button* button) {
+	message_box->add_button(button);
 }

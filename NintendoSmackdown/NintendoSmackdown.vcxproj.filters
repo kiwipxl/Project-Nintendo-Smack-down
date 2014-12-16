@@ -106,6 +106,7 @@
     <ClCompile Include="src\ui\components\Button.cpp" />
     <ClCompile Include="src\ui\components\MessageBox.cpp" />
     <ClCompile Include="src\ui\MessageBoxManager.cpp" />
+    <ClCompile Include="src\ui\TitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\managers\Assets.h">
@@ -257,6 +258,8 @@
     <ClInclude Include="src\ui\components\Button.h" />
     <ClInclude Include="src\ui\components\MessageBox.h" />
     <ClInclude Include="src\ui\MessageBoxManager.h" />
+    <ClInclude Include="src\ui\TitleUI.h" />
+    <ClInclude Include="src\entities\fighters\moves\Thor.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="libfreetype-6.dll">

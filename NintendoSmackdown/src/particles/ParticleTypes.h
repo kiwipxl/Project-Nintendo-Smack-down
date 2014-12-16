@@ -3,7 +3,8 @@
 
 enum ParticleType {
 	CLOUD,
-	BLOOD
+	BLOOD, 
+	BLOOD_CLOUD
 };
 
 #endif

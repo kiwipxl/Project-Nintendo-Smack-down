@@ -9,8 +9,9 @@ class TimerCallback {
 	public:
 		TimerCallback() { }
 
-		void set_timer(std::function<void()> callback, int interval, bool repeat = false);
+		Timer* set_timer(std::function<void()> callback, int interval, bool repeat = false);
 		void update();
+		void remove_timer(Timer* &timer);
 
 	private:
 		std::vector<Timer*> timers;

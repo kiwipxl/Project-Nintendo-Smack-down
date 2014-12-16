@@ -13,6 +13,7 @@
 #include "../particles/ParticleManager.h"
 #include "../ui/OptionsUI.h"
 #include "../ui/MessageBoxManager.h"
+#include "../ui/TitleUI.h"
 
 class Universe {
 
@@ -29,6 +30,7 @@ class Universe {
 		static ParticleManager* particles;
 		static OptionsUI* options_ui;
 		static MessageBoxManager* messagebox;
+		static TitleUI* title_ui;
 };
 
 /**
@@ -54,6 +56,7 @@ void StateManager::create_current_state() {
 	universe->debug_ui->create();
 	switch (state) {
 		case TITLE_SCREEN:
+			universe->title_ui->create();
 			break;
 		case MAIN_MENU:
 			universe->menu_ui->create();
@@ -80,9 +83,10 @@ handles the removing of the current state
 **/
 void StateManager::remove_current_state() {
 	universe->debug_ui->remove();
-	universe->messagebox->remove();
+	universe->messagebox->hide();
 	switch (state) {
 		case TITLE_SCREEN:
+			universe->title_ui->remove();
 			break;
 		case MAIN_MENU:
 			universe->menu_ui->remove();
@@ -109,6 +113,7 @@ handles updating of everything depending on the state
 void StateManager::update() {
 	switch (state) {
 		case TITLE_SCREEN:
+			universe->title_ui->update();
 			break;
 		case MAIN_MENU:
 			universe->menu_ui->update();
@@ -124,12 +129,12 @@ void StateManager::update() {
 			universe->entity_manager->update();
 			universe->particles->update();
 			universe->game_ui->update();
+			universe->debug_ui->update();
 			break;
 		case EDITOR:
 			universe->editor->update();
 			break;
 	}
-	universe->debug_ui->update();
 	universe->input->update();
 	universe->messagebox->update();
 }

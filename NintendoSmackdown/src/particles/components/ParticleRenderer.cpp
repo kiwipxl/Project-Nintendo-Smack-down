@@ -31,6 +31,10 @@ void ParticleRenderer::create_texture() {
 			src_rect.x = 256; src_rect.y = 0;
 			src_rect.w = 64; src_rect.h = 64;
 			break;
+		case BLOOD_CLOUD:
+			src_rect.x = 256; src_rect.y = 0;
+			src_rect.w = 64; src_rect.h = 64;
+			break;
 	}
 
 	matrices = new GLfloat[parent->max_particles * 16];

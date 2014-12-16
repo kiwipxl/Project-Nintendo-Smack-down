@@ -44,6 +44,18 @@ void Damage::update_damage() {
 								force_x = .1f; force_y = -1;
 								f->dealt_damage = true;
 								damage = 2;
+							}else if (f->current_move == f->moves.HAMMER_PUNCH) {
+								force_x = .2f; force_y = -1;
+								f->dealt_damage = true;
+								damage = 2;
+							}else if (f->current_move == f->moves.HAMMER_PUNCH_UP) {
+								force_x = 1; force_y = -4;
+								f->dealt_damage = true;
+								damage = 5;
+							}else if (f->current_move == f->moves.HAMMER_COMBO_PUNCH) {
+								force_x = .1f; force_y = 4;
+								f->dealt_damage = true;
+								damage = 5;
 							}else if (f->current_move == f->moves.DASH_ATTACK) {
 								force_x = 3; force_y = -2.5f;
 								f->dealt_damage = true;
@@ -66,6 +78,14 @@ void Damage::update_damage() {
 								damage = 11;
 							}else if (f->current_move == f->moves.AIR_KICK) {
 								force_x = 2.5f; force_y = -4;
+								f->dealt_damage = true;
+								damage = 10;
+							}else if (f->current_move == f->moves.HAMMER_SLAM_DOWN) {
+								force_x = 0; force_y = 4;
+								f->dealt_damage = true;
+								damage = 5;
+							}else if (f->current_move == f->moves.HAMMER_SLAM) {
+								force_x = 0; force_y = -6;
 								f->dealt_damage = true;
 								damage = 10;
 							}

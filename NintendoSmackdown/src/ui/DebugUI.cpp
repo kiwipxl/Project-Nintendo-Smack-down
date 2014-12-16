@@ -20,14 +20,14 @@ class Universe {
 
 void DebugUI::create() {
 	debugging = true;
-	fps_text = new Text(5, 0, 20, { 0, 0, 0 }, "", true);
-	render_text = new Text(5, 25, 14, { 0, 0, 0 }, "", true);
-	transform_render_text = new Text(5, 42, 14, { 0, 0, 0 }, "", true);
-	vertices_uploaded_text = new Text(5, 60, 14, { 0, 0, 0 }, "", true);
-	total_renders_text = new Text(5, 80, 14, { 0, 0, 0 }, "", true);
-	particles_drawn_text = new Text(5, 99, 14, { 0, 0, 0 }, "", true);
-	particles_uploaded_text = new Text(5, 118, 14, { 0, 0, 0 }, "", true);
-	particle_chunks_text = new Text(5, 137, 14, { 0, 0, 0 }, "", true);
+	fps_text = new Text(5, 0, 15, { 0, 0, 0 }, "", true);
+	render_text = new Text(5, 25, 12, { 0, 0, 0 }, "", true);
+	transform_render_text = new Text(5, 42, 12, { 0, 0, 0 }, "", true);
+	vertices_uploaded_text = new Text(5, 60, 12, { 0, 0, 0 }, "", true);
+	total_renders_text = new Text(5, 80, 12, { 0, 0, 0 }, "", true);
+	particles_drawn_text = new Text(5, 99, 12, { 0, 0, 0 }, "", true);
+	particles_uploaded_text = new Text(5, 118, 12, { 0, 0, 0 }, "", true);
+	particle_chunks_text = new Text(5, 137, 12, { 0, 0, 0 }, "", true);
 	std::cout << "debug_ui created\n";
 }
 

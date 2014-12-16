@@ -16,6 +16,8 @@ class Button : Universal {
 		int origin_x;
 		int origin_y;
 		bool removed;
+		std::function<void()> press_function;
+		Text* text;
 
 		void render();
 		void set_pos(int c_x, int c_y);
@@ -27,8 +29,6 @@ class Button : Universal {
 		int y;
 		SDL_Rect src_rect;
 		SDL_Rect rect;
-		Text* text;
-		std::function<void()> press_function;
 };
 
 #endif

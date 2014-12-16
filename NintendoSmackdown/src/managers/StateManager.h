@@ -16,7 +16,7 @@ class StateManager : Universal {
 
 	public:
 		StateManager() {
-			state = MAIN_MENU;
+			state = TITLE_SCREEN;
 		}
 
 		State state;

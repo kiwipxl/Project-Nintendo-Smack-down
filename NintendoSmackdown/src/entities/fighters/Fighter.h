@@ -6,10 +6,6 @@
 #include "managers/Movement.h"
 #include "managers/Damage.h"
 
-enum FighterName {
-	CAPTAIN_FALCON
-};
-
 enum FighterType {
 	PLAYER,
 	EASYAI,
@@ -32,12 +28,16 @@ class Fighter : Universal, public Movement, public Damage {
 		bool invincible;
 		Texture* texture;
 		bool enable_camera_view;
+		int width;
+		int height;
 
 		void update();
 
 	private:
 		float alpha_colour;
 		ParticleController* blood_particles;
+		int offset_x = 0;
+		int offset_y = 0;
 };
 
 #endif

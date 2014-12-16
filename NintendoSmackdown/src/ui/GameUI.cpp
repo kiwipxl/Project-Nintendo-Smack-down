@@ -18,9 +18,9 @@ void GameUI::create() {
 
 void GameUI::create_damage_texts(int fighters) {
 	for (int n = 0; n < fighters; ++n) {
-		Text* text = new Text(0, 0, 35, { 0, 0, 0 }, "0%", true);
+		Text* text = new Text(0, 0, 25, { 0, 0, 0 }, "0%", true);
 		damage_texts.push_back(text);
-		Text* name_text = new Text(0, 0, 18, { 0, 0, 0 }, "Captain Falcon", true);
+		Text* name_text = new Text(0, 0, 14, { 0, 0, 0 }, "Captain Falcon", true);
 		name_texts.push_back(name_text);
 	}
 	resize_update();
@@ -59,15 +59,17 @@ void GameUI::resize_update(int w, int h) {
 	int pos_x = w / (damage_texts.size() + 1);
 	int n = 0;
 	for (Text* text : damage_texts) {
-		text->rect.x = pos_x * (n + 1);
-		text->rect.y = h - 60;
+		text->origin_x = pos_x * (n + 1) + 24;
+		text->origin_y = h - 60;
+		text->update_alignment();
 		++n;
 	}
 	n = 0;
 	pos_x = w / (name_texts.size() + 1);
 	for (Text* text : name_texts) {
-		text->rect.x = pos_x * (n + 1) - 25;
-		text->rect.y = h - 90;
+		text->origin_x = pos_x * (n + 1) - 25;
+		text->origin_y = h - 90;
+		text->update_alignment();
 		++n;
 	}
 }

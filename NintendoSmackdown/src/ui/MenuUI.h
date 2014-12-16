@@ -17,6 +17,7 @@ class MenuUI : Universal {
 	private:
 		float box_pos;
 		int box_index;
+		float box_dest_x;
 		const int BOX_AMOUNT = 4;
 		SDL_Rect box_rect;
 		SDL_Rect box_src_rect;

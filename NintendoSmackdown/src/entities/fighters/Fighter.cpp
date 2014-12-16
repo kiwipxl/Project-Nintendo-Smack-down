@@ -12,6 +12,7 @@
 #include "../../ui/GameUI.h"
 #include "../../renderer/Renderer.h"
 #include "../../particles/ParticleManager.h"
+#include "moves/Thor.h"
 
 class Universe {
 
@@ -31,7 +32,23 @@ class Universe {
 Fighter::Fighter(int x, int y, int c_player_id, int c_id, FighterName f_name, FighterType f_type) 
 	: Movement(this), Damage(this) {
 	//setup the moves from the inputted fighter
-	moves = CaptainFalcon();
+	texture = new Texture();
+	switch (f_name) {
+		case CAPTAIN_FALCON:
+			moves = CaptainFalcon();
+			moves.name = CAPTAIN_FALCON;
+			texture->create_texture(universe->assets->fighter_sheets[0]->s);
+			width = 64; height = 64;
+			offset_y = 2;
+			break;
+		case THOR:
+			moves = Thor();
+			moves.name = THOR;
+			texture->create_texture(universe->assets->fighter_sheets[1]->s);
+			width = 75; height = 75;
+			offset_x = -16; offset_y = -16;
+			break;
+	}
 
 	player_id = c_player_id;
 	id = c_id;
@@ -42,8 +59,6 @@ Fighter::Fighter(int x, int y, int c_player_id, int c_id, FighterName f_name, Fi
 	invincible = false;
 	enable_camera_view = true;
 
-	texture = new Texture();
-	texture->create_texture(universe->assets->fighter_sheets[0]->s);
 	animator = new Animator(texture, &src_rect, 64, 64, 5, true, true);
 	update_move(moves.JUMP, 10, false);
 	alpha_colour = 0;
@@ -86,9 +101,9 @@ void Fighter::update() {
 	if (!respawning) {
 		update_movement();
 		update_damage();
-		rect.x = pos.x + universe->camera->x + universe->camera->get_offset_x(pos.x);
-		rect.y = pos.y + universe->camera->y + universe->camera->get_offset_y(pos.y);
-		rect.w = 64 * universe->camera->scale; rect.h = 64 * universe->camera->scale;
+		rect.x = pos.x + universe->camera->x + universe->camera->get_offset_x(pos.x) + offset_x;
+		rect.y = pos.y + universe->camera->y + universe->camera->get_offset_y(pos.y) + offset_y;
+		rect.w = width * universe->camera->scale; rect.h = height * universe->camera->scale;
 		origin.x = rect.w / 2; origin.y = rect.h / 2;
 		universe->renderer->render_transform(texture, &src_rect, &rect, rotation, &origin, flip);
 
@@ -103,6 +118,8 @@ void Fighter::update() {
 
 			universe->particles->create_particle_chunk(new ParticleEmitter(p_x, p_y, 
 																		   0, 250, 250, true), CLOUD);
+			universe->particles->create_particle_chunk(new ParticleEmitter(p_x, p_y, 
+																		   0, 250, 250, true), BLOOD_CLOUD);
 
 			respawning = true;
 			health = 0;
@@ -110,9 +127,7 @@ void Fighter::update() {
 
 			//respawn after 2.5 seconds
 			universe->timer->set_timer([this](void) {
-				current_move = moves.IDLE;
-				rotation = 0;
-				gravity = 0;
+				reset();
 				respawning = false;
 				enable_camera_view = true;
 				pos.x = 100 + (rand() % (universe->map->map_width - 400));

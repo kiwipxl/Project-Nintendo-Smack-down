@@ -23,6 +23,7 @@ class Text : Universal {
 		SDL_Rect rect;
 		int origin_x;
 		int origin_y;
+		int max_width;
 
 		void render();
 		void render_text(std::string font_text, bool smooth = false);
@@ -39,7 +40,6 @@ class Text : Universal {
 		SDL_Colour colour;
 		std::string text;
 		TextAlign align;
-		int max_width;
 		int font_size;
 };
 

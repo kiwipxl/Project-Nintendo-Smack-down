@@ -32,6 +32,12 @@ class CaptainFalcon : public Moves {
 			AIR_SOMERSAULT = 18;
 			AIR_KICK = 19;
 
+			RUN_FPS = 15;
+			DASH_ATTACK_FPS = 10;
+			AIR_LAND_FPS = 4;
+			SLIDE_ATTACK_FPS = 10;
+			AIR_KICK_FPS = 12;
+
 			move_frames[IDLE] = 4;
 			move_frames[TAUNT] = 4;
 			move_frames[JUMP] = 3;

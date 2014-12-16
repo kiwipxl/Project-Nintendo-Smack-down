@@ -57,9 +57,11 @@ void MessageBox::render() {
 	title_text->render();
 	message_text->render();
 
-	for (Button* button : buttons) {
-		button->render();
-		if (removed) { return; }
+	for (int n = 0; n < buttons.size(); ++n) {
+		if (n < buttons.size()) {
+			buttons[n]->render();
+			if (removed) { return; }
+		}
 	}
 }
 

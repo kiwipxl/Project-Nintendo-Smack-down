@@ -3,6 +3,11 @@
 
 #include <vector>
 
+enum FighterName {
+	CAPTAIN_FALCON,
+	THOR
+};
+
 class Moves {
 
 	public:
@@ -29,10 +34,23 @@ class Moves {
 		int AIR_SOMERSAULT;
 		int AIR_KICK;
 
+		int HAMMER_PUNCH;
+		int HAMMER_PUNCH_UP;
+		int HAMMER_COMBO_PUNCH;
+		int HAMMER_SLAM_DOWN;
+		int HAMMER_SLAM;
+
+		int RUN_FPS;
+		int DASH_ATTACK_FPS;
+		int AIR_LAND_FPS;
+		int SLIDE_ATTACK_FPS;
+		int AIR_KICK_FPS;
+
 		std::vector<int> move_frames;
+		FighterName name;
 
 	protected:
-		int MOVE_COUNT = 20;
+		int MOVE_COUNT = 25;
 };
 
 #endif

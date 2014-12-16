@@ -9,21 +9,23 @@
 class GameLoop : Universal {
 
 	public:
-		GameLoop() {
-			fps = 90;
-			ms_per_frame = 0;
-			quit = false;
-		}
-
-		float fps;
+		GameLoop() { }
 
 		void start();
+
+		void set_fps(int new_fps) {
+			fps = new_fps;
+			ms_per_frame = 1000 / fps;
+		} 
+
+		int get_fps() { return fps; }
 
 	private:
 		SDL_Event e;
 		bool quit;
 		std::clock_t start_time;
 		std::clock_t start_second_time;
+		float fps;
 		float ms_per_frame;
 		int frame_counter;
 };

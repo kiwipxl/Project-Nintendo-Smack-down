@@ -59,7 +59,7 @@ void Movement::update_movement() {
 											GET COORDS
 	------------------------------------------------------------------------------------------
 	**/
-	rect.w = 64; rect.h = 64;
+	rect.w = base_parent->width; rect.h = base_parent->height;
 
 	//update coords based on position and tile size
 	coords.x = (pos.x * base_universe->camera->scale) / base_universe->camera->grid_size;
@@ -131,7 +131,8 @@ void Movement::update_movement() {
 		//snap against the tile in x and y and reset variables
 		gravity = 0;
 		rotation = 0;
-		speed_x = 0; force_x = 0; pos.x = ((int)coords.x + .5f) * 32;
+		speed_x = 0; force_x = 0;
+		pos.x = ((int)coords.x + .5f) * 32;
 		pos.y = ((int)coords.y + 1) * 32;
 		update_move(moves.EDGE_GRAB, 1, false);
 		grabbing_edge = true;
@@ -147,7 +148,9 @@ void Movement::update_movement() {
 		//snap against the tile in x and y and reset variables
 		gravity = 0;
 		rotation = 0;
-		speed_x = 0; force_x = 0; pos.x = ((int)coords.x + .5f) * 32;
+		speed_x = 0; force_x = 0;
+		pos.x = ((int)coords.x + .5f) * 32;
+		if (moves.name == THOR) { pos.x += 14; }
 		pos.y = ((int)coords.y + 1) * 32;
 		update_move(moves.EDGE_GRAB, 1, false);
 		grabbing_edge = true;
@@ -198,13 +201,22 @@ void Movement::update_movement() {
 				//play the landing animation after jumping or landing
 				if (current_move == moves.AIR_LAND || current_move == moves.JUMP || current_move == moves.LAND) {
 					update_move(moves.LAND, 10, false);
+				}else if (down_air_kick && moves.name == THOR) {
+					update_move(moves.HAMMER_SLAM, 20, false, true);
+					double_jump = false;
+					restrict_input_x = true;
+					restrict_input_y = true;
+					down_air_kick = false;
+					down_hammer_slam = true;
+					base_parent->dealt_damage = false;
 				}
+
 				//if not doing other actions, idle if speed is low and start running if the speed is fast
 				if (current_move != moves.JUMP && current_move != moves.EDGE_GRAB) {
 					if (current_move != moves.CROUCH || 
 						(current_move == moves.CROUCH && !down_key->down)) {
 						if (speed_x >= 1 || speed_x <= -1) {
-							update_move(moves.RUN, 15, true);
+							update_move(moves.RUN, moves.RUN_FPS, true);
 						}else if (current_move != moves.LAND && current_move != moves.HIT) {
 							update_move(moves.IDLE, 5, true);
 						}
@@ -226,8 +238,13 @@ void Movement::update_movement() {
 		}
 
 		//limit gravity to the max fall speed
-		gravity += fall_speed;
-		if (gravity >= max_fall_speed) { gravity = max_fall_speed; }
+		if (down_air_kick && moves.name == THOR) {
+			gravity += fall_speed * 4;
+			if (gravity >= max_fall_speed * 2) { gravity = max_fall_speed * 2; }
+		}else {
+			gravity += fall_speed;
+			if (gravity >= max_fall_speed) { gravity = max_fall_speed; }
+		}
 
 		//if the gravity is less than 0 and colliding up with a solid tile, then snap to the tile
 		if (gravity < 0 && (node = Collision::collide_up(coords.x, coords.y)) && node->solid) {
@@ -274,9 +291,16 @@ void Movement::update_movement() {
 
 	//apply rotation to double jump depending on direction
 	if (current_move == moves.DOUBLE_JUMP) {
-		if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { rotation -= 40; }else { rotation += 40; }
+		if (!grabbing_edge && current_move == moves.DOUBLE_JUMP && moves.name == THOR && gravity > 0) {
+			update_move(moves.AIR_LAND, moves.AIR_LAND_FPS, false);
+			animator->next_frame();
+		}
+		if (moves.name == CAPTAIN_FALCON) {
+			if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { rotation -= 40;
+			}else { rotation += 40; }
+		}
 	}else if (!grabbing_edge && current_move == moves.JUMP && gravity > 0) {
-		update_move(moves.AIR_LAND, 4, false);
+		update_move(moves.AIR_LAND, moves.AIR_LAND_FPS, false);
 	}
 
 	/**
@@ -289,22 +313,42 @@ void Movement::update_movement() {
 		if (current_move == moves.IDLE || (current_move == moves.RUN && 
 			!right_key->down && !left_key->down)) {
 			if (a_key->pressed) {
-				if ((punch_cycle == moves.KICK || punch_cycle == moves.RAPID_PUNCH) && 
-					punch_timer <= PUNCH_CYCLE_TIME) {
-					//change move to rapid punch
-					update_move(moves.RAPID_PUNCH, 15, false, true);
-					punch_cycle = moves.RAPID_PUNCH;
-					base_parent->dealt_damage = false;
-				}else if (punch_cycle == moves.PUNCH && punch_timer <= PUNCH_CYCLE_TIME) {
-					//change move to kick
-					update_move(moves.KICK, 15, false, true);
-					punch_cycle = moves.KICK;
-					base_parent->dealt_damage = false;
-				}else {
-					//change move to punch
-					update_move(moves.PUNCH, 10, false, true);
-					punch_cycle = moves.PUNCH;
-					base_parent->dealt_damage = false;
+				if (moves.name == CAPTAIN_FALCON) {
+					if ((punch_cycle == moves.KICK || punch_cycle == moves.RAPID_PUNCH) && 
+						punch_timer <= PUNCH_CYCLE_TIME) {
+						//change move to rapid punch
+						update_move(moves.RAPID_PUNCH, 20, false, true);
+						punch_cycle = moves.RAPID_PUNCH;
+						base_parent->dealt_damage = false;
+					}else if (punch_cycle == moves.PUNCH && punch_timer <= PUNCH_CYCLE_TIME) {
+						//change move to kick
+						update_move(moves.KICK, 15, false, true);
+						punch_cycle = moves.KICK;
+						base_parent->dealt_damage = false;
+					}else {
+						//change move to punch
+						update_move(moves.PUNCH, 10, false, true);
+						punch_cycle = moves.PUNCH;
+						base_parent->dealt_damage = false;
+					}
+				}else if (moves.name == THOR) {
+					if ((punch_cycle == moves.HAMMER_PUNCH_UP || punch_cycle == moves.HAMMER_COMBO_PUNCH) && 
+						punch_timer <= PUNCH_CYCLE_TIME) {
+						//change move to hammer combo punch
+						update_move(moves.HAMMER_COMBO_PUNCH, 30, false, true);
+						punch_cycle = moves.HAMMER_PUNCH;
+						base_parent->dealt_damage = false;
+					}else if (punch_cycle == moves.HAMMER_PUNCH && punch_timer <= PUNCH_CYCLE_TIME) {
+						//change move to hammer punch up
+						update_move(moves.HAMMER_PUNCH_UP, 30, false, true);
+						punch_cycle = moves.HAMMER_PUNCH_UP;
+						base_parent->dealt_damage = false;
+					}else {
+						//change move to hammer punch
+						update_move(moves.HAMMER_PUNCH, 20, false, true);
+						punch_cycle = moves.HAMMER_PUNCH;
+						base_parent->dealt_damage = false;
+					}
 				}
 				//restrict movement input and reset punch timer
 				punch_timer = 0;
@@ -337,7 +381,7 @@ void Movement::update_movement() {
 			//apply force depending on flip direction
 			if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { force_x += 10; }else { force_x -= 10; }
 			//update movement and restrict movement input
-			update_move(moves.DASH_ATTACK, 10, false, true);
+			update_move(moves.DASH_ATTACK, moves.DASH_ATTACK_FPS, false, true);
 			restrict_input_x = true;
 			restrict_input_y = true;
 			base_parent->dealt_damage = false;
@@ -372,7 +416,7 @@ void Movement::update_movement() {
 			//apply force depending on flip direction
 			if (flip == SDL_RendererFlip::SDL_FLIP_NONE) { force_x += 8; }else { force_x -= 8; }
 			//update movement and restrict movement input
-			update_move(moves.SLIDE_ATTACK, 10, false, true);
+			update_move(moves.SLIDE_ATTACK, moves.SLIDE_ATTACK_FPS, false, true);
 			restrict_input_x = true;
 			restrict_input_y = true;
 			sliding = true;
@@ -392,19 +436,32 @@ void Movement::update_movement() {
 											DOWN AIR KICK
 	------------------------------------------------------------------------------------------
 	**/
-	if (!floor_collided && down_key->down && a_key->pressed && !double_jump && !restrict_input_y && !grabbing_edge) {
-		update_move(moves.AIR_DOWN_KICK, 15, false, true);
-		restrict_input_x = true;
-		restrict_input_y = true;
-		down_air_kick = true;
-		base_parent->dealt_damage = false;
+	if (!floor_collided && down_key->down && a_key->pressed && !restrict_input_y && !grabbing_edge) {
+		if (moves.name != CAPTAIN_FALCON || !double_jump) {
+			if (moves.name == CAPTAIN_FALCON) {
+				update_move(moves.AIR_DOWN_KICK, 15, false, true);
+			}else if (moves.name == THOR) {
+				update_move(moves.HAMMER_SLAM_DOWN, 10, false, true);
+			}
+			restrict_input_x = true;
+			restrict_input_y = true;
+			down_air_kick = true;
+			base_parent->dealt_damage = false;
+		}
 	}
-	if (down_air_kick && !lock_move_update) {
+	if (down_air_kick && !lock_move_update && moves.name == CAPTAIN_FALCON) {
 		update_move(moves.JUMP, 10, false);
 		double_jump = false;
 		restrict_input_x = false;
 		restrict_input_y = false;
 		down_air_kick = false;
+	}
+	if (down_hammer_slam && !lock_move_update) {
+		update_move(moves.LAND, 10, false);
+		double_jump = false;
+		restrict_input_x = false;
+		restrict_input_y = false;
+		down_hammer_slam = false;
 	}
 
 	/**
@@ -457,7 +514,7 @@ void Movement::update_movement() {
 	**/
 	if (!floor_collided && a_key->pressed && !double_jump && !restrict_input_y && 
 		!right_key->down && !left_key->down && !up_key->down && !grabbing_edge) {
-		update_move(moves.AIR_KICK, 12, false);
+		update_move(moves.AIR_KICK, moves.AIR_KICK_FPS, false);
 		restrict_input_x = true;
 		restrict_input_y = true;
 		right_air_kick = true;
@@ -543,7 +600,21 @@ void Movement::add_force(float forcemultiplierx, float forcemultipliery) {
 	if (grabbing_edge) {
 		grabbing_edge = false; edge_node->edgeempty = true; edge_node = nullptr; update_move(moves.JUMP, 10, false);
 	}
+	rotation = 0;
 	update_move(moves.HIT, 5, false);
 	//restrict_input_x = true;
 	//restrict_input_y = true;
+}
+
+/**
+resets the movement
+**/
+void Movement::reset() {
+	current_move = moves.IDLE;
+	rotation = 0;
+	gravity = 0;
+	down_hammer_slam = false;
+	down_air_kick = false;
+	restrict_input_x = false;
+	restrict_input_y = false;
 }

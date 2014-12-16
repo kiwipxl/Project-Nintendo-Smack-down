@@ -30,6 +30,11 @@ void ParticleMovement::initiate_movement() {
 			parent->scale = .1f + ((rand() / (float)RAND_MAX) / 2);
 			remove_rate = 50 + (rand() % 20);
 			break;
+		case BLOOD_CLOUD:
+			speedx = ((rand() / (float)RAND_MAX) - (rand() / (float)RAND_MAX)) * 15;
+			gravity = -10 - ((rand() / (float)RAND_MAX) * 10);
+			parent->scale = .1f + ((rand() / (float)RAND_MAX) / 2);
+			break;
 	}
 }
 
@@ -49,6 +54,12 @@ void ParticleMovement::update_movement() {
 			gravity = gravity * .98f;
 			break;
 		case BLOOD:
+			speedx = speedx * .97f;
+
+			gravity += .5f;
+			if (gravity >= 10) { gravity = 10; }
+			break;
+		case BLOOD_CLOUD:
 			speedx = speedx * .97f;
 
 			gravity += .5f;

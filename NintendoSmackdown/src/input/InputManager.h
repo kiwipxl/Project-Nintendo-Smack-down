@@ -38,11 +38,14 @@ class InputManager : Universal {
 		vector<Joystick> joysticks;
 		Key*** allkeys = new Key**[KEYS];
 
+		Key* last_key;
+
 		void initiate();
 		void event_update(SDL_Event e);
 		void update();
 		void refreshjoysticks();
 		void set_keys_down(int key, KeyType type, bool down, bool check_if_down = false);
+		std::string get_name(Key* key);
 };
 
 #endif

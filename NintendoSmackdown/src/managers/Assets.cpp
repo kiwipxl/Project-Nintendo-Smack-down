@@ -13,6 +13,7 @@ class Universe {
 void Assets::initiate() {
 	//load fighter sprite sheets
 	fighter_sheets.push_back(load_texture("captainfalcon.png", false));
+	fighter_sheets.push_back(load_texture("thor.png", false));
 
 	//load tile sprite sheets
 	tile_sheets.push_back(load_texture("groundtiles.png"));
@@ -23,6 +24,8 @@ void Assets::initiate() {
 	//load main menu textures and sheets
 	menu_boxes_sheet = load_texture("menuboxes.png");
 	menu_background = load_texture("menubackground.png");
+	options_background = load_texture("optionsbackground.png");
+	title_background = load_texture("titlebackground.png");
 
 	//load particle sheet
 	particle_sheet = load_texture("particlesheet.png", false);
@@ -34,6 +37,11 @@ void Assets::initiate() {
 
 	//load plain colours
 	plain_colours = load_texture("plaincolours.png");
+
+	//load editor assets
+	editorUI = load_texture("editorui.png");
+	selecty = load_texture("selecty.png");
+	editgrid = load_texture("gridy.png");
 }
 
 /**

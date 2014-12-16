@@ -21,6 +21,7 @@
 #include "renderer/Renderer.h"
 #include "ui/OptionsUI.h"
 #include "ui/MessageBoxManager.h"
+#include "ui/TitleUI.h"
 
 class Universe {
 
@@ -50,6 +51,7 @@ class Universe {
 		static MenuUI* menu_ui;
 		static OptionsUI* options_ui;
 		static MessageBoxManager* messagebox;
+		static TitleUI* title_ui;
 
 		static Editor* editor;
 

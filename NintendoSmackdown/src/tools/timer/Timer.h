@@ -13,6 +13,9 @@ class Timer {
 		int interval;
 		clock_t start_time;
 		bool repeat;
+		bool ended = false;
+
+		void end() { ended = true; }
 };
 
 #endif
